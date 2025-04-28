@@ -113,7 +113,7 @@ public class FrmLogin extends javax.swing.JFrame {
         Login datosCorrectos = new Login("admin", "1234");
 
         // Obtener lo que el usuario escribe en el form
-        String usuarioIngresado = txtUsuario.getText();
+        String usuarioIngresado = txtUsuario.getText(); 
         String contraseñaIngresada = new String(pfContraseña.getPassword());
 
         // Verificar si coinciden
