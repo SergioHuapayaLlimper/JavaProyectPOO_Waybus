@@ -1,7 +1,6 @@
+
 package Proyecto;
-/**
- * @author sergi
- */
+
 public class Login {
     private String usuario;
     private String contraseña;
@@ -28,7 +27,5 @@ public class Login {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-    
-    
+    } 
 }
