@@ -26,32 +26,68 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblTituloMenuAdministrador = new javax.swing.JLabel();
+        btnRegistroDeEmpleados = new javax.swing.JButton();
+        btnMostrarListaDeClientes = new javax.swing.JButton();
+        btnMostrarListaDeEmpleados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Bienvenid@ al Menú de opciones:");
+        lblTituloMenuAdministrador.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lblTituloMenuAdministrador.setText("Bienvenid@ al Menú de opciones:");
+
+        btnRegistroDeEmpleados.setText("Registro de Empleados");
+        btnRegistroDeEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroDeEmpleadosActionPerformed(evt);
+            }
+        });
+
+        btnMostrarListaDeClientes.setText("Mostrar Lista de Clientes");
+
+        btnMostrarListaDeEmpleados.setText("Mostrar Lista de Empleados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addContainerGap(646, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lblTituloMenuAdministrador))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMostrarListaDeClientes)))
+                .addGap(29, 29, 29)
+                .addComponent(btnMostrarListaDeEmpleados)
+                .addContainerGap(442, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addContainerGap(541, Short.MAX_VALUE))
+                .addComponent(lblTituloMenuAdministrador)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarListaDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1048, 605));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistroDeEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroDeEmpleadosActionPerformed
+        FrmRegistroEmpleados formularioregistro = new FrmRegistroEmpleados();
+        formularioregistro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistroDeEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +125,9 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnMostrarListaDeClientes;
+    private javax.swing.JButton btnMostrarListaDeEmpleados;
+    private javax.swing.JButton btnRegistroDeEmpleados;
+    private javax.swing.JLabel lblTituloMenuAdministrador;
     // End of variables declaration//GEN-END:variables
 }
