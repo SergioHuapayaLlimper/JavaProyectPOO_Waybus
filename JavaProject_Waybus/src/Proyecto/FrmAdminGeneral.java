@@ -53,18 +53,16 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(lblTituloMenuAdministrador))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTituloMenuAdministrador, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMostrarListaDeClientes)))
-                .addGap(29, 29, 29)
-                .addComponent(btnMostrarListaDeEmpleados)
-                .addContainerGap(442, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnMostrarListaDeClientes)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnMostrarListaDeEmpleados)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,10 +74,10 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
                     .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrarListaDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(1048, 605));
+        setSize(new java.awt.Dimension(683, 422));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
