@@ -229,6 +229,7 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
                                         Integer.parseInt(txtEdad.getText()));
         //Agrega objetoMedico al ArrayList
         mantenimiento.AgregarEmpleado(objetoempleado);
+        JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");
         txtCodigo.setText("");
         txtNombres.setText("");
         txtApellidos.setText("");
