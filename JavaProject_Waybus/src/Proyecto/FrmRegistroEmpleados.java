@@ -5,6 +5,8 @@
 package Proyecto;
 
 import javax.swing.JOptionPane;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -229,7 +231,21 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
                                         Integer.parseInt(txtEdad.getText()));
         //Agrega objetoMedico al ArrayList
         mantenimiento.AgregarEmpleado(objetoempleado);
-        JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");
+        try (FileWriter writer = new FileWriter("usuarios.txt", true)) {
+            writer.write(txtCodigo.getText() + "," + 
+                         txtDNI.getText() + "," + 
+                         txtNombres.getText() + "," + 
+                         txtApellidos.getText() + "," +
+                         txtCorreo.getText() + "," +
+                         txtTelefono.getText() + "," +
+                         cmbOficina.getSelectedItem().toString() + "," +
+                         cmbCargo.getSelectedItem().toString() + "," +
+                         cmbSexo.getSelectedItem().toString() + "," +
+                         txtEdad.getText() + "\n");
+            JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al registrar usuario: " + e.getMessage());
+        }
         txtCodigo.setText("");
         txtNombres.setText("");
         txtApellidos.setText("");
