@@ -61,7 +61,7 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
         lblTituloMenuAdministrador.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         lblTituloMenuAdministrador.setText("Ingresa los datos de los empleados:");
 
-        btnRegistroDeEmpleados.setText("Registro de Empleados");
+        btnRegistroDeEmpleados.setText("Registrar Empleado");
         btnRegistroDeEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistroDeEmpleadosActionPerformed(evt);
@@ -82,9 +82,9 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
 
         lblCargo.setText("Cargo:");
 
-        cmbOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "LIMA", "CAÑETE", "CERRO AZUL", "ICA", "ATICO", "CAMANA", "ALTO SIGUAS", "AREQUIPA" }));
+        cmbOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima", "Cañete", "Cerro Azul", "Ica", "Atíco", "Camana", "Alto Siguas", "Arequipa" }));
 
-        cmbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "OPERARIO DE RUTAS", "CONDUCTOR", "COUNTER", "GERENTE DE FINANZAS", "ANALISTA DE VIAJES", "DIRECTOR DE LOGISTICA", "RESPONSABLE DE RECURSOS HUMANOS" }));
+        cmbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Operario de Rutas", "Conductor", "Counter", "Gerente de Finanzas", "Analista de Viajes", "Director de Logística", "Responsable de Recursos Humanos" }));
 
         btnRetornoMenúAdmin.setText("Regresar al Menú");
         btnRetornoMenúAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -234,12 +234,12 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
         try (FileWriter writer = new FileWriter("usuarios.txt", true)) {
             writer.write(txtCodigo.getText() + "," + 
                          txtDNI.getText() + "," + 
+                         cmbCargo.getSelectedItem().toString() + "," +
                          txtNombres.getText() + "," + 
                          txtApellidos.getText() + "," +
                          txtCorreo.getText() + "," +
                          txtTelefono.getText() + "," +
                          cmbOficina.getSelectedItem().toString() + "," +
-                         cmbCargo.getSelectedItem().toString() + "," +
                          cmbSexo.getSelectedItem().toString() + "," +
                          txtEdad.getText() + "\n");
             JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");

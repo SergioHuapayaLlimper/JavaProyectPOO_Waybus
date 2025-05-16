@@ -122,31 +122,64 @@ public class FrmLogin extends javax.swing.JFrame {
             this.dispose();
         } else {
     // Validación para empleados desde el archivo usuarios.txt
-        boolean accesoConcedido = false;
+            boolean accesoConcedido = false;
+            String cargo = "";
         
-        try (BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"))) {
-           String linea;
-           while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes.length == 10) {
-                    String codigoEmpleado = partes[0].trim();
-                    String clave = partes[1].trim();
+            try (BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"))) {
+               String linea;
+               while ((linea = reader.readLine()) != null) {
+                    String[] partes = linea.split(",");
+                    if (partes.length == 10) {
+                        String codigoEmpleado = partes[0].trim();
+                        String clave = partes[1].trim();
+                        String cargoactivo = partes[2].trim();
 
-                    if (usuarioIngresado.equals(codigoEmpleado) && contraseñaIngresada.equals(clave)) {
-                        accesoConcedido = true;
-                        break;
+                        if (usuarioIngresado.equals(codigoEmpleado) && contraseñaIngresada.equals(clave)) {
+                            accesoConcedido = true;
+                            cargo = cargoactivo;
+                            break;
+                        }
                     }
                 }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
 
-        if (accesoConcedido) {
-            JOptionPane.showMessageDialog(this, "Ingresaste correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            if (accesoConcedido) {
+                switch(cargo.toLowerCase()){
+                    case "counter" -> {
+                        new FrmCounter().setVisible(true);
+                        this.dispose();
+                    }
+                    case "conductor" -> {
+                        new FrmConductor().setVisible(true);
+                        this.dispose();
+                    }
+                    case "operario de rutas" -> {
+                        new FrmOperarioRutas().setVisible(true);
+                        this.dispose();
+                    }
+                    case "gerente de finanzas" -> {
+                        new FrmGerenteFinanzas().setVisible(true);
+                        this.dispose();
+                    }
+                    case "analista de viajes" -> {
+                        new FrmAnalistaViajes().setVisible(true);
+                        this.dispose();
+                    }
+                    case "director de logistica" -> {
+                        new FrmDirectorLogistica().setVisible(true);
+                        this.dispose();
+                    }
+                    case "responsable de recursos humanos" -> {
+                        new FrmResponsableRRHH().setVisible(true);
+                        this.dispose();
+                    }
+                    default -> JOptionPane.showMessageDialog(this, "Cargo no reconocido: " + cargo);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
