@@ -8,6 +8,9 @@ package Proyecto;
  *
  * @author sergi
  */
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 public class FrmLogin extends javax.swing.JFrame {
 
@@ -110,24 +113,73 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        Login datosCorrectos = new Login("admin", "1234");
-
-        // Obtener lo que el usuario escribe en el form
         String usuarioIngresado = txtUsuario.getText(); 
         String contraseñaIngresada = new String(pfContraseña.getPassword());
-
-        // Verificar si coinciden
-        if (usuarioIngresado.equals(datosCorrectos.getUsuario()) && 
-            contraseñaIngresada.equals(datosCorrectos.getContraseña())) {
-
-            // Si es correcto, abrir otra ventana
+        
+        if (usuarioIngresado.equals("admin") && contraseñaIngresada.equals("1234")) {
             FrmAdminGeneral ventanaAdmin = new FrmAdminGeneral();
             ventanaAdmin.setVisible(true);
-            this.dispose(); // Cierra el login
-
+            this.dispose();
         } else {
-            // Si no es correcto, mostrar error
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+    // Validación para empleados desde el archivo usuarios.txt
+            boolean accesoConcedido = false;
+            String cargo = "";
+        
+            try (BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"))) {
+               String linea;
+               while ((linea = reader.readLine()) != null) {
+                    String[] partes = linea.split(",");
+                    if (partes.length == 10) {
+                        String codigoEmpleado = partes[0].trim();
+                        String clave = partes[1].trim();
+                        String cargoactivo = partes[2].trim();
+
+                        if (usuarioIngresado.equals(codigoEmpleado) && contraseñaIngresada.equals(clave)) {
+                            accesoConcedido = true;
+                            cargo = cargoactivo;
+                            break;
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if (accesoConcedido) {
+                switch(cargo.toLowerCase()){
+                    case "counter" -> {
+                        new FrmCounter().setVisible(true);
+                        this.dispose();
+                    }
+                    case "conductor" -> {
+                        new FrmConductor().setVisible(true);
+                        this.dispose();
+                    }
+                    case "operario de rutas" -> {
+                        new FrmOperarioRutas().setVisible(true);
+                        this.dispose();
+                    }
+                    case "gerente de finanzas" -> {
+                        new FrmGerenteFinanzas().setVisible(true);
+                        this.dispose();
+                    }
+                    case "analista de viajes" -> {
+                        new FrmAnalistaViajes().setVisible(true);
+                        this.dispose();
+                    }
+                    case "director de logistica" -> {
+                        new FrmDirectorLogistica().setVisible(true);
+                        this.dispose();
+                    }
+                    case "responsable de recursos humanos" -> {
+                        new FrmResponsableRRHH().setVisible(true);
+                        this.dispose();
+                    }
+                    default -> JOptionPane.showMessageDialog(this, "Cargo no reconocido: " + cargo);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
