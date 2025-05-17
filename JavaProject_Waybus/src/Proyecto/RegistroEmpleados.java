@@ -99,13 +99,5 @@ public class RegistroEmpleados {
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    
-    
-    
-
-    
-    
-    
+    }    
 }

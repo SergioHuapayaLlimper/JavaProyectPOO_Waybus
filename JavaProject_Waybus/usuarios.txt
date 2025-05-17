@@ -1,3 +1,3 @@
-123,123456789,Operario de Rutas,Sergio,Huapaya,a,12,Lima,Masculino,19
-456,987654321,Conductor,Jhamil,Puchuri,b,1598765,Cañete,Masculino,19
-789,654987321,Counter,Sharom,Yache,c,159875,Cerro Azul,Femenino,19
+534534,Carla,Llanos,54675467,carlos123@gmail.com,987453812,Lima,Operario de Rutas,32,Femenino
+42432,Carlos,Cano,54346732,carlos12@gmail.com,945328729,Ica,Analista de Viajes,32,Masculino
+312323,Juan,Cornejo,78653445,juan.yc@gmail.com,987656743,Cerro Azul,Operario de Rutas,32,Masculino
