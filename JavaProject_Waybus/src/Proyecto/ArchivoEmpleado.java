@@ -39,7 +39,6 @@ public class ArchivoEmpleado {
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
-
         return lista;
     }
 

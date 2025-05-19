@@ -49,6 +49,11 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         btnMostrarListaDeClientes.setText("Mostrar Lista de Clientes");
 
         btnMostrarListaDeEmpleados.setText("Mostrar Lista de Empleados");
+        btnMostrarListaDeEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarListaDeEmpleadosActionPerformed(evt);
+            }
+        });
 
         btnSalirMenú.setText("Salir al menú");
         btnSalirMenú.addActionListener(new java.awt.event.ActionListener() {
@@ -70,11 +75,11 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(btnMostrarListaDeEmpleados)
-                        .addGap(38, 38, 38)
-                        .addComponent(btnMostrarListaDeClientes)
-                        .addGap(47, 47, 47))
+                        .addGap(37, 37, 37)
+                        .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTituloMenuAdministrador)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -109,6 +114,12 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         formlogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSalirMenúActionPerformed
+
+    private void btnMostrarListaDeEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarListaDeEmpleadosActionPerformed
+        FrmListaEmpleados listaemple = new FrmListaEmpleados();
+        listaemple.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMostrarListaDeEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments

@@ -37,11 +37,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="btnRegistroDeEmpleados" min="-2" pref="170" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                       <Component id="btnMostrarListaDeEmpleados" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnMostrarListaDeClientes" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="btnMostrarListaDeClientes" min="-2" pref="169" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="lblTituloMenuAdministrador" min="-2" max="-2" attributes="0"/>
@@ -95,6 +95,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar Lista de Empleados"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarListaDeEmpleadosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalirMen&#xfa;">
       <Properties>

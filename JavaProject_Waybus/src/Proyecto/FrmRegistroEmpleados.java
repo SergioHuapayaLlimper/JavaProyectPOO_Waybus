@@ -243,7 +243,6 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "El código solo debe contener números.");
                 return;
         }
-
         if (txtNombres.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Debe ingresar los nombres del empleado.");
                 return;
@@ -252,25 +251,21 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Debe ingresar los apellidos del empleado.");
                 return;
         }
-
         String dni = txtDNI.getText().trim();
         if (dni.isEmpty() || !dni.matches("\\d{8}")) {
                 JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido de 8 dígitos.");
                 return;
         }
-
         String correo = txtCorreo.getText().trim().toLowerCase();
         if (correo.isEmpty() || !(correo.endsWith("@gmail.com") || correo.endsWith("@outlook.com"))) {
                 JOptionPane.showMessageDialog(this, "El correo debe terminar en @gmail.com o @outlook.com.");
                 return;
         }
-
         String telefono = txtTelefono.getText().trim();
         if (telefono.isEmpty() || !telefono.matches("9\\d{8}")) {
                 JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
                 return;
         }
-
         if (cmbOficina.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar una oficina.");
                 return;
@@ -279,19 +274,16 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un cargo.");
                 return;
         }
-
         String edadTexto = txtEdad.getText().trim();
         if (edadTexto.isEmpty() || !edadTexto.matches("\\d+")) {
                 JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
                 return;
         }
-
         int edad = Integer.parseInt(edadTexto);
         if (edad < 18 || edad > 65) {
                 JOptionPane.showMessageDialog(this, "La edad debe estar entre 18 y 65 años.");
                 return;
         }
-
         if (cmbSexo.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar el sexo del empleado.");
                 return;
@@ -302,7 +294,6 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
         ArrayList<String> camposDuplicados = new ArrayList<>();
         String nombreEmpleadoExistente = "";
-
         for (RegistroEmpleados emp : empleados) {
                 boolean coincide = false;
 
@@ -340,18 +331,17 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
 
         // Crear el objeto empleado
         RegistroEmpleados objetoempleado = new RegistroEmpleados(
-                codigo,
+                txtCodigo.getText(),
                 txtNombres.getText(),
                 txtApellidos.getText(),
-                dni,
-                correo,
-                telefono,
+                txtDNI.getText(),
+                txtCorreo.getText(),
+                txtTelefono.getText(),
                 cmbOficina.getSelectedItem().toString(),
                 cmbCargo.getSelectedItem().toString(),
                 cmbSexo.getSelectedItem().toString(),
-                edad
+                Integer.parseInt(txtEdad.getText())
         );
-
         // Agregar a la lista y guardar
         mantenimiento.AgregarEmpleado(objetoempleado);
 

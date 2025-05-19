@@ -1,3 +1,1 @@
-534534,Carla,Llanos,54675467,carlos123@gmail.com,987453812,Lima,Operario de Rutas,32,Femenino
-42432,Carlos,Cano,54346732,carlos12@gmail.com,945328729,Ica,Analista de Viajes,32,Masculino
-312323,Juan,Cornejo,78653445,juan.yc@gmail.com,987656743,Cerro Azul,Operario de Rutas,32,Masculino
+12345,Sergio,Huapaya,12345678,s@gmail.com,999999999,Lima,Counter,19,Masculino
