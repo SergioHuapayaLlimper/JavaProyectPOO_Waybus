@@ -1,0 +1,1 @@
+Esta rama contiene los cambios locales que había estado trabajando, hice el merge de esta rama con la rama feature/empleados en la rama merge-local-changes. La que contiene todos los cambios con los conflictos solucionados
