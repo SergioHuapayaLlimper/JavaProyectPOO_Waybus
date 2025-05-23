@@ -19,6 +19,14 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        // Navegación con Enter
+        txtUsuario.addActionListener((java.awt.event.ActionEvent evt) -> {
+            pfContraseña.requestFocus();
+        });
+
+        pfContraseña.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnIniciarSesion.doClick();
+        });
     }
 
     /**
@@ -131,8 +139,8 @@ public class FrmLogin extends javax.swing.JFrame {
                     String[] partes = linea.split(",");
                     if (partes.length == 10) {
                         String codigoEmpleado = partes[0].trim();
-                        String clave = partes[1].trim();
-                        String cargoactivo = partes[2].trim();
+                        String clave = partes[3].trim();
+                        String cargoactivo = partes[7].trim();
 
                         if (usuarioIngresado.equals(codigoEmpleado) && contraseñaIngresada.equals(clave)) {
                             accesoConcedido = true;
