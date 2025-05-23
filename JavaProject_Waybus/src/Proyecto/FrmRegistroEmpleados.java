@@ -17,10 +17,41 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
 
     MantenimientoEmpleados mantenimiento;
     
-    public FrmRegistroEmpleados() {
-        initComponents();
-        mantenimiento = new MantenimientoEmpleados();
-    }
+public FrmRegistroEmpleados() {
+    initComponents();
+    mantenimiento = new MantenimientoEmpleados();
+
+    // Acción con Enter para pasar de un campo a otro
+    txtCodigo.addActionListener(e -> txtNombres.requestFocus());
+    txtNombres.addActionListener(e -> txtApellidos.requestFocus());
+    txtApellidos.addActionListener(e -> txtDNI.requestFocus());
+    txtDNI.addActionListener(e -> txtCorreo.requestFocus());
+    txtCorreo.addActionListener(e -> txtTelefono.requestFocus());
+    txtTelefono.addActionListener(e -> cmbOficina.requestFocus());
+
+    cmbOficina.addActionListener(e -> {
+        if (cmbOficina.getSelectedIndex() > 0) {
+            cmbCargo.requestFocus();
+        }
+    });
+
+    cmbCargo.addActionListener(e -> {
+        if (cmbCargo.getSelectedIndex() > 0) {
+            txtEdad.requestFocus();
+        }
+    });
+
+    txtEdad.addActionListener(e -> cmbSexo.requestFocus());
+
+    cmbSexo.addActionListener(e -> {
+        if (cmbSexo.getSelectedIndex() > 0) {
+            btnRegistroDeEmpleados.requestFocus();
+        }
+    });
+
+    // Al presionar Enter en el botón, ejecuta su acción
+    getRootPane().setDefaultButton(btnRegistroDeEmpleados);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -236,12 +267,12 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
         // Validaciones de campos
         String codigo = txtCodigo.getText().trim();
         if (codigo.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar el código del empleado.");
-                return;
+            JOptionPane.showMessageDialog(this, "Debe ingresar el código del empleado.");
+        return;
         }
-        if (!codigo.matches("\\d+")) {
-                JOptionPane.showMessageDialog(this, "El código solo debe contener números.");
-                return;
+        if (!codigo.matches("^U-\\d{5}$")) {
+            JOptionPane.showMessageDialog(this, "El código debe tener el formato U-XXXXX (exactamente 5 dígitos).");
+        return;
         }
         if (txtNombres.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Debe ingresar los nombres del empleado.");
@@ -288,19 +319,29 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar el sexo del empleado.");
                 return;
         }
+	if (!codigo.matches("^U-\\d{5}$")) {
+		JOptionPane.showMessageDialog(this, "El código debe tener el formato U-XXXXX (exactamente 5 dígitos).");
+		return;
+	}
 
-        // Verificación de duplicados
+        // Verificar si el código ya está registrado
         ArchivoEmpleado archivo = new ArchivoEmpleado();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
+
+        for (RegistroEmpleados emp : empleados) {
+                if (emp.getCodigo().equalsIgnoreCase(codigo)) {
+                        JOptionPane.showMessageDialog(this, "Ya existe un empleado registrado con el mismo código: " + codigo);
+                        return;
+                }
+        }
+
+        // Validar duplicados en DNI, correo, teléfono
         ArrayList<String> camposDuplicados = new ArrayList<>();
         String nombreEmpleadoExistente = "";
+
         for (RegistroEmpleados emp : empleados) {
                 boolean coincide = false;
 
-                if (emp.getCodigo().equals(codigo)) {
-                        camposDuplicados.add("Código");
-                        coincide = true;
-                }
                 if (emp.getDni().equals(dni)) {
                         camposDuplicados.add("DNI");
                         coincide = true;
@@ -346,20 +387,22 @@ public class FrmRegistroEmpleados extends javax.swing.JFrame {
         mantenimiento.AgregarEmpleado(objetoempleado);
 
         try (FileWriter writer = new FileWriter("usuarios.txt", true)) {
-                writer.write(objetoempleado.getCodigo() + "," +
-                        objetoempleado.getNombres() + "," +
-                        objetoempleado.getApellidos() + "," +
-                        objetoempleado.getDni() + "," +
-                        objetoempleado.getCorreo() + "," +
-                        objetoempleado.getTelefono() + "," +
-                        objetoempleado.getOficina() + "," +
-                        objetoempleado.getCargo() + "," +
-                        objetoempleado.getEdad() + "," +
-                        objetoempleado.getSexo() + "\n");
+            writer.write(
+                objetoempleado.getCodigo() + "," +
+                objetoempleado.getNombres() + "," +
+                objetoempleado.getApellidos() + "," +
+                objetoempleado.getDni() + "," +
+                objetoempleado.getCorreo() + "," +
+                objetoempleado.getTelefono() + "," +
+                objetoempleado.getOficina() + "," +
+                objetoempleado.getCargo() + "," +
+                objetoempleado.getEdad() + "," +
+                objetoempleado.getSexo() + "\n"
+            );
 
-                JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");
+            JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");
         } catch (IOException e) {
-                System.out.println("Error al registrar usuario: " + e.getMessage());
+            System.out.println("Error al registrar usuario: " + e.getMessage());
         }
 
         // Limpiar campos

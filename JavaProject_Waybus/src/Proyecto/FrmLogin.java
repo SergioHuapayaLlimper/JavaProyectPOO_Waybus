@@ -19,6 +19,14 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        // Navegación con Enter
+        txtUsuario.addActionListener((java.awt.event.ActionEvent evt) -> {
+            pfContraseña.requestFocus();
+        });
+
+        pfContraseña.addActionListener((java.awt.event.ActionEvent evt) -> {
+            btnIniciarSesion.doClick();
+        });
     }
 
     /**

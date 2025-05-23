@@ -16,6 +16,9 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
     /**
      * Creates new form FrmEditorEmpleados
      */
+    
+    private String[] datosOriginales = new String[9];
+    
     public FrmEditorEmpleados() {
         initComponents();
         cargarCodigos();
@@ -31,19 +34,27 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             cmbCodigo.addItem(emp.getCodigo());
         }
     }
-    
-    private void limpiarCampos() {
-    txtNombres.setText("");
-    txtApellidos.setText("");
-    txtDNI.setText("");
-    txtCorreo.setText("");
-    txtTelefono.setText("");
-    txtEdad.setText("");
 
-    cmbOficina.setSelectedIndex(0);
-    cmbCargo.setSelectedIndex(0);
-    cmbSexo.setSelectedIndex(0);
-    cmbCodigo.setSelectedIndex(0); // Volver a "-------SELECCIONE-------"
+    private void limpiarCampos() {
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtDNI.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        txtEdad.setText("");
+
+        cmbOficina.setSelectedIndex(0);
+        cmbCargo.setSelectedIndex(0);
+        cmbSexo.setSelectedIndex(0);
+
+        // Solo cambia el índice si el combo tiene elementos
+        if (cmbCodigo.getItemCount() > 0) {
+            cmbCodigo.setSelectedIndex(0);
+        }
+
+        for (int i = 0; i < datosOriginales.length; i++) {
+            datosOriginales[i] = null;
+        }
     }
 
     /**
@@ -78,6 +89,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
         btnRetroceder = new javax.swing.JButton();
         btnGuardarCambios = new javax.swing.JButton();
         cmbCodigo = new javax.swing.JComboBox<>();
+        btnListaEmpleados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -132,6 +144,13 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             }
         });
 
+        btnListaEmpleados.setText("Ir a Lista Empleados");
+        btnListaEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaEmpleadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,14 +199,16 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                                     .addGap(29, 29, 29)
                                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(lblTituloActualizarEmpleado)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                        .addComponent(lblTituloActualizarEmpleado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,11 +255,12 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addGap(43, 43, 43)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
+                    .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
 
         setSize(new java.awt.Dimension(620, 591));
@@ -246,13 +268,69 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
-            FrmRegistroEmpleados formadim = new FrmRegistroEmpleados();
-            formadim.setVisible(true);
-            this.dispose();
+        // Validar si hubo cambios
+        if (datosOriginales[0] != null) {
+            boolean hayCambios =
+                !datosOriginales[0].equals(txtNombres.getText()) ||
+                !datosOriginales[1].equals(txtApellidos.getText()) ||
+                !datosOriginales[2].equals(txtDNI.getText()) ||
+                !datosOriginales[3].equals(txtCorreo.getText()) ||
+                !datosOriginales[4].equals(txtTelefono.getText()) ||
+                !datosOriginales[5].equals(cmbOficina.getSelectedItem().toString()) ||
+                !datosOriginales[6].equals(cmbCargo.getSelectedItem().toString()) ||
+                !datosOriginales[7].equals(txtEdad.getText()) ||
+                !datosOriginales[8].equals(cmbSexo.getSelectedItem().toString());
+
+            if (hayCambios) {
+                int respuesta = JOptionPane.showConfirmDialog(this,
+                    "Hay cambios sin guardar. ¿Estás seguro de que deseas salir?",
+                    "Cambios sin guardar",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+
+                if (respuesta != JOptionPane.YES_OPTION) {
+                    return; // Cancelar salida si el usuario elige "No"
+                }
+            }
+        }   
+
+        FrmRegistroEmpleados formadim = new FrmRegistroEmpleados();
+        formadim.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         String codigo = (String) cmbCodigo.getSelectedItem();
+        
+        boolean sinCambios =
+            datosOriginales[0] != null &&
+            datosOriginales[0].equals(txtNombres.getText()) &&
+            datosOriginales[1].equals(txtApellidos.getText()) &&
+            datosOriginales[2].equals(txtDNI.getText()) &&
+            datosOriginales[3].equals(txtCorreo.getText()) &&
+            datosOriginales[4].equals(txtTelefono.getText()) &&
+            datosOriginales[5].equals(cmbOficina.getSelectedItem().toString()) &&
+            datosOriginales[6].equals(cmbCargo.getSelectedItem().toString()) &&
+            datosOriginales[7].equals(txtEdad.getText()) &&
+            datosOriginales[8].equals(cmbSexo.getSelectedItem().toString());
+
+        if (sinCambios) {
+            JOptionPane.showMessageDialog(this, "No se ha realizado ningún cambio.");
+            return;
+        }
+        
+            // ← AQUI
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estás seguro de que deseas guardar los cambios?",
+            "Confirmar guardado",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            return;
+        }
 
         if (codigo == null || codigo.equals("-------SELECCIONE-------")) {
                 JOptionPane.showMessageDialog(this, "Seleccione un código válido.");
@@ -366,7 +444,11 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
 
     private void cmbCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCodigoActionPerformed
         String codigoSeleccionado = (String) cmbCodigo.getSelectedItem();
-        if (codigoSeleccionado == null || codigoSeleccionado.equals("-------SELECCIONE-------")) return;
+
+        if (codigoSeleccionado == null || codigoSeleccionado.equals("-------SELECCIONE-------")) {
+            limpiarCampos(); // limpia todos los campos si no hay selección válida
+            return;
+        }
 
         ArchivoEmpleado archivo = new ArchivoEmpleado();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
@@ -382,11 +464,28 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 cmbCargo.setSelectedItem(emp.getCargo());
                 txtEdad.setText(String.valueOf(emp.getEdad()));
                 cmbSexo.setSelectedItem(emp.getSexo());
+
+                // Guardar los datos originales para detección de cambios
+                datosOriginales[0] = emp.getNombres();
+                datosOriginales[1] = emp.getApellidos();
+                datosOriginales[2] = emp.getDni();
+                datosOriginales[3] = emp.getCorreo();
+                datosOriginales[4] = emp.getTelefono();
+                datosOriginales[5] = emp.getOficina();
+                datosOriginales[6] = emp.getCargo();
+                datosOriginales[7] = String.valueOf(emp.getEdad());
+                datosOriginales[8] = emp.getSexo();
+
                 break;
             }
         }
-
     }//GEN-LAST:event_cmbCodigoActionPerformed
+
+    private void btnListaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEmpleadosActionPerformed
+        FrmListaEmpleados formadim = new FrmListaEmpleados();
+        formadim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnListaEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,6 +524,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCambios;
+    private javax.swing.JButton btnListaEmpleados;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JComboBox<String> cmbCargo;
     private javax.swing.JComboBox<String> cmbCodigo;

@@ -3,42 +3,45 @@ package Proyecto;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ArchivoEmpleado {
 
     private final String rutaArchivo = "usuarios.txt";
 
-    // Método para obtener todos los empleados
+    //Método para obtener empleados desde archivo.txt
     public ArrayList<RegistroEmpleados> obtenerEmpleados() {
         ArrayList<RegistroEmpleados> lista = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
+        try (Scanner scanner = new Scanner(new File(rutaArchivo))) {
+            while (scanner.hasNextLine()) {
+                String linea = scanner.nextLine().trim();
                 String[] datos = linea.split(",");
+
                 if (datos.length == 10) {
-                    try {
-                        RegistroEmpleados emp = new RegistroEmpleados(
-                            datos[0], // código
-                            datos[1], // nombres
-                            datos[2], // apellidos
-                            datos[3], // dni
-                            datos[4], // correo
-                            datos[5], // teléfono
-                            datos[6], // oficina
-                            datos[7], // cargo
-                            datos[9], // sexo
-                            Integer.parseInt(datos[8]) // edad
-                        );
-                        lista.add(emp);
-                    } catch (NumberFormatException e) {
-                        System.out.println("Error al convertir edad en línea: " + linea);
-                    }
+                    String codigo = datos[0];
+                    String nombres = datos[1];
+                    String apellidos = datos[2];
+                    String dni = datos[3];
+                    String correo = datos[4];
+                    String telefono = datos[5];
+                    String oficina = datos[6];
+                    String cargo = datos[7];
+                    int edad = Integer.parseInt(datos[8]);
+                    String sexo = datos[9];
+
+                    RegistroEmpleados empleado = new RegistroEmpleados(
+                        codigo, nombres, apellidos, dni, correo,
+                        telefono, oficina, cargo, sexo, edad
+                    );
+
+                    lista.add(empleado);
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error al leer empleados: " + e.getMessage());
         }
+
         return lista;
     }
 
@@ -62,7 +65,7 @@ public class ArchivoEmpleado {
         return actualizado;
     }
 
-    // Método para sobrescribir el archivo con la lista actualizada
+    //Método para sobrescribir el archivo con la lista actualizada
     private void guardarEmpleados(ArrayList<RegistroEmpleados> empleados) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (RegistroEmpleados emp : empleados) {
