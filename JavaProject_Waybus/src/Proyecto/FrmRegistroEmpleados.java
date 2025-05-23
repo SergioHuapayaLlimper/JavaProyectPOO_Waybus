@@ -380,8 +380,8 @@ public FrmRegistroEmpleados() {
                 txtTelefono.getText(),
                 cmbOficina.getSelectedItem().toString(),
                 cmbCargo.getSelectedItem().toString(),
-                cmbSexo.getSelectedItem().toString(),
-                Integer.parseInt(txtEdad.getText())
+                Integer.parseInt(txtEdad.getText()),
+                cmbSexo.getSelectedItem().toString()
         );
         // Agregar a la lista y guardar
         mantenimiento.AgregarEmpleado(objetoempleado);

@@ -424,7 +424,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 // Crear objeto actualizado
                 RegistroEmpleados actualizado = new RegistroEmpleados(
                         codigo, nombres, apellidos, dni, correo,
-                        telefono, oficina, cargo, sexo, edad
+                        telefono, oficina, cargo, edad, sexo
                 );
 
                 boolean exito = archivo.actualizarEmpleado(actualizado);
