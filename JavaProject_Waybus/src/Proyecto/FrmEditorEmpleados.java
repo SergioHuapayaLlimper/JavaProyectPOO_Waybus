@@ -4,6 +4,7 @@
  */
 package Proyecto;
 
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -318,8 +319,6 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se ha realizado ningún cambio.");
             return;
         }
-        
-            // ← AQUI
         int confirmacion = JOptionPane.showConfirmDialog(
             this,
             "¿Estás seguro de que deseas guardar los cambios?",
@@ -327,11 +326,9 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
-
         if (confirmacion != JOptionPane.YES_OPTION) {
             return;
         }
-
         if (codigo == null || codigo.equals("-------SELECCIONE-------")) {
                 JOptionPane.showMessageDialog(this, "Seleccione un código válido.");
                 return;
@@ -347,7 +344,6 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                         break;
                 }
         }
-
         if (original == null) {
                 JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
                 return;
@@ -370,22 +366,18 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
                         return;
                 }
-
                 if (!correo.endsWith("@gmail.com") && !correo.endsWith("@outlook.com")) {
                         JOptionPane.showMessageDialog(this, "El correo debe terminar en @gmail.com o @outlook.com.");
                         return;
                 }
-
                 if (!telefono.matches("9\\d{8}")) {
                         JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
                         return;
                 }
-
                 if (edad < 18 || edad > 65) {
                         JOptionPane.showMessageDialog(this, "La edad debe estar entre 18 y 65 años.");
                         return;
                 }
-
                 // Verificación de datos repetidos en otros empleados (solo DNI, Teléfono, Correo)
                 ArrayList<String> conflictos = new ArrayList<>();
                 String nombreConflicto = "";
@@ -407,12 +399,10 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                                 conflictos.add("Correo electrónico");
                                 coincide = true;
                         }
-
                         if (coincide && nombreConflicto.isEmpty()) {
                                 nombreConflicto = emp.getNombres() + " " + emp.getApellidos();
                         }
                 }
-
                 if (!conflictos.isEmpty()) {
                         String mensaje = "No se puede actualizar al empleado \"" + nombres + " " + apellidos + "\" porque los siguientes datos ya están registrados por otro empleado"
                                         + (nombreConflicto.isEmpty() ? "" : " llamado \"" + nombreConflicto + "\"") + ":\n- "
@@ -437,7 +427,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 }
         } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Edad inválida. Ingrese un número.");
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
                 JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed

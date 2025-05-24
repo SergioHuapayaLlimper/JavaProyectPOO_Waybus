@@ -41,7 +41,6 @@ public class ArchivoEmpleado {
         } catch (IOException | NumberFormatException e) {
             System.out.println("Error al leer empleados: " + e.getMessage());
         }
-
         return lista;
     }
 
@@ -57,11 +56,9 @@ public class ArchivoEmpleado {
                 break;
             }
         }
-
         if (actualizado) {
             guardarEmpleados(empleados);
         }
-
         return actualizado;
     }
 
