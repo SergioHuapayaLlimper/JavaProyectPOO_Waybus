@@ -1,6 +1,3 @@
-U-34545,Juan,Torres,34223478,juan123@gmail.com,954325435,Cerro Azul,Conductor,44,Masculino
-U-54342,Luna,Casas,53453474,llanosluna@gmail.com,934534534,Cañete,Analista de Viajes,23,Femenino
-U-34325,Camila,Paredes,34242379,CamilaParedes2020@gmail.com,953454334,Atíco,Analista de Viajes,28,Femenino
-U-76552,Jhonatan,Albine,78942305,albino.yc@gmail.com,953454365,Lima,Counter,26,Masculino
-U-53546,Alberto,Paredes,53454366,Alberto12321@gmail.com,954345346,Cañete,Gerente de Finanzas,34,Masculino
-U-43545,Franck,Rodriguez,65465443,franck2020@gmail.com,935346574,Atíco,Counter,24,Masculino
+U-54354,Arthur,Lopez,42354356,arthur.lopez@gmail.com,954353453,Atíco,Counter,23,Masculino
+U-32423,Sergio,Huapaya,54345635,sergio.2025@gmail.com,942342352,Cerro Azul,Counter,21,Masculino
+U-65465,Daniel,Litano,32423534,daniel.litano@gmail.com,954235345,Lima,Operario de Rutas,21,Masculino
