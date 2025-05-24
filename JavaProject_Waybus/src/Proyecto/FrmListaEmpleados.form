@@ -174,7 +174,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarC&#xf3;digo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="text" type="java.lang.String" value="Filtrar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarC&#xf3;digoActionPerformed"/>
@@ -262,7 +262,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarEmpleado">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                    <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarEmpleadoActionPerformed"/>
@@ -352,7 +352,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarDNI">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                    <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarDNIActionPerformed"/>
@@ -430,7 +430,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnBuscarOficina">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                    <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarOficinaActionPerformed"/>
@@ -532,7 +532,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnBuscarCargo">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Buscar"/>
+                    <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarCargoActionPerformed"/>

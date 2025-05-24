@@ -25,7 +25,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
     }
     
     private void cargarCodigos() {
-        ArchivoEmpleado archivo = new ArchivoEmpleado();
+        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
 
         cmbCodigo.removeAllItems();
@@ -337,7 +337,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 return;
         }
 
-        ArchivoEmpleado archivo = new ArchivoEmpleado();
+        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
         RegistroEmpleados original = null;
 
@@ -450,7 +450,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             return;
         }
 
-        ArchivoEmpleado archivo = new ArchivoEmpleado();
+        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
 
         for (RegistroEmpleados emp : empleados) {

@@ -311,8 +311,8 @@ public FrmRegistroEmpleados() {
                 return;
         }
         int edad = Integer.parseInt(edadTexto);
-        if (edad < 18 || edad > 65) {
-                JOptionPane.showMessageDialog(this, "La edad debe estar entre 18 y 65 años.");
+        if (edad < 20 || edad > 70) {
+                JOptionPane.showMessageDialog(this, "La edad debe estar entre 20 y 70 años.");
                 return;
         }
         if (cmbSexo.getSelectedIndex() == 0) {
@@ -325,7 +325,7 @@ public FrmRegistroEmpleados() {
 	}
 
         // Verificar si el código ya está registrado
-        ArchivoEmpleado archivo = new ArchivoEmpleado();
+        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
 
         for (RegistroEmpleados emp : empleados) {
@@ -342,6 +342,11 @@ public FrmRegistroEmpleados() {
         for (RegistroEmpleados emp : empleados) {
                 boolean coincide = false;
 
+                if (emp.getCodigo().equals(codigo)) {
+                        camposDuplicados.add("Codigo");
+                        coincide = true;
+                }
+                
                 if (emp.getDni().equals(dni)) {
                         camposDuplicados.add("DNI");
                         coincide = true;

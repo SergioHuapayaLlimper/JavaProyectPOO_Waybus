@@ -24,11 +24,11 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         
         cargarEmpleadosDesdeArchivo();//llamo al metodo que cree a la tabla
         
-txtFiltroCódigo.addActionListener(e -> btnBuscarCódigo.doClick());
-txtFiltroNombreEmpleado.addActionListener(e -> btnBuscarEmpleado.doClick());
-txtFiltroDNI.addActionListener(e -> btnBuscarDNI.doClick());
-cbFiltroOficina.addActionListener(e -> btnBuscarOficina.doClick());
-cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
+        txtFiltroCódigo.addActionListener(e -> btnBuscarCódigo.doClick());
+        txtFiltroNombreEmpleado.addActionListener(e -> btnBuscarEmpleado.doClick());
+        txtFiltroDNI.addActionListener(e -> btnBuscarDNI.doClick());
+        cbFiltroOficina.addActionListener(e -> btnBuscarOficina.doClick());
+        cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
     }
 
     /**
@@ -103,7 +103,7 @@ cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
 
         txtFiltroCódigo.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el Código:"));
 
-        btnBuscarCódigo.setText("Buscar");
+        btnBuscarCódigo.setText("Filtrar");
         btnBuscarCódigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCódigoActionPerformed(evt);
@@ -138,7 +138,7 @@ cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
 
         txtFiltroNombreEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el Nombre del Empleado:"));
 
-        btnBuscarEmpleado.setText("Buscar");
+        btnBuscarEmpleado.setText("Filtrar");
         btnBuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarEmpleadoActionPerformed(evt);
@@ -194,7 +194,7 @@ cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
 
         txtFiltroDNI.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el DNI:"));
 
-        btnBuscarDNI.setText("Buscar");
+        btnBuscarDNI.setText("Filtrar");
         btnBuscarDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarDNIActionPerformed(evt);
@@ -248,7 +248,7 @@ cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
 
         jTabbedPane7.addTab("DNI", jPanel3);
 
-        btnBuscarOficina.setText("Buscar");
+        btnBuscarOficina.setText("Filtrar");
         btnBuscarOficina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarOficinaActionPerformed(evt);
@@ -304,7 +304,7 @@ cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
 
         jTabbedPane7.addTab("Oficina", jPanel4);
 
-        btnBuscarCargo.setText("Buscar");
+        btnBuscarCargo.setText("Filtrar");
         btnBuscarCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCargoActionPerformed(evt);
@@ -578,6 +578,37 @@ cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmListaEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
