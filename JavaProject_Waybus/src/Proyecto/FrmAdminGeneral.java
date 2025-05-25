@@ -47,6 +47,11 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         });
 
         btnMostrarListaDeClientes.setText("Mostrar Lista de Clientes");
+        btnMostrarListaDeClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarListaDeClientesActionPerformed(evt);
+            }
+        });
 
         btnMostrarListaDeEmpleados.setText("Mostrar Lista de Empleados");
         btnMostrarListaDeEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +124,12 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         listaemple.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMostrarListaDeEmpleadosActionPerformed
+
+    private void btnMostrarListaDeClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarListaDeClientesActionPerformed
+        FrmListaClientes formadim = new FrmListaClientes();
+        formadim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMostrarListaDeClientesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,7 +4,6 @@
  */
 package Proyecto;
 
-import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -12,31 +11,27 @@ import javax.swing.JOptionPane;
  *
  * @author usuario
  */
-public class FrmEditorEmpleados extends javax.swing.JFrame {
+public class FrmEditorClientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmEditorEmpleados
-     */
+    private String[] datosOriginales = new String[7];
     
-    private String[] datosOriginales = new String[9];
-    
-    public FrmEditorEmpleados() {
+    public FrmEditorClientes() {
         initComponents();
         cargarCodigos();
     }
     
     private void cargarCodigos() {
-        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
-        ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
+        MantenimientoClientes archivo = new MantenimientoClientes();
+        ArrayList<RegistroClientes> clientes = archivo.obtenerClientes();
 
         cmbCodigo.removeAllItems();
         cmbCodigo.addItem("-------SELECCIONE-------");
-        for (RegistroEmpleados emp : empleados) {
-            cmbCodigo.addItem(emp.getCodigo());
+        for (RegistroClientes cli : clientes) {
+            cmbCodigo.addItem(cli.getCodigo());
         }
     }
-
-    private void limpiarCampos() {
+    
+        private void limpiarCampos() {
         txtNombres.setText("");
         txtApellidos.setText("");
         txtDNI.setText("");
@@ -44,8 +39,6 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtEdad.setText("");
 
-        cmbOficina.setSelectedIndex(0);
-        cmbCargo.setSelectedIndex(0);
         cmbSexo.setSelectedIndex(0);
 
         // Solo cambia el índice si el combo tiene elementos
@@ -67,62 +60,51 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtDNI = new javax.swing.JTextField();
-        lblSexo = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
+        btnListaClientes = new javax.swing.JButton();
         cmbSexo = new javax.swing.JComboBox<>();
-        lblTituloActualizarEmpleado = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
-        lblEdad = new javax.swing.JLabel();
-        lblOficina = new javax.swing.JLabel();
-        lblCodigo = new javax.swing.JLabel();
-        lblCargo = new javax.swing.JLabel();
-        lblNombres = new javax.swing.JLabel();
-        cmbOficina = new javax.swing.JComboBox<>();
-        lblDNI = new javax.swing.JLabel();
-        cmbCargo = new javax.swing.JComboBox<>();
         lblCorreo = new javax.swing.JLabel();
+        lblTituloActualizarClientes = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
         lblApellidos = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
         txtApellidos = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
+        lblCodigo = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
         btnRetroceder = new javax.swing.JButton();
+        lblNombres = new javax.swing.JLabel();
         btnGuardarCambios = new javax.swing.JButton();
+        txtDNI = new javax.swing.JTextField();
         cmbCodigo = new javax.swing.JComboBox<>();
-        btnListaEmpleados = new javax.swing.JButton();
+        lblSexo = new javax.swing.JLabel();
+        lblDNI = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        lblSexo.setText("Sexo:");
+        btnListaClientes.setText("Ir a Lista Clientes");
+        btnListaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaClientesActionPerformed(evt);
+            }
+        });
 
         cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Masculino", "Femenino" }));
 
-        lblTituloActualizarEmpleado.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        lblTituloActualizarEmpleado.setText("Actualiza datos del empleado:");
-
-        lblEdad.setText("Edad:");
-
-        lblOficina.setText("Oficina:");
-
-        lblCodigo.setText("Codigo:");
-
-        lblCargo.setText("Cargo:");
-
-        lblNombres.setText("Nombres:");
-
-        cmbOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima", "Cañete", "Cerro Azul", "Ica", "Atíco", "Camana", "Alto Siguas", "Arequipa" }));
-
-        lblDNI.setText("DNI:");
-
-        cmbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Operario de Rutas", "Conductor", "Counter", "Gerente de Finanzas", "Analista de Viajes", "Director de Logística", "Responsable de Recursos Humanos" }));
-
         lblCorreo.setText("Correo:");
+
+        lblTituloActualizarClientes.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lblTituloActualizarClientes.setText("Actualiza datos de los clientes:");
 
         lblTelefono.setText("Telefono:");
 
         lblApellidos.setText("Apellidos:");
+
+        lblEdad.setText("Edad:");
+
+        lblCodigo.setText("Codigo:");
 
         btnRetroceder.setText("Retroceder");
         btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +112,8 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 btnRetrocederActionPerformed(evt);
             }
         });
+
+        lblNombres.setText("Nombres:");
 
         btnGuardarCambios.setText("Guardar Cambios");
         btnGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
@@ -145,12 +129,9 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             }
         });
 
-        btnListaEmpleados.setText("Ir a Lista Empleados");
-        btnListaEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaEmpleadosActionPerformed(evt);
-            }
-        });
+        lblSexo.setText("Sexo:");
+
+        lblDNI.setText("DNI:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,15 +162,11 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblTelefono)
-                                        .addComponent(lblCorreo)
-                                        .addComponent(lblOficina, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30)
+                                        .addComponent(lblCorreo))
+                                    .addGap(36, 36, 36)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cmbOficina, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cmbCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,22 +177,22 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                                     .addGap(29, 29, 29)
                                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(lblTituloActualizarEmpleado))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(28, 28, 28)
                         .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnListaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(btnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(lblTituloActualizarClientes)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(lblTituloActualizarEmpleado)
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addComponent(lblTituloActualizarClientes)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo)
@@ -240,15 +217,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTelefono))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbOficina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblOficina))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCargo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEdad))
@@ -256,31 +225,35 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addGap(45, 45, 45)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                    .addComponent(btnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
         );
 
         setSize(new java.awt.Dimension(620, 591));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaClientesActionPerformed
+        FrmListaClientes formadim = new FrmListaClientes();
+        formadim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnListaClientesActionPerformed
+
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
         // Validar si hubo cambios
         if (datosOriginales[0] != null) {
             boolean hayCambios =
-                !datosOriginales[0].equals(txtNombres.getText()) ||
-                !datosOriginales[1].equals(txtApellidos.getText()) ||
-                !datosOriginales[2].equals(txtDNI.getText()) ||
-                !datosOriginales[3].equals(txtCorreo.getText()) ||
-                !datosOriginales[4].equals(txtTelefono.getText()) ||
-                !datosOriginales[5].equals(cmbOficina.getSelectedItem().toString()) ||
-                !datosOriginales[6].equals(cmbCargo.getSelectedItem().toString()) ||
-                !datosOriginales[7].equals(txtEdad.getText()) ||
-                !datosOriginales[8].equals(cmbSexo.getSelectedItem().toString());
+            !datosOriginales[0].equals(txtNombres.getText()) ||
+            !datosOriginales[1].equals(txtApellidos.getText()) ||
+            !datosOriginales[2].equals(txtDNI.getText()) ||
+            !datosOriginales[3].equals(txtCorreo.getText()) ||
+            !datosOriginales[4].equals(txtTelefono.getText()) ||
+            !datosOriginales[5].equals(txtEdad.getText()) ||
+            !datosOriginales[6].equals(cmbSexo.getSelectedItem().toString());
 
             if (hayCambios) {
                 int respuesta = JOptionPane.showConfirmDialog(this,
@@ -293,32 +266,32 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                     return; // Cancelar salida si el usuario elige "No"
                 }
             }
-        }   
+        }
 
-        FrmRegistroEmpleados formadim = new FrmRegistroEmpleados();
+        FrmRegistroClientes formadim = new FrmRegistroClientes();
         formadim.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         String codigo = (String) cmbCodigo.getSelectedItem();
-        
+
         boolean sinCambios =
-            datosOriginales[0] != null &&
-            datosOriginales[0].equals(txtNombres.getText()) &&
-            datosOriginales[1].equals(txtApellidos.getText()) &&
-            datosOriginales[2].equals(txtDNI.getText()) &&
-            datosOriginales[3].equals(txtCorreo.getText()) &&
-            datosOriginales[4].equals(txtTelefono.getText()) &&
-            datosOriginales[5].equals(cmbOficina.getSelectedItem().toString()) &&
-            datosOriginales[6].equals(cmbCargo.getSelectedItem().toString()) &&
-            datosOriginales[7].equals(txtEdad.getText()) &&
-            datosOriginales[8].equals(cmbSexo.getSelectedItem().toString());
+        datosOriginales[0] != null &&
+        datosOriginales[0].equals(txtNombres.getText()) &&
+        datosOriginales[1].equals(txtApellidos.getText()) &&
+        datosOriginales[2].equals(txtDNI.getText()) &&
+        datosOriginales[3].equals(txtCorreo.getText()) &&
+        datosOriginales[4].equals(txtTelefono.getText()) &&
+        datosOriginales[5].equals(txtEdad.getText()) &&
+        datosOriginales[6].equals(cmbSexo.getSelectedItem().toString());
 
         if (sinCambios) {
             JOptionPane.showMessageDialog(this, "No se ha realizado ningún cambio.");
             return;
         }
+
+        // ← AQUI
         int confirmacion = JOptionPane.showConfirmDialog(
             this,
             "¿Estás seguro de que deseas guardar los cambios?",
@@ -326,109 +299,113 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
+
         if (confirmacion != JOptionPane.YES_OPTION) {
             return;
         }
+
         if (codigo == null || codigo.equals("-------SELECCIONE-------")) {
-                JOptionPane.showMessageDialog(this, "Seleccione un código válido.");
-                return;
+            JOptionPane.showMessageDialog(this, "Seleccione un código válido.");
+            return;
         }
 
-        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
-        ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
-        RegistroEmpleados original = null;
+        MantenimientoClientes archivo = new MantenimientoClientes();
+        ArrayList<RegistroClientes> clientes = archivo.obtenerClientes();
+        RegistroClientes original = null;
 
-        for (RegistroEmpleados emp : empleados) {
-                if (emp.getCodigo().equals(codigo)) {
-                        original = emp;
-                        break;
-                }
+        for (RegistroClientes cli : clientes) {
+            if (cli.getCodigo().equals(codigo)) {
+                original = cli;
+                break;
+            }
         }
+
         if (original == null) {
-                JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
-                return;
+            JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
+            return;
         }
 
         try {
-                // Mantener original si el campo está vacío
-                String nombres = txtNombres.getText().isEmpty() ? original.getNombres() : txtNombres.getText();
-                String apellidos = txtApellidos.getText().isEmpty() ? original.getApellidos() : txtApellidos.getText();
-                String dni = txtDNI.getText().isEmpty() ? original.getDni() : txtDNI.getText();
-                String correo = txtCorreo.getText().isEmpty() ? original.getCorreo() : txtCorreo.getText().toLowerCase();
-                String telefono = txtTelefono.getText().isEmpty() ? original.getTelefono() : txtTelefono.getText();
-                String oficina = cmbOficina.getSelectedIndex() <= 0 ? original.getOficina() : cmbOficina.getSelectedItem().toString();
-                String cargo = cmbCargo.getSelectedIndex() <= 0 ? original.getCargo() : cmbCargo.getSelectedItem().toString();
-                String sexo = cmbSexo.getSelectedIndex() <= 0 ? original.getSexo() : cmbSexo.getSelectedItem().toString();
-                int edad = txtEdad.getText().isEmpty() ? original.getEdad() : Integer.parseInt(txtEdad.getText());
+            // Mantener original si el campo está vacío
+            String nombres = txtNombres.getText().isEmpty() ? original.getNombres() : txtNombres.getText();
+            String apellidos = txtApellidos.getText().isEmpty() ? original.getApellidos() : txtApellidos.getText();
+            String dni = txtDNI.getText().isEmpty() ? original.getDni() : txtDNI.getText();
+            String correo = txtCorreo.getText().isEmpty() ? original.getCorreo() : txtCorreo.getText().toLowerCase();
+            String telefono = txtTelefono.getText().isEmpty() ? original.getTelefono() : txtTelefono.getText();
+            String sexo = cmbSexo.getSelectedIndex() <= 0 ? original.getSexo() : cmbSexo.getSelectedItem().toString();
+            int edad = txtEdad.getText().isEmpty() ? original.getEdad() : Integer.parseInt(txtEdad.getText());
 
-                // Validaciones de formato
-                if (!dni.matches("\\d{8}")) {
-                        JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
-                        return;
-                }
-                if (!correo.endsWith("@gmail.com") && !correo.endsWith("@outlook.com")) {
-                        JOptionPane.showMessageDialog(this, "El correo debe terminar en @gmail.com o @outlook.com.");
-                        return;
-                }
-                if (!telefono.matches("9\\d{8}")) {
-                        JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
-                        return;
-                }
-                if (edad < 18 || edad > 65) {
-                        JOptionPane.showMessageDialog(this, "La edad debe estar entre 18 y 65 años.");
-                        return;
-                }
-                // Verificación de datos repetidos en otros empleados (solo DNI, Teléfono, Correo)
-                ArrayList<String> conflictos = new ArrayList<>();
-                String nombreConflicto = "";
+            // Validaciones de formato
+            if (!dni.matches("\\d{8}")) {
+                JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
+                return;
+            }
 
-                for (RegistroEmpleados emp : empleados) {
-                        if (emp.getCodigo().equals(codigo)) continue; // Ignorar al propio empleado
+            if (!correo.endsWith("@gmail.com") && !correo.endsWith("@outlook.com")) {
+                JOptionPane.showMessageDialog(this, "El correo debe terminar en @gmail.com o @outlook.com.");
+                return;
+            }
 
-                        boolean coincide = false;
+            if (!telefono.matches("9\\d{8}")) {
+                JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
+                return;
+            }
 
-                        if (emp.getDni().equals(dni)) {
-                                conflictos.add("DNI");
-                                coincide = true;
-                        }
-                        if (emp.getTelefono().equals(telefono)) {
-                                conflictos.add("Teléfono");
-                                coincide = true;
-                        }
-                        if (emp.getCorreo().equalsIgnoreCase(correo)) {
-                                conflictos.add("Correo electrónico");
-                                coincide = true;
-                        }
-                        if (coincide && nombreConflicto.isEmpty()) {
-                                nombreConflicto = emp.getNombres() + " " + emp.getApellidos();
-                        }
+            if (edad < 18 || edad > 65) {
+                JOptionPane.showMessageDialog(this, "La edad debe estar entre 18 y 65 años.");
+                return;
+            }
+
+            // Verificación de datos repetidos en otros empleados (solo DNI, Teléfono, Correo)
+            ArrayList<String> conflictos = new ArrayList<>();
+            String nombreConflicto = "";
+
+            for (RegistroClientes emp : clientes) {
+                if (emp.getCodigo().equals(codigo)) continue; // Ignorar al propio empleado
+
+                boolean coincide = false;
+
+                if (emp.getDni().equals(dni)) {
+                    conflictos.add("DNI");
+                    coincide = true;
                 }
-                if (!conflictos.isEmpty()) {
-                        String mensaje = "No se puede actualizar al empleado \"" + nombres + " " + apellidos + "\" porque los siguientes datos ya están registrados por otro empleado"
-                                        + (nombreConflicto.isEmpty() ? "" : " llamado \"" + nombreConflicto + "\"") + ":\n- "
-                                        + String.join("\n- ", conflictos);
-                        JOptionPane.showMessageDialog(this, mensaje);
-                        return;
+                if (emp.getTelefono().equals(telefono)) {
+                    conflictos.add("Teléfono");
+                    coincide = true;
+                }
+                if (emp.getCorreo().equalsIgnoreCase(correo)) {
+                    conflictos.add("Correo electrónico");
+                    coincide = true;
                 }
 
-                // Crear objeto actualizado
-                RegistroEmpleados actualizado = new RegistroEmpleados(
-                        codigo, nombres, apellidos, dni, correo,
-                        telefono, oficina, cargo, edad, sexo
-                );
-
-                boolean exito = archivo.actualizarEmpleado(actualizado);
-
-                if (exito) {
-                        JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
-                        limpiarCampos(); // ← Limpia campos y restablece combo
-                } else {
-                        JOptionPane.showMessageDialog(this, "No se pudo actualizar el empleado.");
+                if (coincide && nombreConflicto.isEmpty()) {
+                    nombreConflicto = emp.getNombres() + " " + emp.getApellidos();
                 }
+            }
+
+            if (!conflictos.isEmpty()) {
+                String mensaje = "No se puede actualizar al empleado \"" + nombres + " " + apellidos + "\" porque los siguientes datos ya están registrados por otro empleado"
+                + (nombreConflicto.isEmpty() ? "" : " llamado \"" + nombreConflicto + "\"") + ":\n- "
+                + String.join("\n- ", conflictos);
+                JOptionPane.showMessageDialog(this, mensaje);
+                return;
+            }
+
+            // Crear objeto actualizado
+            RegistroClientes actualizado = new RegistroClientes(codigo, nombres, apellidos, dni, correo, telefono, edad, sexo);
+
+            boolean exito = archivo.actualizarCliente(actualizado);
+
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+                limpiarCampos(); // ← Limpia campos y restablece combo
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar el empleado.");
+            }
         } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Edad inválida. Ingrese un número.");
-        } catch (HeadlessException e) {
-                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Edad inválida. Ingrese un número.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
@@ -440,42 +417,32 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
             return;
         }
 
-        MantenimientoEmpleados archivo = new MantenimientoEmpleados();
-        ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
+        MantenimientoClientes archivo = new MantenimientoClientes();
+        ArrayList<RegistroClientes> clientes = archivo.obtenerClientes();
 
-        for (RegistroEmpleados emp : empleados) {
-            if (emp.getCodigo().equals(codigoSeleccionado)) {
-                txtNombres.setText(emp.getNombres());
-                txtApellidos.setText(emp.getApellidos());
-                txtDNI.setText(emp.getDni());
-                txtCorreo.setText(emp.getCorreo());
-                txtTelefono.setText(emp.getTelefono());
-                cmbOficina.setSelectedItem(emp.getOficina());
-                cmbCargo.setSelectedItem(emp.getCargo());
-                txtEdad.setText(String.valueOf(emp.getEdad()));
-                cmbSexo.setSelectedItem(emp.getSexo());
+        for (RegistroClientes cli : clientes) {
+            if (cli.getCodigo().equals(codigoSeleccionado)) {
+                txtNombres.setText(cli.getNombres());
+                txtApellidos.setText(cli.getApellidos());
+                txtDNI.setText(cli.getDni());
+                txtCorreo.setText(cli.getCorreo());
+                txtTelefono.setText(cli.getTelefono());
+                txtEdad.setText(String.valueOf(cli.getEdad()));
+                cmbSexo.setSelectedItem(cli.getSexo());
 
                 // Guardar los datos originales para detección de cambios
-                datosOriginales[0] = emp.getNombres();
-                datosOriginales[1] = emp.getApellidos();
-                datosOriginales[2] = emp.getDni();
-                datosOriginales[3] = emp.getCorreo();
-                datosOriginales[4] = emp.getTelefono();
-                datosOriginales[5] = emp.getOficina();
-                datosOriginales[6] = emp.getCargo();
-                datosOriginales[7] = String.valueOf(emp.getEdad());
-                datosOriginales[8] = emp.getSexo();
+                datosOriginales[0] = cli.getNombres();
+                datosOriginales[1] = cli.getApellidos();
+                datosOriginales[2] = cli.getDni();
+                datosOriginales[3] = cli.getCorreo();
+                datosOriginales[4] = cli.getTelefono();
+                datosOriginales[5] = String.valueOf(cli.getEdad());
+                datosOriginales[6] = cli.getSexo();
 
                 break;
             }
         }
     }//GEN-LAST:event_cmbCodigoActionPerformed
-
-    private void btnListaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaEmpleadosActionPerformed
-        FrmListaEmpleados formadim = new FrmListaEmpleados();
-        formadim.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnListaEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,43 +461,39 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmEditorEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditorClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmEditorEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditorClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmEditorEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditorClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmEditorEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEditorClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmEditorEmpleados().setVisible(true);
+                new FrmEditorClientes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarCambios;
-    private javax.swing.JButton btnListaEmpleados;
+    private javax.swing.JButton btnListaClientes;
     private javax.swing.JButton btnRetroceder;
-    private javax.swing.JComboBox<String> cmbCargo;
     private javax.swing.JComboBox<String> cmbCodigo;
-    private javax.swing.JComboBox<String> cmbOficina;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JLabel lblApellidos;
-    private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDNI;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombres;
-    private javax.swing.JLabel lblOficina;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
-    private javax.swing.JLabel lblTituloActualizarEmpleado;
+    private javax.swing.JLabel lblTituloActualizarClientes;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;
