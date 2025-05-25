@@ -46,7 +46,7 @@ public class MantenimientoEmpleados {
 
                     RegistroEmpleados empleado = new RegistroEmpleados(
                         codigo, nombres, apellidos, dni, correo,
-                        telefono, oficina, cargo, sexo, edad
+                        telefono, oficina, cargo, edad, sexo
                     );
 
                     lista.add(empleado);
