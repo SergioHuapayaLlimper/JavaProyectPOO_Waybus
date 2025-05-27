@@ -4,7 +4,7 @@ package Proyecto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+// Ventana para mostrar y eliminar clientes
 public class FrmListaClientes extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
@@ -14,7 +14,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
     
     public FrmListaClientes() {
         initComponents();
-        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Sexo", "Edad"};
+        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Sexo", "Edad"};//columnas en la tabla
         modelo = new DefaultTableModel(nomColumnas, 0);
         tblClientes.setModel(modelo);
     }

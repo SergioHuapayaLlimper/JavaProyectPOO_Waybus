@@ -1,23 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Proyecto;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author usuario
- */
+// Ventana para editar los datos de un cliente
 public class FrmEditorClientes extends javax.swing.JFrame {
 
-    private String[] datosOriginales = new String[7];
+    private String[] datosOriginales = new String[7]; //para detectar cambios
     
     public FrmEditorClientes() {
         initComponents();
-        cargarCodigos();
+        cargarCodigos(); 
     }
     
     private void cargarCodigos() {

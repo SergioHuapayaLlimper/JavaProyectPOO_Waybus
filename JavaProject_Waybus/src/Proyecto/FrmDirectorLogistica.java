@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Proyecto;
 
-/**
- *
- * @author sergi
- */
+//Clase de Interfaz de Director de Logista
 public class FrmDirectorLogistica extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmDirectorLogistica
-     */
+    
     public FrmDirectorLogistica() {
         initComponents();
     }

@@ -1,22 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Proyecto;
 
-/**
- *
- * @author sergi
- */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+// Ventana de inicio de sesión
 public class FrmLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmLogin
-     */
+    
     public FrmLogin() {
         initComponents();
         // Navegación con Enter
@@ -123,7 +116,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         String usuarioIngresado = txtUsuario.getText(); 
         String contraseñaIngresada = new String(pfContraseña.getPassword());
-        
+        // Acceso para el admin principal
         if (usuarioIngresado.equals("admin") && contraseñaIngresada.equals("1234")) {
             FrmAdminGeneral ventanaAdmin = new FrmAdminGeneral();
             ventanaAdmin.setVisible(true);

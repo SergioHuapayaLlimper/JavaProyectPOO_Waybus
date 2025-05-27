@@ -6,14 +6,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//Clase para manejar operaciones de los clientes
 public class MantenimientoClientes {
     private ArrayList<RegistroClientes> listregistroclientes;
 
     public MantenimientoClientes() {
         listregistroclientes = new ArrayList<>();
     }
-
+    //Agrega clientes
     public void AgregarCliente(RegistroClientes registrocliente) {
         listregistroclientes.add(registrocliente);
     }
@@ -22,7 +22,7 @@ public class MantenimientoClientes {
         return listregistroclientes;
     } 
     
-   private final String rutaArchivo = "clientes.txt";
+   private final String rutaArchivo = "clientes.txt";//Ruta del archivo
     
    public ArrayList<RegistroClientes> obtenerClientes() {
    ArrayList<RegistroClientes> lista = new ArrayList<>();
