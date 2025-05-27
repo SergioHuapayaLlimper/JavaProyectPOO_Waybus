@@ -364,7 +364,7 @@ public FrmRegistroEmpleados() {
                 JOptionPane.showMessageDialog(this, mensaje);
                 return;
         }
-
+        
         // Crear el objeto empleado
         RegistroEmpleados objetoempleado = new RegistroEmpleados(
                 txtCodigo.getText(),
