@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="MenuBarPrincipal">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="menuListaEmpleados">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Opciones"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemRegresarMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Regresar al Men&#xfa;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemRegresarMenuActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,66,0,0,3,-39"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="MenuBarPrincipal"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,103,0,0,3,-39"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
@@ -41,7 +63,6 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btnModificarDatos" alignment="0" pref="167" max="32767" attributes="0"/>
-                                  <Component id="btbRegresarMenu" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
                                   <Component id="btnBorrarEmpleado" max="32767" attributes="0"/>
                                   <Component id="btnMostrarLista1" max="32767" attributes="0"/>
                               </Group>
@@ -61,19 +82,17 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jTabbedPane7" min="-2" pref="183" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="btnMostrarLista1" min="-2" pref="46" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="btnModificarDatos" min="-2" pref="46" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="btnBorrarEmpleado" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btbRegresarMenu" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="230" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <EmptySpace pref="71" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,14 +130,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarDatosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btbRegresarMenu">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Regresar al men&#xfa;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btbRegresarMenuActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane7">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -143,7 +154,7 @@
                               <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnBuscarCódigo" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnFiltrarCódigo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -156,7 +167,7 @@
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="txtFiltroCódigo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnBuscarCódigo" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnFiltrarCódigo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="52" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -172,12 +183,12 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBuscarC&#xf3;digo">
+            <Component class="javax.swing.JButton" name="btnFiltrarC&#xf3;digo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Filtrar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarC&#xf3;digoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarC&#xf3;digoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -231,7 +242,7 @@
                                   <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnBuscarEmpleado" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnFiltrarEmpleado" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -244,7 +255,7 @@
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="txtFiltroNombreEmpleado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnBuscarEmpleado" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarEmpleado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="52" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -260,12 +271,12 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnBuscarEmpleado">
+                <Component class="javax.swing.JButton" name="btnFiltrarEmpleado">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarEmpleadoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarEmpleadoActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -321,7 +332,7 @@
                                   <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnBuscarDNI" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnFiltrarDNI" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -334,7 +345,7 @@
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="txtFiltroDNI" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnBuscarDNI" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarDNI" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="52" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -350,12 +361,12 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnBuscarDNI">
+                <Component class="javax.swing.JButton" name="btnFiltrarDNI">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarDNIActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarDNIActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -405,7 +416,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnBuscarOficina" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarOficina" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="405" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -421,19 +432,19 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="cbFiltroOficina" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnBuscarOficina" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarOficina" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="52" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btnBuscarOficina">
+                <Component class="javax.swing.JButton" name="btnFiltrarOficina">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarOficinaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarOficinaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbFiltroOficina">
@@ -507,7 +518,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnBuscarCargo" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarCargo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="393" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -523,19 +534,19 @@
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="cbFiltroCargo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnBuscarCargo" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarCargo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="45" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btnBuscarCargo">
+                <Component class="javax.swing.JButton" name="btnFiltrarCargo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Filtrar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarCargoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarCargoActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbFiltroCargo">

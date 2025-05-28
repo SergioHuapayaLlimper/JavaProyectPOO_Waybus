@@ -23,12 +23,12 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         mantenimiento = new MantenimientoEmpleados();
         
         cargarEmpleadosDesdeArchivo();//llamo al metodo que cree a la tabla
-        //atajos
-        txtFiltroCódigo.addActionListener(e -> btnBuscarCódigo.doClick());
-        txtFiltroNombreEmpleado.addActionListener(e -> btnBuscarEmpleado.doClick());
-        txtFiltroDNI.addActionListener(e -> btnBuscarDNI.doClick());
-        cbFiltroOficina.addActionListener(e -> btnBuscarOficina.doClick());
-        cbFiltroCargo.addActionListener(e -> btnBuscarCargo.doClick());
+        
+        txtFiltroCódigo.addActionListener(e -> btnFiltrarCódigo.doClick());
+        txtFiltroNombreEmpleado.addActionListener(e -> btnFiltrarEmpleado.doClick());
+        txtFiltroDNI.addActionListener(e -> btnFiltrarDNI.doClick());
+        cbFiltroOficina.addActionListener(e -> btnFiltrarOficina.doClick());
+        cbFiltroCargo.addActionListener(e -> btnFiltrarCargo.doClick());
     }
 
     
@@ -40,29 +40,31 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListaEmpleados = new javax.swing.JTable();
         btnModificarDatos = new javax.swing.JButton();
-        btbRegresarMenu = new javax.swing.JButton();
         jTabbedPane7 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         txtFiltroCódigo = new javax.swing.JTextField();
-        btnBuscarCódigo = new javax.swing.JButton();
+        btnFiltrarCódigo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         txtFiltroNombreEmpleado = new javax.swing.JTextField();
-        btnBuscarEmpleado = new javax.swing.JButton();
+        btnFiltrarEmpleado = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         txtFiltroDNI = new javax.swing.JTextField();
-        btnBuscarDNI = new javax.swing.JButton();
+        btnFiltrarDNI = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        btnBuscarOficina = new javax.swing.JButton();
+        btnFiltrarOficina = new javax.swing.JButton();
         cbFiltroOficina = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        btnBuscarCargo = new javax.swing.JButton();
+        btnFiltrarCargo = new javax.swing.JButton();
         cbFiltroCargo = new javax.swing.JComboBox<>();
         btnBorrarEmpleado = new javax.swing.JButton();
         btnMostrarLista1 = new javax.swing.JButton();
+        MenuBarPrincipal = new javax.swing.JMenuBar();
+        menuListaEmpleados = new javax.swing.JMenu();
+        menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -90,19 +92,12 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             }
         });
 
-        btbRegresarMenu.setText("Regresar al menú");
-        btbRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btbRegresarMenuActionPerformed(evt);
-            }
-        });
-
         txtFiltroCódigo.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el Código:"));
 
-        btnBuscarCódigo.setText("Filtrar");
-        btnBuscarCódigo.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrarCódigo.setText("Filtrar");
+        btnFiltrarCódigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarCódigoActionPerformed(evt);
+                btnFiltrarCódigoActionPerformed(evt);
             }
         });
 
@@ -117,7 +112,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                         .addComponent(txtFiltroCódigo, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(203, 203, 203))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnBuscarCódigo)
+                        .addComponent(btnFiltrarCódigo)
                         .addGap(405, 405, 405))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -126,7 +121,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(txtFiltroCódigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarCódigo)
+                .addComponent(btnFiltrarCódigo)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -134,10 +129,10 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
 
         txtFiltroNombreEmpleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el Nombre del Empleado:"));
 
-        btnBuscarEmpleado.setText("Filtrar");
-        btnBuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrarEmpleado.setText("Filtrar");
+        btnFiltrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarEmpleadoActionPerformed(evt);
+                btnFiltrarEmpleadoActionPerformed(evt);
             }
         });
 
@@ -152,7 +147,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                         .addComponent(txtFiltroNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(203, 203, 203))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(btnBuscarEmpleado)
+                        .addComponent(btnFiltrarEmpleado)
                         .addGap(405, 405, 405))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -161,7 +156,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(txtFiltroNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarEmpleado)
+                .addComponent(btnFiltrarEmpleado)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -190,10 +185,10 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
 
         txtFiltroDNI.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el DNI:"));
 
-        btnBuscarDNI.setText("Filtrar");
-        btnBuscarDNI.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrarDNI.setText("Filtrar");
+        btnFiltrarDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarDNIActionPerformed(evt);
+                btnFiltrarDNIActionPerformed(evt);
             }
         });
 
@@ -208,7 +203,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                         .addComponent(txtFiltroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(203, 203, 203))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(btnBuscarDNI)
+                        .addComponent(btnFiltrarDNI)
                         .addGap(405, 405, 405))))
         );
         jPanel7Layout.setVerticalGroup(
@@ -217,7 +212,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(txtFiltroDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarDNI)
+                .addComponent(btnFiltrarDNI)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -244,10 +239,10 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
 
         jTabbedPane7.addTab("DNI", jPanel3);
 
-        btnBuscarOficina.setText("Filtrar");
-        btnBuscarOficina.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrarOficina.setText("Filtrar");
+        btnFiltrarOficina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarOficinaActionPerformed(evt);
+                btnFiltrarOficinaActionPerformed(evt);
             }
         });
 
@@ -260,7 +255,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarOficina)
+                .addComponent(btnFiltrarOficina)
                 .addGap(405, 405, 405))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(222, 222, 222)
@@ -273,7 +268,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(cbFiltroOficina, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBuscarOficina)
+                .addComponent(btnFiltrarOficina)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -300,10 +295,10 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
 
         jTabbedPane7.addTab("Oficina", jPanel4);
 
-        btnBuscarCargo.setText("Filtrar");
-        btnBuscarCargo.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrarCargo.setText("Filtrar");
+        btnFiltrarCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarCargoActionPerformed(evt);
+                btnFiltrarCargoActionPerformed(evt);
             }
         });
 
@@ -316,7 +311,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarCargo)
+                .addComponent(btnFiltrarCargo)
                 .addGap(393, 393, 393))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(270, 270, 270)
@@ -329,7 +324,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(cbFiltroCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarCargo)
+                .addComponent(btnFiltrarCargo)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -370,6 +365,20 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             }
         });
 
+        menuListaEmpleados.setText("Opciones");
+
+        menuItemRegresarMenu.setText("Regresar al Menú");
+        menuItemRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegresarMenuActionPerformed(evt);
+            }
+        });
+        menuListaEmpleados.add(menuItemRegresarMenu);
+
+        MenuBarPrincipal.add(menuListaEmpleados);
+
+        setJMenuBar(MenuBarPrincipal);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -388,7 +397,6 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnModificarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                    .addComponent(btbRegresarMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnBorrarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnMostrarLista1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(34, 34, 34))))
@@ -401,20 +409,18 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnMostrarLista1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(45, 45, 45)
                         .addComponent(btnModificarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBorrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btbRegresarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(btnBorrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(985, 578));
+        setSize(new java.awt.Dimension(985, 615));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void cargarEmpleadosDesdeArchivo() {
@@ -466,31 +472,25 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
     }
 
     
-    private void btbRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbRegresarMenuActionPerformed
-        FrmAdminGeneral formadmi = new FrmAdminGeneral();
-        formadmi.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btbRegresarMenuActionPerformed
-
-    private void btnBuscarCódigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCódigoActionPerformed
+    private void btnFiltrarCódigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarCódigoActionPerformed
          filtrarPorTexto(0, txtFiltroCódigo.getText()); // Columna 0 = Código
-    }//GEN-LAST:event_btnBuscarCódigoActionPerformed
+    }//GEN-LAST:event_btnFiltrarCódigoActionPerformed
 
-    private void btnBuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEmpleadoActionPerformed
+    private void btnFiltrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarEmpleadoActionPerformed
         filtrarPorTexto(1, txtFiltroNombreEmpleado.getText()); // Columna 1 = Nombre
-    }//GEN-LAST:event_btnBuscarEmpleadoActionPerformed
+    }//GEN-LAST:event_btnFiltrarEmpleadoActionPerformed
 
-    private void btnBuscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDNIActionPerformed
+    private void btnFiltrarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarDNIActionPerformed
         filtrarPorTexto(3, txtFiltroDNI.getText()); // Columna 3 = DNI
-    }//GEN-LAST:event_btnBuscarDNIActionPerformed
+    }//GEN-LAST:event_btnFiltrarDNIActionPerformed
 
-    private void btnBuscarOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOficinaActionPerformed
+    private void btnFiltrarOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarOficinaActionPerformed
         filtrarPorTexto(6, cbFiltroOficina.getSelectedItem().toString()); // Columna 6 = Oficina
-    }//GEN-LAST:event_btnBuscarOficinaActionPerformed
+    }//GEN-LAST:event_btnFiltrarOficinaActionPerformed
 
-    private void btnBuscarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCargoActionPerformed
+    private void btnFiltrarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarCargoActionPerformed
         filtrarPorTexto(7, cbFiltroCargo.getSelectedItem().toString()); // Columna 7 = Cargo
-    }//GEN-LAST:event_btnBuscarCargoActionPerformed
+    }//GEN-LAST:event_btnFiltrarCargoActionPerformed
 
     private void btnMostrarLista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarLista1ActionPerformed
         cargarEmpleadosDesdeArchivo();
@@ -506,7 +506,12 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         formadim.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnModificarDatosActionPerformed
-    // Eliminar un empleado del archivo
+
+    private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
+        FrmAdminGeneral formadmi = new FrmAdminGeneral();
+        formadmi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
     private void eliminarEmpleadoSeleccionado() {
     int fila = tblListaEmpleados.getSelectedRow();
 
@@ -617,13 +622,13 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btbRegresarMenu;
+    private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JButton btnBorrarEmpleado;
-    private javax.swing.JButton btnBuscarCargo;
-    private javax.swing.JButton btnBuscarCódigo;
-    private javax.swing.JButton btnBuscarDNI;
-    private javax.swing.JButton btnBuscarEmpleado;
-    private javax.swing.JButton btnBuscarOficina;
+    private javax.swing.JButton btnFiltrarCargo;
+    private javax.swing.JButton btnFiltrarCódigo;
+    private javax.swing.JButton btnFiltrarDNI;
+    private javax.swing.JButton btnFiltrarEmpleado;
+    private javax.swing.JButton btnFiltrarOficina;
     private javax.swing.JButton btnModificarDatos;
     private javax.swing.JButton btnMostrarLista1;
     private javax.swing.JComboBox<String> cbFiltroCargo;
@@ -640,6 +645,8 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane7;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuItem menuItemRegresarMenu;
+    private javax.swing.JMenu menuListaEmpleados;
     private javax.swing.JTable tblListaEmpleados;
     private javax.swing.JTextField txtFiltroCódigo;
     private javax.swing.JTextField txtFiltroDNI;

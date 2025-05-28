@@ -54,7 +54,6 @@ public class FrmEditorClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnListaClientes = new javax.swing.JButton();
         cmbSexo = new javax.swing.JComboBox<>();
         lblCorreo = new javax.swing.JLabel();
         lblTituloActualizarClientes = new javax.swing.JLabel();
@@ -66,7 +65,6 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         txtNombres = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
-        btnRetroceder = new javax.swing.JButton();
         lblNombres = new javax.swing.JLabel();
         btnGuardarCambios = new javax.swing.JButton();
         txtDNI = new javax.swing.JTextField();
@@ -74,16 +72,14 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         lblSexo = new javax.swing.JLabel();
         lblDNI = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        MenuEditorClientes = new javax.swing.JMenu();
+        menuItemListaClientes = new javax.swing.JMenuItem();
+        menuItemRetroceder = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú Editor de Clientes");
         setResizable(false);
-
-        btnListaClientes.setText("Ir a Lista Clientes");
-        btnListaClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaClientesActionPerformed(evt);
-            }
-        });
 
         cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Masculino", "Femenino" }));
 
@@ -99,13 +95,6 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         lblEdad.setText("Edad:");
 
         lblCodigo.setText("Codigo:");
-
-        btnRetroceder.setText("Retroceder");
-        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetrocederActionPerformed(evt);
-            }
-        });
 
         lblNombres.setText("Nombres:");
 
@@ -127,65 +116,80 @@ public class FrmEditorClientes extends javax.swing.JFrame {
 
         lblDNI.setText("DNI:");
 
+        MenuEditorClientes.setText("Opciones");
+
+        menuItemListaClientes.setText("Ir a lista clientes");
+        menuItemListaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemListaClientesActionPerformed(evt);
+            }
+        });
+        MenuEditorClientes.add(menuItemListaClientes);
+
+        menuItemRetroceder.setText("Retroceder");
+        menuItemRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRetrocederActionPerformed(evt);
+            }
+        });
+        MenuEditorClientes.add(menuItemRetroceder);
+
+        jMenuBar1.add(MenuEditorClientes);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombres)
+                            .addComponent(cmbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblTelefono)
+                                .addComponent(lblCorreo))
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblEdad)
+                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(30, 30, 30)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                                    .addComponent(cmbCodigo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblEdad)
-                                        .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtEdad)
-                                        .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblTelefono)
-                                        .addComponent(lblCorreo))
-                                    .addGap(36, 36, 36)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(45, 45, 45)
-                                    .addComponent(txtDNI))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtEdad)
+                                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(45, 45, 45)
+                            .addComponent(txtDNI))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
+                        .addGap(15, 15, 15)
                         .addComponent(lblTituloActualizarClientes)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addComponent(lblTituloActualizarClientes)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -219,53 +223,14 @@ public class FrmEditorClientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91))
+                .addGap(41, 41, 41)
+                .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(620, 591));
+        setSize(new java.awt.Dimension(497, 535));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaClientesActionPerformed
-        FrmListaClientes formadim = new FrmListaClientes();
-        formadim.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnListaClientesActionPerformed
-
-    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
-        // Validar si hubo cambios
-        if (datosOriginales[0] != null) {
-            boolean hayCambios =
-            !datosOriginales[0].equals(txtNombres.getText()) ||
-            !datosOriginales[1].equals(txtApellidos.getText()) ||
-            !datosOriginales[2].equals(txtDNI.getText()) ||
-            !datosOriginales[3].equals(txtCorreo.getText()) ||
-            !datosOriginales[4].equals(txtTelefono.getText()) ||
-            !datosOriginales[5].equals(txtEdad.getText()) ||
-            !datosOriginales[6].equals(cmbSexo.getSelectedItem().toString());
-
-            if (hayCambios) {
-                int respuesta = JOptionPane.showConfirmDialog(this,
-                    "Hay cambios sin guardar. ¿Estás seguro de que deseas salir?",
-                    "Cambios sin guardar",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE);
-
-                if (respuesta != JOptionPane.YES_OPTION) {
-                    return; // Cancelar salida si el usuario elige "No"
-                }
-            }
-        }
-
-        FrmRegistroClientes formadim = new FrmRegistroClientes();
-        formadim.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         String codigo = (String) cmbCodigo.getSelectedItem();
@@ -438,6 +403,42 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbCodigoActionPerformed
 
+    private void menuItemRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRetrocederActionPerformed
+        // Validar si hubo cambios
+        if (datosOriginales[0] != null) {
+            boolean hayCambios =
+            !datosOriginales[0].equals(txtNombres.getText()) ||
+            !datosOriginales[1].equals(txtApellidos.getText()) ||
+            !datosOriginales[2].equals(txtDNI.getText()) ||
+            !datosOriginales[3].equals(txtCorreo.getText()) ||
+            !datosOriginales[4].equals(txtTelefono.getText()) ||
+            !datosOriginales[5].equals(txtEdad.getText()) ||
+            !datosOriginales[6].equals(cmbSexo.getSelectedItem().toString());
+
+            if (hayCambios) {
+                int respuesta = JOptionPane.showConfirmDialog(this,
+                    "Hay cambios sin guardar. ¿Estás seguro de que deseas salir?",
+                    "Cambios sin guardar",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+
+                if (respuesta != JOptionPane.YES_OPTION) {
+                    return; // Cancelar salida si el usuario elige "No"
+                }
+            }
+        }
+
+        FrmRegistroClientes formadim = new FrmRegistroClientes();
+        formadim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemRetrocederActionPerformed
+
+    private void menuItemListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListaClientesActionPerformed
+        FrmListaClientes formadim = new FrmListaClientes();
+        formadim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemListaClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -474,11 +475,11 @@ public class FrmEditorClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MenuEditorClientes;
     private javax.swing.JButton btnGuardarCambios;
-    private javax.swing.JButton btnListaClientes;
-    private javax.swing.JButton btnRetroceder;
     private javax.swing.JComboBox<String> cmbCodigo;
     private javax.swing.JComboBox<String> cmbSexo;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCorreo;
@@ -488,6 +489,8 @@ public class FrmEditorClientes extends javax.swing.JFrame {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTituloActualizarClientes;
+    private javax.swing.JMenuItem menuItemListaClientes;
+    private javax.swing.JMenuItem menuItemRetroceder;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDNI;
