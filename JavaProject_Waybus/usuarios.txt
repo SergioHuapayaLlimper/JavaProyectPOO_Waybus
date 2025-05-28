@@ -1,1 +1,3 @@
 U-34543,jack,torres,32456712,jack2024@gmail.com,935345346,Cerro Azul,Conductor,32,Masculino
+U-35345,jorge,gomez,23245673,jorge@gmail.com,953454365,Lima,Operario de Rutas,35,Masculino
+U-98765,jose,quispe,65654756,quisep@gmail.com,934545674,Cerro Azul,Gerente de Finanzas,25,Masculino
