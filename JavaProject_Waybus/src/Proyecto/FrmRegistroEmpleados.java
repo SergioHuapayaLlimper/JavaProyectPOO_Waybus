@@ -5,47 +5,124 @@ import javax.swing.JOptionPane;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.text.*;
 
-//Formulario de registro de empleados.
-public class FrmRegistroEmpleados extends javax.swing.JFrame {
+/**
+ *
+ * @author usuario
+ */
+    public class FrmRegistroEmpleados extends javax.swing.JFrame {
 
     MantenimientoEmpleados mantenimiento;
-    
-public FrmRegistroEmpleados() {
-    initComponents();
-    mantenimiento = new MantenimientoEmpleados();
 
-    // Acción con Enter para pasar de un campo a otro
-    txtCodigo.addActionListener(e -> txtNombres.requestFocus());
-    txtNombres.addActionListener(e -> txtApellidos.requestFocus());
-    txtApellidos.addActionListener(e -> txtDNI.requestFocus());
-    txtDNI.addActionListener(e -> txtCorreo.requestFocus());
-    txtCorreo.addActionListener(e -> txtTelefono.requestFocus());
-    txtTelefono.addActionListener(e -> cmbOficina.requestFocus());
+    class CodigoEmpleadoFilter extends DocumentFilter {
+        private static final String PREFIJO = "U-";
+        private static final int MAX_DIGITOS = 5;
 
-    cmbOficina.addActionListener(e -> {
-        if (cmbOficina.getSelectedIndex() > 0) {
-            cmbCargo.requestFocus();
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            String textoActual = fb.getDocument().getText(0, fb.getDocument().getLength());
+            String nuevoTexto = new StringBuilder(textoActual).insert(offset, string).toString();
+
+            if (nuevoTexto.startsWith(PREFIJO) && nuevoTexto.substring(PREFIJO.length()).matches("\\d{0," + MAX_DIGITOS + "}")) {
+                super.insertString(fb, offset, string, attr);
+            }
         }
-    });
 
-    cmbCargo.addActionListener(e -> {
-        if (cmbCargo.getSelectedIndex() > 0) {
-            txtEdad.requestFocus();
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String string, AttributeSet attr) throws BadLocationException {
+            String textoActual = fb.getDocument().getText(0, fb.getDocument().getLength());
+            StringBuilder sb = new StringBuilder(textoActual);
+            sb.replace(offset, offset + length, string);
+            String nuevoTexto = sb.toString();
+
+            if (nuevoTexto.startsWith(PREFIJO) && nuevoTexto.substring(PREFIJO.length()).matches("\\d{0," + MAX_DIGITOS + "}")) {
+                super.replace(fb, offset, length, string, attr);
+            }
         }
-    });
 
-    txtEdad.addActionListener(e -> cmbSexo.requestFocus());
-
-    cmbSexo.addActionListener(e -> {
-        if (cmbSexo.getSelectedIndex() > 0) {
-            btnRegistroDeEmpleados.requestFocus();
+        @Override
+        public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
+            if (offset < PREFIJO.length()) {
+                return; // Bloquea eliminación del prefijo
+            }
+            super.remove(fb, offset, length);
         }
-    });
+    }
 
-    // Al presionar Enter en el botón, ejecuta su acción
-    getRootPane().setDefaultButton(btnRegistroDeEmpleados);
-}
+    class NumericLimitFilter extends DocumentFilter {
+        private int maxLength;
+
+        public NumericLimitFilter(int maxLength) {
+            this.maxLength = maxLength;
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (string.matches("\\d*") && fb.getDocument().getLength() + string.length() <= maxLength) {
+                super.insertString(fb, offset, string, attr);
+            }
+        }
+
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String string, AttributeSet attr) throws BadLocationException {
+            if (string.matches("\\d*") && fb.getDocument().getLength() - length + string.length() <= maxLength) {
+                super.replace(fb, offset, length, string, attr);
+            }
+        }
+    }
+
+    public FrmRegistroEmpleados() {
+        initComponents();
+
+            // Establece "U-" como texto por defecto
+        txtCodigo.setText("U-");
+
+        // Aplica el filtro para bloquear edición de "U-" y permitir solo 5 dígitos numéricos
+        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoEmpleadoFilter());
+        
+        // DNI: máximo 8 dígitos
+        ((AbstractDocument) txtDNI.getDocument()).setDocumentFilter(new NumericLimitFilter(8));
+
+        // Teléfono: máximo 9 dígitos
+        ((AbstractDocument) txtTelefono.getDocument()).setDocumentFilter(new NumericLimitFilter(9));
+
+        // Edad: máximo 2 dígitos
+        ((AbstractDocument) txtEdad.getDocument()).setDocumentFilter(new NumericLimitFilter(2));
+
+        mantenimiento = new MantenimientoEmpleados();
+
+        // Acción con Enter para pasar de un campo a otro
+        txtCodigo.addActionListener(e -> txtNombres.requestFocus());
+        txtNombres.addActionListener(e -> txtApellidos.requestFocus());
+        txtApellidos.addActionListener(e -> txtDNI.requestFocus());
+        txtDNI.addActionListener(e -> txtCorreo.requestFocus());
+        txtCorreo.addActionListener(e -> txtTelefono.requestFocus());
+        txtTelefono.addActionListener(e -> cmbOficina.requestFocus());
+
+        cmbOficina.addActionListener(e -> {
+            if (cmbOficina.getSelectedIndex() > 0) {
+                cmbCargo.requestFocus();
+            }
+        });
+
+        cmbCargo.addActionListener(e -> {
+            if (cmbCargo.getSelectedIndex() > 0) {
+                txtEdad.requestFocus();
+            }
+        });
+
+        txtEdad.addActionListener(e -> cmbSexo.requestFocus());
+
+        cmbSexo.addActionListener(e -> {
+            if (cmbSexo.getSelectedIndex() > 0) {
+                btnRegistroDeEmpleados.requestFocus();
+            }
+        });
+
+        // Al presionar Enter en el botón, ejecuta su acción
+        getRootPane().setDefaultButton(btnRegistroDeEmpleados);
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -404,8 +481,10 @@ public FrmRegistroEmpleados() {
             System.out.println("Error al registrar usuario: " + e.getMessage());
         }
 
-        // Limpiar campos
-        txtCodigo.setText("");
+        // Reiniciar el campo de código completamente
+        txtCodigo.setDocument(new javax.swing.text.PlainDocument());
+        txtCodigo.setText("U-");  // Se reinicia con el prefijo
+        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoEmpleadoFilter());
         txtNombres.setText("");
         txtApellidos.setText("");
         txtDNI.setText("");

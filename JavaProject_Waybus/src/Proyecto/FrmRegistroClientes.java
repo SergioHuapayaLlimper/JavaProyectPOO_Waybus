@@ -4,15 +4,100 @@ package Proyecto;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.text.*;
 
-// Ventana para registrar nuevos clientes
-public class FrmRegistroClientes extends javax.swing.JFrame {
-
+    public class FrmRegistroClientes extends javax.swing.JFrame {
+        
     MantenimientoClientes mantenimientoClientes;
+
+    class CodigoClienteFilter extends DocumentFilter {
+        private static final String PREFIJO = "C-";
+        private static final int MAX_DIGITOS = 5;
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            String textoActual = fb.getDocument().getText(0, fb.getDocument().getLength());
+            String nuevoTexto = new StringBuilder(textoActual).insert(offset, string).toString();
+
+            if (nuevoTexto.startsWith(PREFIJO) && nuevoTexto.substring(PREFIJO.length()).matches("\\d{0," + MAX_DIGITOS + "}")) {
+                super.insertString(fb, offset, string, attr);
+            }
+        }
+
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String string, AttributeSet attr) throws BadLocationException {
+            String textoActual = fb.getDocument().getText(0, fb.getDocument().getLength());
+            StringBuilder sb = new StringBuilder(textoActual);
+            sb.replace(offset, offset + length, string);
+            String nuevoTexto = sb.toString();
+
+            if (nuevoTexto.startsWith(PREFIJO) && nuevoTexto.substring(PREFIJO.length()).matches("\\d{0," + MAX_DIGITOS + "}")) {
+                super.replace(fb, offset, length, string, attr);
+            }
+        }
+
+        @Override
+        public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
+            if (offset < PREFIJO.length()) {
+                return; // No se permite borrar el prefijo
+            }
+            super.remove(fb, offset, length);
+        }
+    }
+
+    class NumericLimitFilter extends DocumentFilter {
+        private int maxLength;
+
+        public NumericLimitFilter(int maxLength) {
+            this.maxLength = maxLength;
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+            if (string.matches("\\d*") && fb.getDocument().getLength() + string.length() <= maxLength) {
+                super.insertString(fb, offset, string, attr);
+            }
+        }
+
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String string, AttributeSet attr) throws BadLocationException {
+            if (string.matches("\\d*") && fb.getDocument().getLength() - length + string.length() <= maxLength) {
+                super.replace(fb, offset, length, string, attr);
+            }
+        }
+    }
     
     public FrmRegistroClientes() {
         initComponents();
         mantenimientoClientes = new MantenimientoClientes();
+        
+        // Código con prefijo C-
+        txtCodigo.setText("C-");
+        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoClienteFilter());
+
+        // DNI: máximo 8 dígitos
+        ((AbstractDocument) txtDNI.getDocument()).setDocumentFilter(new NumericLimitFilter(8));
+
+        // Teléfono: máximo 9 dígitos
+        ((AbstractDocument) txtTelefono.getDocument()).setDocumentFilter(new NumericLimitFilter(9));
+        
+        // Acción con Enter para pasar de un campo a otro en Registro de Clientes
+        txtCodigo.addActionListener(e -> txtNombre.requestFocus());
+        txtNombre.addActionListener(e -> txtApellido.requestFocus());
+        txtApellido.addActionListener(e -> txtDNI.requestFocus());
+        txtDNI.addActionListener(e -> txtCorreo.requestFocus());
+        txtCorreo.addActionListener(e -> txtTelefono.requestFocus());
+        txtTelefono.addActionListener(e -> txtEdad.requestFocus());
+        txtEdad.addActionListener(e -> cmbSexo.requestFocus());
+
+        cmbSexo.addActionListener(e -> {
+            if (cmbSexo.getSelectedIndex() > 0) {
+                btnRegistroDeClientes.requestFocus();
+            }
+        });
+
+        // Al presionar Enter en el botón, ejecuta su acción
+        getRootPane().setDefaultButton(btnRegistroDeClientes);
     }
 
     
@@ -260,7 +345,9 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         }
 
         // Limpiar campos
-        txtCodigo.setText("");
+        txtCodigo.setDocument(new javax.swing.text.PlainDocument());// Reiniciar campo de código correctamente
+        txtCodigo.setText("C-"); // para que se reinicie con el prefijo
+        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoClienteFilter());
         txtNombre.setText("");
         txtApellido.setText("");
         txtDNI.setText("");
