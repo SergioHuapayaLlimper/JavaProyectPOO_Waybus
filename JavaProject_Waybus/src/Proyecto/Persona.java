@@ -1,5 +1,7 @@
+//Elaborado por el Grupo 04
 package Proyecto;
 
+//Clase contiene datos basicos de una persona
 public class Persona {
 
     // Orden respetado según el formulario visual

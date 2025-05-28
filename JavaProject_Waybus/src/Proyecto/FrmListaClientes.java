@@ -1,20 +1,55 @@
-
+//Elaborado por el Grupo 04
 package Proyecto;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+// Ventana para mostrar y eliminar clientes
 public class FrmListaClientes extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
     MantenimientoClientes manCliente;
     RegistroClientes clientes;
     
+    private void personalizarBotonLista(JButton boton) {
+        Color fondo = new Color(0, 120, 215);
+        Color fondoHover = new Color(0, 150, 255);
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
     
     public FrmListaClientes() {
         initComponents();
-        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Sexo", "Edad"};
+        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
+        personalizarBotonLista(btnMostrar);
+        personalizarBotonLista(btnEliminar);
+        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Sexo", "Edad"};//columnas en la tabla
         modelo = new DefaultTableModel(nomColumnas, 0);
         tblClientes.setModel(modelo);
     }
@@ -182,9 +217,6 @@ public class FrmListaClientes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

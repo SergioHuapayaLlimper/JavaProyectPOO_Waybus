@@ -1,4 +1,6 @@
+//Elaborado por el Grupo 04
 package Proyecto;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -6,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Clase para manejar operaciones de los Empleados
 public class MantenimientoEmpleados {
     private ArrayList<RegistroEmpleados> listregistroemple;
     
@@ -13,6 +16,7 @@ public class MantenimientoEmpleados {
         listregistroemple = new ArrayList<>();
     }
     
+    //Agrega clientes a la lista
     public void AgregarEmpleado(RegistroEmpleados registroemple){
         listregistroemple.add(registroemple);
     }
@@ -21,7 +25,7 @@ public class MantenimientoEmpleados {
         return listregistroemple;
     }
     
-        private final String rutaArchivo = "usuarios.txt";
+        private final String rutaArchivo = "usuarios.txt";//Ruta del archivo
     
         //Método para obtener empleados desde archivo.txt
     public ArrayList<RegistroEmpleados> obtenerEmpleados() {

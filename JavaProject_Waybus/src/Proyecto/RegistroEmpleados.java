@@ -1,5 +1,7 @@
+//Elaborado por el Grupo 04
 package Proyecto;
 
+// Clase para registrar datos de un empleado
 public class RegistroEmpleados extends Persona {
     private String codigo;
     private String oficina;

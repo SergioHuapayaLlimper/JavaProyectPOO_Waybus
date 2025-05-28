@@ -1,3 +1,4 @@
+//Elaborado por el Grupo 04
 package Proyecto;
 
 import java.io.BufferedWriter;
@@ -7,13 +8,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Clase para manejar operaciones de los clientes
 public class MantenimientoClientes {
     private ArrayList<RegistroClientes> listregistroclientes;
 
     public MantenimientoClientes() {
         listregistroclientes = new ArrayList<>();
     }
-
+    
+    //Agrega clientes
     public void AgregarCliente(RegistroClientes registrocliente) {
         listregistroclientes.add(registrocliente);
     }
@@ -22,6 +25,7 @@ public class MantenimientoClientes {
         return listregistroclientes;
     } 
     
+   //Ruta del archivo
    private final String rutaArchivo = "clientes.txt";
     
    public ArrayList<RegistroClientes> obtenerClientes() {
