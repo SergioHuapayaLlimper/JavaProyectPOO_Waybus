@@ -1,14 +1,46 @@
-
+//Elaborado por el Grupo 04
 package Proyecto;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.text.*;
 
     public class FrmRegistroClientes extends javax.swing.JFrame {
         
     MantenimientoClientes mantenimientoClientes;
+    
+    private void personalizarBotonRegistrar(JButton boton) {
+        Color fondo = new Color(0, 120, 215);
+        Color fondoHover = new Color(0, 150, 255);
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
 
     class CodigoClienteFilter extends DocumentFilter {
         private static final String PREFIJO = "C-";
@@ -69,6 +101,11 @@ import javax.swing.text.*;
     
     public FrmRegistroClientes() {
         initComponents();
+        
+        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
+        
+        personalizarBotonRegistrar(btnRegistroDeClientes);
+        
         mantenimientoClientes = new MantenimientoClientes();
         
         // Código con prefijo C-
@@ -100,7 +137,6 @@ import javax.swing.text.*;
         getRootPane().setDefaultButton(btnRegistroDeClientes);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -369,9 +405,6 @@ import javax.swing.text.*;
         this.dispose();
     }//GEN-LAST:event_menuItemActualizarClienteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

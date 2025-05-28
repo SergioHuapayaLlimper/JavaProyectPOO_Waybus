@@ -1,3 +1,4 @@
+//Elaborado por el Grupo 04
 package Proyecto;
 //Clase que representa el login del usuario
 public class Login {
@@ -11,6 +12,7 @@ public class Login {
     }
     public Login(){
     }
+    
     //Metodo getter y setter
     public String getUsuario() {
         return usuario;

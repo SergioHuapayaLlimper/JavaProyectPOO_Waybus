@@ -1,3 +1,4 @@
+//Elaborado por el Grupo 04
 package Proyecto;
 
 import java.io.BufferedWriter;
@@ -13,6 +14,7 @@ public class MantenimientoClientes {
     public MantenimientoClientes() {
         listregistroclientes = new ArrayList<>();
     }
+    
     //Agrega clientes
     public void AgregarCliente(RegistroClientes registrocliente) {
         listregistroclientes.add(registrocliente);
@@ -22,7 +24,8 @@ public class MantenimientoClientes {
         return listregistroclientes;
     } 
     
-   private final String rutaArchivo = "clientes.txt";//Ruta del archivo
+   //Ruta del archivo
+   private final String rutaArchivo = "clientes.txt";
     
    public ArrayList<RegistroClientes> obtenerClientes() {
    ArrayList<RegistroClientes> lista = new ArrayList<>();

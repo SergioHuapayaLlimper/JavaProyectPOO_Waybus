@@ -1,4 +1,6 @@
+//Elaborado por el Grupo 04
 package Proyecto;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,6 +14,7 @@ public class MantenimientoEmpleados {
     public MantenimientoEmpleados(){
         listregistroemple = new ArrayList<>();
     }
+    
     //Agrega clientes a la lista
     public void AgregarEmpleado(RegistroEmpleados registroemple){
         listregistroemple.add(registroemple);

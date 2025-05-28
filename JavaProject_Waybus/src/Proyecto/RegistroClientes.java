@@ -1,6 +1,9 @@
+//Elaborado por el Grupo 04
 package Proyecto;
+
 // Clase para registrar datos de un cliente
 public class RegistroClientes extends Persona {
+
     //Atributo
     private String Codigo;
     //constructor

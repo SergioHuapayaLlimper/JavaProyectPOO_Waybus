@@ -1,5 +1,11 @@
+//Elaborado por el Grupo 04
 package Proyecto;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 // Ventana para mostrar, filtrar y eliminar empleados
@@ -8,11 +14,45 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
     
     DefaultTableModel modelo;
     MantenimientoEmpleados mantenimiento;
-    /**
-     * Creates new form FrmListaEmpleados
-     */
+    
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215);
+        Color fondoHover = new Color(0, 150, 255);
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }    
+    
     public FrmListaEmpleados() {
         initComponents();
+        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
+        personalizarBoton(btnFiltrarCódigo);
+        personalizarBoton(btnFiltrarEmpleado);
+        personalizarBoton(btnFiltrarDNI);
+        personalizarBoton(btnFiltrarOficina);
+        personalizarBoton(btnFiltrarCargo);
+        personalizarBoton(btnMostrarLista1);
+        personalizarBoton(btnModificarDatos);
+        personalizarBoton(btnBorrarEmpleado);
         String[] nombreColumna = {"Codigo","Nombres","Apellidos","DNI","Correo","Teléfono","Oficina","Cargo","Edad","Sexo"};
         modelo= new DefaultTableModel(nombreColumna,0);
         tblListaEmpleados.setModel(modelo);
@@ -24,6 +64,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         
         cargarEmpleadosDesdeArchivo();//llamo al metodo que cree a la tabla
         
+        //atajos
         txtFiltroCódigo.addActionListener(e -> btnFiltrarCódigo.doClick());
         txtFiltroNombreEmpleado.addActionListener(e -> btnFiltrarEmpleado.doClick());
         txtFiltroDNI.addActionListener(e -> btnFiltrarDNI.doClick());
@@ -31,7 +72,6 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         cbFiltroCargo.addActionListener(e -> btnFiltrarCargo.doClick());
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,6 +107,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lista de Empleados");
         setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -512,6 +553,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         formadmi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
+    // Eliminar un empleado del archivo
     private void eliminarEmpleadoSeleccionado() {
     int fila = tblListaEmpleados.getSelectedRow();
 

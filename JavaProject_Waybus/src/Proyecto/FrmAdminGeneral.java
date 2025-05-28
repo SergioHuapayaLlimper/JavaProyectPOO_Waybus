@@ -1,12 +1,54 @@
-
+//Elaborado por el Grupo 04
 package Proyecto;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 // Ventana del menú del administrador general
 public class FrmAdminGeneral extends javax.swing.JFrame {
 
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215); // Azul moderno
+        Color fondoHover = new Color(0, 150, 255);
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Padding
+        boton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        // Quitar efectos de Look&Feel predeterminados
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Efecto hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
     
     public FrmAdminGeneral() {
-        initComponents(); //carga la interfaz
+        initComponents();//carga la interfaz
+        
+        // Cambiar el color de fondo del panel principal
+        panelPrincipal.setBackground(new Color(240, 248, 255)); // Azul claro suave
+        
+        personalizarBoton(btnRegistroDeEmpleados);
+        personalizarBoton(btnMostrarListaDeEmpleados);
+        personalizarBoton(btnMostrarListaDeClientes);
     }
 
     
@@ -14,6 +56,7 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelPrincipal = new javax.swing.JPanel();
         lblTituloMenuAdministrador = new javax.swing.JLabel();
         btnRegistroDeEmpleados = new javax.swing.JButton();
         btnMostrarListaDeClientes = new javax.swing.JButton();
@@ -51,6 +94,36 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(lblTituloMenuAdministrador)
+                .addContainerGap(304, Short.MAX_VALUE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarListaDeEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblTituloMenuAdministrador)
+                .addGap(36, 36, 36)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarListaDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(246, Short.MAX_VALUE))
+        );
+
         menuAdminGeneral.setText("Opciones");
 
         menuItemCerrarSesion.setText("Cerrar Sesión ");
@@ -77,30 +150,13 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(lblTituloMenuAdministrador)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(btnMostrarListaDeEmpleados)
-                .addGap(36, 36, 36)
-                .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblTituloMenuAdministrador)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrarListaDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(696, 422));
@@ -179,5 +235,6 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuItemCerrarSesion;
     private javax.swing.JMenuItem menuItemSalir;
+    private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

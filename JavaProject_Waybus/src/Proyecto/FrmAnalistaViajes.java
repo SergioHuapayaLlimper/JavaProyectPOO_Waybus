@@ -1,15 +1,17 @@
-
+//Elaborado por el Grupo 04
 package Proyecto;
+
+import java.awt.Color;
 
 //Clase para la interefaz del Analista de Viajes
 public class FrmAnalistaViajes extends javax.swing.JFrame {
 
-    
     public FrmAnalistaViajes() {
         initComponents();
+        
+        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,9 +69,6 @@ public class FrmAnalistaViajes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
