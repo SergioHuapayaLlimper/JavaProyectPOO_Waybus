@@ -78,17 +78,19 @@ public FrmRegistroEmpleados() {
         lblCargo = new javax.swing.JLabel();
         cmbOficina = new javax.swing.JComboBox<>();
         cmbCargo = new javax.swing.JComboBox<>();
-        btnRetornoMenúAdmin = new javax.swing.JButton();
         lblApellidos = new javax.swing.JLabel();
         txtApellidos = new javax.swing.JTextField();
         txtEdad = new javax.swing.JTextField();
         lblSexo = new javax.swing.JLabel();
         cmbSexo = new javax.swing.JComboBox<>();
         lblEdad = new javax.swing.JLabel();
-        btnEditorDeEmpleados = new javax.swing.JButton();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuRegistroEmpleados = new javax.swing.JMenu();
+        menuItemActualizarEmpleado = new javax.swing.JMenuItem();
+        menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Registro de Empleados");
+        setTitle("Menú Registro de Empleados");
         setResizable(false);
 
         lblTituloMenuAdministrador.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -119,13 +121,6 @@ public FrmRegistroEmpleados() {
 
         cmbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Operario de Rutas", "Conductor", "Counter", "Gerente de Finanzas", "Analista de Viajes", "Director de Logística", "Responsable de Recursos Humanos" }));
 
-        btnRetornoMenúAdmin.setText("Regresar al Menú");
-        btnRetornoMenúAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetornoMenúAdminActionPerformed(evt);
-            }
-        });
-
         lblApellidos.setText("Apellidos:");
 
         lblSexo.setText("Sexo:");
@@ -134,71 +129,85 @@ public FrmRegistroEmpleados() {
 
         lblEdad.setText("Edad:");
 
-        btnEditorDeEmpleados.setText("Actualizar Empleado");
-        btnEditorDeEmpleados.addActionListener(new java.awt.event.ActionListener() {
+        menuRegistroEmpleados.setText("Opciones");
+        menuRegistroEmpleados.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        menuItemActualizarEmpleado.setText("Actualizar Empleado");
+        menuItemActualizarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditorDeEmpleadosActionPerformed(evt);
+                menuItemActualizarEmpleadoActionPerformed(evt);
             }
         });
+        menuRegistroEmpleados.add(menuItemActualizarEmpleado);
+
+        menuItemRegresarMenu.setText("Regresar al Menú");
+        menuItemRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegresarMenuActionPerformed(evt);
+            }
+        });
+        menuRegistroEmpleados.add(menuItemRegresarMenu);
+
+        menuBarPrincipal.add(menuRegistroEmpleados);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditorDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRetornoMenúAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(45, 45, 45)
-                                    .addComponent(txtDNI))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(txtApellidos))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtCodigo)
-                                        .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblEdad)
-                                        .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtEdad)
-                                        .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblTelefono)
-                                        .addComponent(lblCorreo)
-                                        .addComponent(lblOficina, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cmbOficina, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cmbCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(lblTituloMenuAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(lblTituloMenuAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(45, 45, 45)
+                                            .addComponent(txtDNI))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(29, 29, 29)
+                                            .addComponent(txtApellidos))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtCodigo)
+                                                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblEdad)
+                                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtEdad)
+                                                .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblTelefono)
+                                                .addComponent(lblCorreo)
+                                                .addComponent(lblOficina, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(cmbOficina, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(cmbCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(15, 15, 15))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(90, 90, 90)))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,94 +254,98 @@ public FrmRegistroEmpleados() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditorDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRetornoMenúAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
+                .addGap(30, 30, 30)
+                .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(620, 561));
+        setSize(new java.awt.Dimension(493, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRetornoMenúAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetornoMenúAdminActionPerformed
-        FrmAdminGeneral formadim = new FrmAdminGeneral();
-        formadim.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRetornoMenúAdminActionPerformed
 
     private void btnRegistroDeEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroDeEmpleadosActionPerformed
         // Validaciones de campos
         String codigo = txtCodigo.getText().trim();
-        if (codigo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar el código del empleado.");
-        return;
+        String nombres = txtNombres.getText().trim();
+        String apellidos = txtApellidos.getText().trim();
+        String dni = txtDNI.getText().trim();
+        String correo = txtCorreo.getText().trim().toLowerCase();
+        String telefono = txtTelefono.getText().trim();
+        String edadTexto = txtEdad.getText().trim();
+        String sexo = cmbSexo.getSelectedItem().toString().trim();
+        String oficina = cmbOficina.getSelectedItem().toString().trim();
+        String cargo = cmbCargo.getSelectedItem().toString().trim();
+
+        // Validar campos vacíos
+        if (codigo.isEmpty() || nombres.isEmpty() || apellidos.isEmpty() || dni.isEmpty()
+                || correo.isEmpty() || telefono.isEmpty() || edadTexto.isEmpty()
+                || cmbSexo.getSelectedIndex() == 0 || cmbOficina.getSelectedIndex() == 0
+                || cmbCargo.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.");
+            return;
         }
+
+        // Validar formato del código: "U-XXXXX"
         if (!codigo.matches("^U-\\d{5}$")) {
             JOptionPane.showMessageDialog(this, "El código debe tener el formato U-XXXXX (exactamente 5 dígitos).");
-        return;
+            return;
         }
-        if (txtNombres.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar los nombres del empleado.");
-                return;
+
+        // Validar que ningún campo contenga espacios intermedios
+        if (codigo.contains(" ") || nombres.contains(" ") || apellidos.contains(" ") ||
+            dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") || edadTexto.contains(" ")) {
+            JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios en blanco.");
+            return;
         }
-        if (txtApellidos.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar los apellidos del empleado.");
-                return;
+
+        // Validar nombres y apellidos (solo letras)
+        if (!nombres.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
+            JOptionPane.showMessageDialog(this, "Los nombres solo deben contener letras sin espacios ni símbolos.");
+            return;
         }
-        String dni = txtDNI.getText().trim();
-        if (dni.isEmpty() || !dni.matches("\\d{8}")) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido de 8 dígitos.");
-                return;
+        if (!apellidos.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
+            JOptionPane.showMessageDialog(this, "Los apellidos solo deben contener letras sin espacios ni símbolos.");
+            return;
         }
-        String correo = txtCorreo.getText().trim().toLowerCase();
-        if (correo.isEmpty() || !(correo.endsWith("@gmail.com") || correo.endsWith("@outlook.com"))) {
-                JOptionPane.showMessageDialog(this, "El correo debe terminar en @gmail.com o @outlook.com.");
-                return;
+
+        // Validar DNI: exactamente 8 dígitos
+        if (!dni.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido de 8 dígitos.");
+            return;
         }
-        String telefono = txtTelefono.getText().trim();
-        if (telefono.isEmpty() || !telefono.matches("9\\d{8}")) {
-                JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
-                return;
+
+        // Validar correo
+        if (!correo.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|outlook\\.com)$")) {
+            JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @outlook.com.");
+            return;
         }
-        if (cmbOficina.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar una oficina.");
-                return;
+
+        // Validar teléfono: empieza con 9 y tiene 9 dígitos
+        if (!telefono.matches("9\\d{8}")) {
+            JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
+            return;
         }
-        if (cmbCargo.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un cargo.");
-                return;
-        }
-        String edadTexto = txtEdad.getText().trim();
-        if (edadTexto.isEmpty() || !edadTexto.matches("\\d+")) {
-                JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
-                return;
+
+        // Validar edad
+        if (!edadTexto.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
+            return;
         }
         int edad = Integer.parseInt(edadTexto);
         if (edad < 20 || edad > 70) {
-                JOptionPane.showMessageDialog(this, "La edad debe estar entre 20 y 70 años.");
-                return;
+            JOptionPane.showMessageDialog(this, "La edad debe estar entre 20 y 70 años.");
+            return;
         }
-        if (cmbSexo.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar el sexo del empleado.");
-                return;
-        }
-	if (!codigo.matches("^U-\\d{5}$")) {
-		JOptionPane.showMessageDialog(this, "El código debe tener el formato U-XXXXX (exactamente 5 dígitos).");
-		return;
-	}
 
-        // Verificar si el código ya está registrado
+        // Verificar duplicados
         MantenimientoEmpleados archivo = new MantenimientoEmpleados();
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
 
         for (RegistroEmpleados emp : empleados) {
-                if (emp.getCodigo().equalsIgnoreCase(codigo)) {
-                        JOptionPane.showMessageDialog(this, "Ya existe un empleado registrado con el mismo código: " + codigo);
-                        return;
-                }
+            if (emp.getCodigo().equalsIgnoreCase(codigo)) {
+                JOptionPane.showMessageDialog(this, "Ya existe un empleado registrado con el mismo código: " + codigo);
+                return;
+            }
         }
 
         // Validar duplicados en DNI, correo, teléfono
@@ -340,54 +353,45 @@ public FrmRegistroEmpleados() {
         String nombreEmpleadoExistente = "";
 
         for (RegistroEmpleados emp : empleados) {
-                boolean coincide = false;
+            boolean coincide = false;
 
-                if (emp.getCodigo().equals(codigo)) {
-                        camposDuplicados.add("Codigo");
-                        coincide = true;
-                }
-                
-                if (emp.getDni().equals(dni)) {
-                        camposDuplicados.add("DNI");
-                        coincide = true;
-                }
-                if (emp.getTelefono().equals(telefono)) {
-                        camposDuplicados.add("Teléfono");
-                        coincide = true;
-                }
-                if (emp.getCorreo().equalsIgnoreCase(correo)) {
-                        camposDuplicados.add("Correo electrónico");
-                        coincide = true;
-                }
+            if (emp.getCodigo().equals(codigo)) {
+                camposDuplicados.add("Código");
+                coincide = true;
+            }
+            if (emp.getDni().equals(dni)) {
+                camposDuplicados.add("DNI");
+                coincide = true;
+            }
+            if (emp.getTelefono().equals(telefono)) {
+                camposDuplicados.add("Teléfono");
+                coincide = true;
+            }
+            if (emp.getCorreo().equalsIgnoreCase(correo)) {
+                camposDuplicados.add("Correo electrónico");
+                coincide = true;
+            }
 
-                if (coincide && nombreEmpleadoExistente.isEmpty()) {
-                        nombreEmpleadoExistente = emp.getNombres() + " " + emp.getApellidos();
-                }
+            if (coincide && nombreEmpleadoExistente.isEmpty()) {
+                nombreEmpleadoExistente = emp.getNombres() + " " + emp.getApellidos();
+            }
         }
 
         if (!camposDuplicados.isEmpty()) {
-                String mensaje = "No se puede registrar al empleado \"" + txtNombres.getText() + " " + txtApellidos.getText()
-                        + "\" porque ya existe un empleado registrado"
-                        + (!nombreEmpleadoExistente.isEmpty() ? " con el nombre \"" + nombreEmpleadoExistente + "\"" : "")
-                        + " que tiene los siguientes datos repetidos:\n- "
-                        + String.join("\n- ", camposDuplicados);
-                JOptionPane.showMessageDialog(this, mensaje);
-                return;
+            String mensaje = "No se puede registrar al empleado \"" + nombres + " " + apellidos
+                    + "\" porque ya existe un empleado registrado"
+                    + (!nombreEmpleadoExistente.isEmpty() ? " con el nombre \"" + nombreEmpleadoExistente + "\"" : "")
+                    + " que tiene los siguientes datos repetidos:\n- "
+                    + String.join("\n- ", camposDuplicados);
+            JOptionPane.showMessageDialog(this, mensaje);
+            return;
         }
 
         // Crear el objeto empleado
         RegistroEmpleados objetoempleado = new RegistroEmpleados(
-                txtCodigo.getText(),
-                txtNombres.getText(),
-                txtApellidos.getText(),
-                txtDNI.getText(),
-                txtCorreo.getText(),
-                txtTelefono.getText(),
-                cmbOficina.getSelectedItem().toString(),
-                cmbCargo.getSelectedItem().toString(),
-                Integer.parseInt(txtEdad.getText()),
-                cmbSexo.getSelectedItem().toString()
+                codigo, nombres, apellidos, dni, correo, telefono, oficina, cargo, edad, sexo
         );
+
         // Agregar a la lista y guardar
         mantenimiento.AgregarEmpleado(objetoempleado);
 
@@ -423,11 +427,17 @@ public FrmRegistroEmpleados() {
         txtEdad.setText("");
     }//GEN-LAST:event_btnRegistroDeEmpleadosActionPerformed
 
-    private void btnEditorDeEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditorDeEmpleadosActionPerformed
+    private void menuItemActualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActualizarEmpleadoActionPerformed
         FrmEditorEmpleados formadim = new FrmEditorEmpleados();
         formadim.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnEditorDeEmpleadosActionPerformed
+    }//GEN-LAST:event_menuItemActualizarEmpleadoActionPerformed
+
+    private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
+        FrmAdminGeneral formadim = new FrmAdminGeneral();
+        formadim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,9 +475,7 @@ public FrmRegistroEmpleados() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditorDeEmpleados;
     private javax.swing.JButton btnRegistroDeEmpleados;
-    private javax.swing.JButton btnRetornoMenúAdmin;
     private javax.swing.JComboBox<String> cmbCargo;
     private javax.swing.JComboBox<String> cmbOficina;
     private javax.swing.JComboBox<String> cmbSexo;
@@ -482,6 +490,10 @@ public FrmRegistroEmpleados() {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTituloMenuAdministrador;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemActualizarEmpleado;
+    private javax.swing.JMenuItem menuItemRegresarMenu;
+    private javax.swing.JMenu menuRegistroEmpleados;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;

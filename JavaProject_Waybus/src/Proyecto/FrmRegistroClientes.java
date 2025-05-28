@@ -30,7 +30,6 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRegresarMenu = new javax.swing.JButton();
         lblTelefono = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -45,22 +44,18 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         lblEdad = new javax.swing.JLabel();
         btnRegistroDeClientes = new javax.swing.JButton();
-        btnActualizarClientes = new javax.swing.JButton();
         lblCodigo = new javax.swing.JLabel();
         lblNombres = new javax.swing.JLabel();
         lblDNI = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuRegistroClientes = new javax.swing.JMenu();
+        menuItemActualizarCliente = new javax.swing.JMenuItem();
+        menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Registro de Clientes");
+        setTitle("Menú Registro de Clientes");
         setResizable(false);
-
-        btnRegresarMenu.setText("Regresar al Menú");
-        btnRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarMenuActionPerformed(evt);
-            }
-        });
 
         lblTelefono.setText("Telefono:");
 
@@ -82,13 +77,6 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
             }
         });
 
-        btnActualizarClientes.setText("Actualizar Cliente");
-        btnActualizarClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarClientesActionPerformed(evt);
-            }
-        });
-
         lblCodigo.setText("Codigo:");
 
         lblNombres.setText("Nombres:");
@@ -97,62 +85,80 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
 
         lblCorreo.setText("Correo:");
 
+        menuRegistroClientes.setText("Opciones");
+
+        menuItemActualizarCliente.setText("Actualizar Cliente");
+        menuItemActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemActualizarClienteActionPerformed(evt);
+            }
+        });
+        menuRegistroClientes.add(menuItemActualizarCliente);
+
+        menuItemRegresarMenu.setText("Regresar al Menú");
+        menuItemRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegresarMenuActionPerformed(evt);
+            }
+        });
+        menuRegistroClientes.add(menuItemRegresarMenu);
+
+        menuBarPrincipal.add(menuRegistroClientes);
+
+        setJMenuBar(menuBarPrincipal);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(45, 45, 45)
-                                    .addComponent(txtDNI))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(txtApellido))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtCodigo)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(lblTituloMenuClientes, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTelefono)
-                                    .addComponent(lblCorreo))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtTelefono)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEdad)
-                                    .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEdad)
-                                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(txtDNI))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtApellido))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnActualizarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegresarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodigo)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTelefono)
+                            .addComponent(lblCorreo))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtTelefono)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEdad)
+                            .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEdad)
+                            .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(lblTituloMenuClientes)))
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(48, 48, 48)
                 .addComponent(lblTituloMenuClientes)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -186,71 +192,105 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegresarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(595, 522));
+        setSize(new java.awt.Dimension(493, 532));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistroDeClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroDeClientesActionPerformed
-            RegistroClientes cliente = new RegistroClientes(
-            txtCodigo.getText(),
-            txtNombre.getText(),
-            txtApellido.getText(),
-            txtDNI.getText(),
-            txtCorreo.getText(),
-            txtTelefono.getText(),
-            Integer.parseInt(txtEdad.getText()),
-            cmbSexo.getSelectedItem().toString()
-    );
+        // Obtener los textos ingresados y eliminar espacios innecesarios
+        String codigo = txtCodigo.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String apellido = txtApellido.getText().trim();
+        String dni = txtDNI.getText().trim();
+        String correo = txtCorreo.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String edadStr = txtEdad.getText().trim();
+        String sexo = cmbSexo.getSelectedItem().toString().trim();
 
-    // Agrega el cliente al ArrayList
-    mantenimientoClientes.AgregarCliente(cliente);
+        // Validar formato del código: "C-XXXXX"
+        if (!codigo.matches("C-\\d{5}")) {
+            JOptionPane.showMessageDialog(this, "El código debe tener el formato C-XXXXX (5 dígitos).");
+            return;
+        }
 
-    // Guardar en archivo clientes.txt
-    try (FileWriter writer = new FileWriter("clientes.txt", true)) {
-        writer.write(txtCodigo.getText() + "," +
-                     txtNombre.getText() + "," +
-                     txtApellido.getText() + "," +
-                     txtDNI.getText() + "," +
-                     txtCorreo.getText() + "," +
-                     txtTelefono.getText() + "," +
-                     txtEdad.getText() + "," +
-                     cmbSexo.getSelectedItem().toString() + "\n");
+        // Validar que ningún campo tenga espacios en medio
+        if (codigo.contains(" ") || nombre.contains(" ") || apellido.contains(" ") ||
+            dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") ||
+            edadStr.contains(" ") || sexo.contains(" ")) {
+            JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios.");
+            return;
+        }
 
-        JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
-    } catch (IOException e) {
-        System.out.println("Error al registrar cliente: " + e.getMessage());
-    }
+        // Validar que nombre y apellido solo contengan letras (sin espacios ni números ni símbolos)
+        if (!nombre.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
+            JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras sin espacios ni símbolos.");
+            return;
+        }
 
-    // Limpiar campos
-    txtCodigo.setText("");
-    txtNombre.setText("");
-    txtApellido.setText("");
-    txtDNI.setText("");
-    txtCorreo.setText("");
-    txtTelefono.setText("");
-    cmbSexo.setSelectedIndex(0);
-    txtEdad.setText("");
+        if (!apellido.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
+            JOptionPane.showMessageDialog(this, "El apellido solo debe contener letras sin espacios ni símbolos.");
+            return;
+        }
+
+        // Validar correo: solo @gmail.com o @outlook.com
+        if (!correo.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|outlook\\.com)$")) {
+            JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @outlook.com.");
+            return;
+        }
+
+        // Validar que la edad sea numérica
+        int edad;
+        try {
+            edad = Integer.parseInt(edadStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
+            return;
+        }
+
+        // Crear cliente y guardar
+        RegistroClientes cliente = new RegistroClientes(
+            codigo, nombre, apellido, dni, correo, telefono, edad, sexo
+        );
+
+        mantenimientoClientes.AgregarCliente(cliente);
+
+        // Guardar en archivo
+        try (FileWriter writer = new FileWriter("clientes.txt", true)) {
+            writer.write(codigo + "," + nombre + "," + apellido + "," + dni + "," +
+                         correo + "," + telefono + "," + edad + "," + sexo + "\n");
+
+            JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al registrar cliente: " + e.getMessage());
+        }
+
+        // Limpiar campos
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDNI.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        txtEdad.setText("");
+        cmbSexo.setSelectedIndex(0);
     }//GEN-LAST:event_btnRegistroDeClientesActionPerformed
 
-    private void btnActualizarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClientesActionPerformed
-        FrmEditorClientes formCounter = new FrmEditorClientes();
-        formCounter.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnActualizarClientesActionPerformed
-
-    private void btnRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMenuActionPerformed
+    private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
         FrmCounter formCounter = new FrmCounter();
         formCounter.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnRegresarMenuActionPerformed
+    }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
+
+    private void menuItemActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActualizarClienteActionPerformed
+        FrmEditorClientes formCounter = new FrmEditorClientes();
+        formCounter.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemActualizarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,9 +328,7 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizarClientes;
     private javax.swing.JButton btnRegistroDeClientes;
-    private javax.swing.JButton btnRegresarMenu;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCodigo;
@@ -301,6 +339,10 @@ public class FrmRegistroClientes extends javax.swing.JFrame {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTituloMenuClientes;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemActualizarCliente;
+    private javax.swing.JMenuItem menuItemRegresarMenu;
+    private javax.swing.JMenu menuRegistroClientes;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;

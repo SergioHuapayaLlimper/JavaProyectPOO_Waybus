@@ -30,7 +30,10 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         btnRegistroDeEmpleados = new javax.swing.JButton();
         btnMostrarListaDeClientes = new javax.swing.JButton();
         btnMostrarListaDeEmpleados = new javax.swing.JButton();
-        btnSalirMenú = new javax.swing.JButton();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuAdminGeneral = new javax.swing.JMenu();
+        menuItemCerrarSesion = new javax.swing.JMenuItem();
+        menuItemSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Administrador General");
@@ -60,21 +63,32 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
             }
         });
 
-        btnSalirMenú.setText("Salir al menú");
-        btnSalirMenú.addActionListener(new java.awt.event.ActionListener() {
+        menuAdminGeneral.setText("Opciones");
+
+        menuItemCerrarSesion.setText("Cerrar Sesión ");
+        menuItemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirMenúActionPerformed(evt);
+                menuItemCerrarSesionActionPerformed(evt);
             }
         });
+        menuAdminGeneral.add(menuItemCerrarSesion);
+
+        menuItemSalir.setText("Salir");
+        menuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSalirActionPerformed(evt);
+            }
+        });
+        menuAdminGeneral.add(menuItemSalir);
+
+        menuBarPrincipal.add(menuAdminGeneral);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalirMenú)
-                .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(lblTituloMenuAdministrador)
@@ -98,9 +112,7 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
                     .addComponent(btnRegistroDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrarListaDeEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrarListaDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
-                .addComponent(btnSalirMenú, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(696, 422));
@@ -113,12 +125,6 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegistroDeEmpleadosActionPerformed
 
-    private void btnSalirMenúActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirMenúActionPerformed
-        FrmLogin formlogin = new FrmLogin();
-        formlogin.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnSalirMenúActionPerformed
-
     private void btnMostrarListaDeEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarListaDeEmpleadosActionPerformed
         FrmListaEmpleados listaemple = new FrmListaEmpleados();
         listaemple.setVisible(true);
@@ -130,6 +136,16 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
         formadim.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMostrarListaDeClientesActionPerformed
+
+    private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed
+        FrmLogin formlogin = new FrmLogin();
+        formlogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
+    private void menuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_menuItemSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,7 +186,10 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnMostrarListaDeClientes;
     private javax.swing.JButton btnMostrarListaDeEmpleados;
     private javax.swing.JButton btnRegistroDeEmpleados;
-    private javax.swing.JButton btnSalirMenú;
     private javax.swing.JLabel lblTituloMenuAdministrador;
+    private javax.swing.JMenu menuAdminGeneral;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemCerrarSesion;
+    private javax.swing.JMenuItem menuItemSalir;
     // End of variables declaration//GEN-END:variables
 }

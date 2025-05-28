@@ -28,9 +28,12 @@ public class FrmListaClientes extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
         btnMostrar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnRegresarMenu = new javax.swing.JButton();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuListaClientes = new javax.swing.JMenu();
+        menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lista de Clientes");
         setResizable(false);
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -60,51 +63,50 @@ public class FrmListaClientes extends javax.swing.JFrame {
             }
         });
 
-        btnRegresarMenu.setText("Regresar al Menú");
-        btnRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+        menuListaClientes.setText("Opciones");
+
+        menuItemRegresarMenu.setText("Regresar al Menú");
+        menuItemRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarMenuActionPerformed(evt);
+                menuItemRegresarMenuActionPerformed(evt);
             }
         });
+        menuListaClientes.add(menuItemRegresarMenu);
+
+        menuBarPrincipal.add(menuListaClientes);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)
-                        .addComponent(btnRegresarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegresarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
-        setSize(new java.awt.Dimension(668, 553));
+        setSize(new java.awt.Dimension(647, 611));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMenuActionPerformed
-        FrmCounter formCounter = new FrmCounter();
-        formCounter.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRegresarMenuActionPerformed
 
     
    
@@ -174,6 +176,12 @@ public class FrmListaClientes extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
+        FrmAdminGeneral formCounter = new FrmAdminGeneral();
+        formCounter.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,8 +220,10 @@ public class FrmListaClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnMostrar;
-    private javax.swing.JButton btnRegresarMenu;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemRegresarMenu;
+    private javax.swing.JMenu menuListaClientes;
     private javax.swing.JTable tblClientes;
     // End of variables declaration//GEN-END:variables
 }
