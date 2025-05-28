@@ -55,7 +55,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
         cmbCodigo.removeAllItems();
         cmbCodigo.addItem("-------SELECCIONE-------");
         for (RegistroEmpleados emp : empleados) {
-            cmbCodigo.addItem(emp.getCodigo());
+            cmbCodigo.addItem(emp.getCodigo_e());
         }
     }
 
@@ -327,7 +327,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
         RegistroEmpleados original = null;
 
         for (RegistroEmpleados emp : empleados) {
-                if (emp.getCodigo().equals(codigo)) {
+                if (emp.getCodigo_e().equals(codigo)) {
                         original = emp;
                         break;
                 }
@@ -371,7 +371,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
                 String nombreConflicto = "";
 
                 for (RegistroEmpleados emp : empleados) {
-                        if (emp.getCodigo().equals(codigo)) continue; // Ignorar al propio empleado
+                        if (emp.getCodigo_e().equals(codigo)) continue; // Ignorar al propio empleado
 
                         boolean coincide = false;
 
@@ -432,7 +432,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
 
         for (RegistroEmpleados emp : empleados) {
-            if (emp.getCodigo().equals(codigoSeleccionado)) {
+            if (emp.getCodigo_e().equals(codigoSeleccionado)) {
                 txtNombres.setText(emp.getNombres());
                 txtApellidos.setText(emp.getApellidos());
                 txtDNI.setText(emp.getDni());

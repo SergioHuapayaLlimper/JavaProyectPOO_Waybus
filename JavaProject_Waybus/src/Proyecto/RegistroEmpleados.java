@@ -3,7 +3,7 @@ package Proyecto;
 
 // Clase para registrar datos de un empleado
 public class RegistroEmpleados extends Persona {
-    private String codigo;
+    private String codigo_e;
     private String oficina;
     private String cargo;
 
@@ -12,18 +12,18 @@ public class RegistroEmpleados extends Persona {
     // Constructor con todos los datos en el mismo orden del archivo
     public RegistroEmpleados(String codigo, String nombres, String apellidos, String dni, String correo, String telefono, String oficina, String cargo, int edad, String sexo ) {
         super(nombres, apellidos, dni, correo, telefono, edad, sexo);
-        this.codigo = codigo;
+        this.codigo_e = codigo;
         this.oficina = oficina;
         this.cargo = cargo;
     }
     
     // Getters y Setters propios
-    public String getCodigo() {
-        return codigo;
+    public String getCodigo_e() {
+        return codigo_e;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigo_e(String codigo_e) {
+        this.codigo_e = codigo_e;
     }
 
     public String getOficina() {

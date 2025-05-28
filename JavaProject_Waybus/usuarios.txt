@@ -1,8 +1,0 @@
-U-34543,jack,torres,32456712,jack2024@gmail.com,935345346,Cerro Azul,Conductor,32,Masculino
-U-34534,pepe,muñoz,42354354,jos@gmail.com,934543654,Cañete,Operario de Rutas,23,Masculino
-U-43254,Roberto,Nail,35465465,robert@gmail.com,935346546,Lima,Analista de Viajes,23,Masculino
-U-65656,luis,sanchez,54656765,zanch@gmail.com,935436547,Cerro Azul,Director de Logística,29,Masculino
-U-43534,Jack,torres,43453465,jack@gmail.com,942354365,Cañete,Operario de Rutas,69,Masculino
-U-35345,Miguel,Paredes,43534655,miguel.paredes.2025@gmail.com,956456567,Lima,Gerente de Finanzas,31,Masculino
-U-65756,Jesus,Torres,96546754,jesus.2025@gmail.com,953465665,Lima,Gerente de Finanzas,25,Masculino
-U-34345,Sergio,Huapaya,55465756,sergio2025@gmail.com,954366547,Lima,Counter,34,Masculino

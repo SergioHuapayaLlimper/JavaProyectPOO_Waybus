@@ -67,7 +67,7 @@ public class MantenimientoClientes {
         boolean actualizado = false;
 
         for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getCodigo().equals(nuevoCliente.getCodigo())) {
+            if (clientes.get(i).getCodigo_c().equals(nuevoCliente.getCodigo_c())) {
                 clientes.set(i, nuevoCliente);
                 actualizado = true;
                 break;
@@ -86,7 +86,7 @@ public class MantenimientoClientes {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (RegistroClientes cli : clientes) {
                 String linea = String.join(",",
-                    cli.getCodigo(),
+                    cli.getCodigo_c(),
                     cli.getNombres(),
                     cli.getApellidos(),
                     cli.getDni(),

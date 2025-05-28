@@ -69,7 +69,7 @@ public class MantenimientoEmpleados {
         boolean actualizado = false;
 
         for (int i = 0; i < empleados.size(); i++) {
-            if (empleados.get(i).getCodigo().equals(nuevoEmpleado.getCodigo())) {
+            if (empleados.get(i).getCodigo_e().equals(nuevoEmpleado.getCodigo_e())) {
                 empleados.set(i, nuevoEmpleado);
                 actualizado = true;
                 break;
@@ -88,7 +88,7 @@ public class MantenimientoEmpleados {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (RegistroEmpleados emp : empleados) {
                 String linea = String.join(",",
-                    emp.getCodigo(),
+                    emp.getCodigo_e(),
                     emp.getNombres(),
                     emp.getApellidos(),
                     emp.getDni(),

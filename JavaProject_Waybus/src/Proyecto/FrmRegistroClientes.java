@@ -330,21 +330,9 @@ import javax.swing.text.*;
         }
 
         // Validar que ningún campo tenga espacios en medio
-        if (codigo.contains(" ") || nombre.contains(" ") || apellido.contains(" ") ||
-            dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") ||
+        if (codigo.contains(" ") || dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") ||
             edadStr.contains(" ") || sexo.contains(" ")) {
             JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios.");
-            return;
-        }
-
-        // Validar que nombre y apellido solo contengan letras (sin espacios ni números ni símbolos)
-        if (!nombre.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
-            JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras sin espacios ni símbolos.");
-            return;
-        }
-
-        if (!apellido.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
-            JOptionPane.showMessageDialog(this, "El apellido solo debe contener letras sin espacios ni símbolos.");
             return;
         }
 
