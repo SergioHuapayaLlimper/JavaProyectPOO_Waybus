@@ -5,19 +5,19 @@ package Proyecto;
 public class RegistroClientes extends Persona {
 
     //Atributo
-    private String Codigo;
+    private String Codigo_c;
     //constructor
     public RegistroClientes(String Codigo, String nombres, String apellidos, String dni, String correo, String telefono, int edad, String sexo) {
         super(nombres, apellidos, dni, correo, telefono, edad, sexo);
-        this.Codigo = Codigo;
+        this.Codigo_c = Codigo;
     }
     //Getter y Setter
-    public String getCodigo() {
-        return Codigo;
+    public String getCodigo_c() {
+        return Codigo_c;
     }
 
-    public void setCodigo(String Codigo) {
-        this.Codigo = Codigo;
+    public void setCodigo_c(String Codigo_c) {
+        this.Codigo_c = Codigo_c;
     }
     
 }

@@ -387,19 +387,8 @@ import javax.swing.text.*;
         }
 
         // Validar que ningún campo contenga espacios intermedios
-        if (codigo.contains(" ") || nombres.contains(" ") || apellidos.contains(" ") ||
-            dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") || edadTexto.contains(" ")) {
+        if (codigo.contains(" ") || dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") || edadTexto.contains(" ")) {
             JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios en blanco.");
-            return;
-        }
-
-        // Validar nombres y apellidos (solo letras)
-        if (!nombres.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
-            JOptionPane.showMessageDialog(this, "Los nombres solo deben contener letras sin espacios ni símbolos.");
-            return;
-        }
-        if (!apellidos.matches("[A-Za-zÁÉÍÓÚáéíóúñÑ]+")) {
-            JOptionPane.showMessageDialog(this, "Los apellidos solo deben contener letras sin espacios ni símbolos.");
             return;
         }
 
@@ -437,7 +426,7 @@ import javax.swing.text.*;
         ArrayList<RegistroEmpleados> empleados = archivo.obtenerEmpleados();
 
         for (RegistroEmpleados emp : empleados) {
-            if (emp.getCodigo().equalsIgnoreCase(codigo)) {
+            if (emp.getCodigo_e().equalsIgnoreCase(codigo)) {
                 JOptionPane.showMessageDialog(this, "Ya existe un empleado registrado con el mismo código: " + codigo);
                 return;
             }
@@ -450,7 +439,7 @@ import javax.swing.text.*;
         for (RegistroEmpleados emp : empleados) {
             boolean coincide = false;
 
-            if (emp.getCodigo().equals(codigo)) {
+            if (emp.getCodigo_e().equals(codigo)) {
                 camposDuplicados.add("Código");
                 coincide = true;
             }
@@ -492,7 +481,7 @@ import javax.swing.text.*;
 
         try (FileWriter writer = new FileWriter("usuarios.txt", true)) {
             writer.write(
-                objetoempleado.getCodigo() + "," +
+                objetoempleado.getCodigo_e() + "," +
                 objetoempleado.getNombres() + "," +
                 objetoempleado.getApellidos() + "," +
                 objetoempleado.getDni() + "," +

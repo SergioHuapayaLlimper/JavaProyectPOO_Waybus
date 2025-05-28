@@ -56,7 +56,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         cmbCodigo.removeAllItems();
         cmbCodigo.addItem("-------SELECCIONE-------");
         for (RegistroClientes cli : clientes) {
-            cmbCodigo.addItem(cli.getCodigo());
+            cmbCodigo.addItem(cli.getCodigo_c());
         }
     }
     
@@ -303,7 +303,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         RegistroClientes original = null;
 
         for (RegistroClientes cli : clientes) {
-            if (cli.getCodigo().equals(codigo)) {
+            if (cli.getCodigo_c().equals(codigo)) {
                 original = cli;
                 break;
             }
@@ -350,7 +350,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             String nombreConflicto = "";
 
             for (RegistroClientes emp : clientes) {
-                if (emp.getCodigo().equals(codigo)) continue; // Ignorar al propio empleado
+                if (emp.getCodigo_c().equals(codigo)) continue; // Ignorar al propio empleado
 
                 boolean coincide = false;
 
@@ -410,7 +410,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         ArrayList<RegistroClientes> clientes = archivo.obtenerClientes();
 
         for (RegistroClientes cli : clientes) {
-            if (cli.getCodigo().equals(codigoSeleccionado)) {
+            if (cli.getCodigo_c().equals(codigoSeleccionado)) {
                 txtNombres.setText(cli.getNombres());
                 txtApellidos.setText(cli.getApellidos());
                 txtDNI.setText(cli.getDni());
