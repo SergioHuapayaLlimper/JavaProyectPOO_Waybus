@@ -1,2 +1,5 @@
 53453456,pedro,torres,7657567,pedro@wdqd,9234252,23,Masculino
 C-32456,juan,torres,2352356346,juan@gmail.com,423536365,23,Masculino
+C-43253,raul,lopez,53465465,lopez123@gmail.com,954354363,34,Masculino
+C-57657,arthur,muñoz,76587665,munoz20@outlook.com,932535665,45,Masculino
+C-92473,omar,guevara,87687654,guevara@gmail.com,976543524,43,Masculino

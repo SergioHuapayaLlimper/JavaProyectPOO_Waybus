@@ -27,6 +27,9 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuItemCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Operario de Rutas");
@@ -34,6 +37,20 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTitulo.setText("Bienvenid@, a la interfaz de Operario de Rutas");
+
+        jMenu1.setText("Opciones");
+
+        menuItemCerrarSesion.setText("Cerrar Sesión ");
+        menuItemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCerrarSesionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemCerrarSesion);
+
+        menuBarPrincipal.add(jMenu1);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,12 +66,18 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblTitulo)
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(652, 457));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed
+        FrmLogin formlogin = new FrmLogin();
+        formlogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,6 +115,9 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemCerrarSesion;
     // End of variables declaration//GEN-END:variables
 }
