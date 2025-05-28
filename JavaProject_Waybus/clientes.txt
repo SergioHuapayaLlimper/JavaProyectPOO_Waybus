@@ -1,4 +1,0 @@
-C-32456,juan,torres,2352356346,juan@gmail.com,423536365,23,Masculino
-C-43253,raul,lopez,53465465,lopez123@gmail.com,954354363,34,Masculino
-C-92473,omar,guevara,87687654,guevara@gmail.com,976543524,43,Masculino
-C-35345,Manuel,Torres,93245543,manuel2025@gmail.com,985346436,45,Masculino
