@@ -4,7 +4,6 @@ package Proyecto;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +14,6 @@ public class FrmListaClientes extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
     MantenimientoClientes manCliente;
-    RegistroClientes clientes;
     private JFrame parentForm;
     
     private void personalizarBotonLista(JButton boton) {
@@ -53,6 +51,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
         String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Sexo", "Edad"};//columnas en la tabla
         modelo = new DefaultTableModel(nomColumnas, 0);
         tblClientes.setModel(modelo);
+        manCliente = new MantenimientoClientes();
     }
     
      public FrmListaClientes(JFrame parent) {

@@ -8,10 +8,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-// Ventana para mostrar, filtrar y eliminar empleados
+//Ventana para mostrar, filtrar y eliminar empleados
 public class FrmListaEmpleados extends javax.swing.JFrame {
 
-    
     DefaultTableModel modelo;
     MantenimientoEmpleados mantenimiento;
     
@@ -41,7 +40,6 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             }
         });
     }    
-    
     public FrmListaEmpleados() {
         initComponents();
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
@@ -62,9 +60,9 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         mantenimiento = new MantenimientoEmpleados();
         
-        cargarEmpleadosDesdeArchivo();//llamo al metodo que cree a la tabla
+        cargarEmpleadosDesdeArchivo();//Lllamo al metodo que cree a la tabla
         
-        //atajos
+        //Opciones de filtro
         txtFiltroCódigo.addActionListener(e -> btnFiltrarCódigo.doClick());
         txtFiltroNombreEmpleado.addActionListener(e -> btnFiltrarEmpleado.doClick());
         txtFiltroDNI.addActionListener(e -> btnFiltrarDNI.doClick());
@@ -465,9 +463,8 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void cargarEmpleadosDesdeArchivo() {
-    // Asegurar que la tabla vuelva a usar el modelo original
+    //Asegurar que la tabla vuelva a usar el modelo original
     tblListaEmpleados.setModel(modelo);
-
     modelo.setRowCount(0); 
 
     try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File("usuarios.txt"))) {
@@ -482,17 +479,14 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "No se encontró el archivo de empleados.");
     }
 }
-
-    //filtra la tabla por columna
+    //Filtra la tabla por columna
     private void filtrarPorTexto(int columna, String texto) {
         DefaultTableModel modeloFiltrado = new DefaultTableModel();
-        //copiar estructura por columna
+        //Copiar estructura por columna
         for (int i = 0; i < modelo.getColumnCount(); i++) {
             modeloFiltrado.addColumn(modelo.getColumnName(i));
         }
-
         boolean encontrado = false;
-
         for (int i = 0; i < modelo.getRowCount(); i++) {
             String celda = modelo.getValueAt(i, columna).toString().toLowerCase();
             if (celda.contains(texto.toLowerCase())) {
@@ -504,33 +498,30 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                 encontrado = true;
             }
         }
-
         if (!encontrado) {
             JOptionPane.showMessageDialog(this, "No se encontraron resultados válidos en esta categoría.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         }
-
         tblListaEmpleados.setModel(modeloFiltrado);
     }
-
     
     private void btnFiltrarCódigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarCódigoActionPerformed
-         filtrarPorTexto(0, txtFiltroCódigo.getText()); // Columna 0 = Código
+         filtrarPorTexto(0, txtFiltroCódigo.getText()); //Columna 0 = Código
     }//GEN-LAST:event_btnFiltrarCódigoActionPerformed
 
     private void btnFiltrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarEmpleadoActionPerformed
-        filtrarPorTexto(1, txtFiltroNombreEmpleado.getText()); // Columna 1 = Nombre
+        filtrarPorTexto(1, txtFiltroNombreEmpleado.getText()); //Columna 1 = Nombre
     }//GEN-LAST:event_btnFiltrarEmpleadoActionPerformed
 
     private void btnFiltrarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarDNIActionPerformed
-        filtrarPorTexto(3, txtFiltroDNI.getText()); // Columna 3 = DNI
+        filtrarPorTexto(3, txtFiltroDNI.getText()); //Columna 3 = DNI
     }//GEN-LAST:event_btnFiltrarDNIActionPerformed
 
     private void btnFiltrarOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarOficinaActionPerformed
-        filtrarPorTexto(6, cbFiltroOficina.getSelectedItem().toString()); // Columna 6 = Oficina
+        filtrarPorTexto(6, cbFiltroOficina.getSelectedItem().toString()); //Columna 6 = Oficina
     }//GEN-LAST:event_btnFiltrarOficinaActionPerformed
 
     private void btnFiltrarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarCargoActionPerformed
-        filtrarPorTexto(7, cbFiltroCargo.getSelectedItem().toString()); // Columna 7 = Cargo
+        filtrarPorTexto(7, cbFiltroCargo.getSelectedItem().toString()); //Columna 7 = Cargo
     }//GEN-LAST:event_btnFiltrarCargoActionPerformed
 
     private void btnMostrarLista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarLista1ActionPerformed
@@ -541,7 +532,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         eliminarEmpleadoSeleccionado();
         cargarEmpleadosDesdeArchivo();
     }//GEN-LAST:event_btnBorrarEmpleadoActionPerformed
-
+   
     private void btnModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDatosActionPerformed
         FrmEditorEmpleados formadim = new FrmEditorEmpleados();
         formadim.setVisible(true);
@@ -561,18 +552,12 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.");
         return;
     }
-
-    String codigoAEliminar = tblListaEmpleados.getValueAt(fila, 0).toString(); // Código del empleado
-
-
+    String codigoAEliminar = tblListaEmpleados.getValueAt(fila, 0).toString(); //Código del empleado
     int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres eliminar al empleado con código " + codigoAEliminar + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-
     if (confirm != JOptionPane.YES_OPTION) return;
-
 
     java.io.File archivoOriginal = new java.io.File("usuarios.txt");
     java.io.File archivoTemporal = new java.io.File("usuarios_temp.txt");
-
     try (
         java.util.Scanner lector = new java.util.Scanner(archivoOriginal);
         java.io.PrintWriter escritor = new java.io.PrintWriter(archivoTemporal)
@@ -587,16 +572,12 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al eliminar del archivo: " + e.getMessage());
         return;
     }
-
-
     archivoOriginal.delete();
     archivoTemporal.renameTo(archivoOriginal);
-
     JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
     cargarEmpleadosDesdeArchivo(); 
 }
-
-    
+  
     /**
      * @param args the command line arguments
      */
