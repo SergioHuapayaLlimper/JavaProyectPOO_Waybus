@@ -176,9 +176,9 @@ public class FrmAdminGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarListaDeEmpleadosActionPerformed
     
     private void btnMostrarListaDeClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarListaDeClientesActionPerformed
-        FrmListaClientes formadim = new FrmListaClientes();
+        FrmListaClientes formadim = new FrmListaClientes(this);
         formadim.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnMostrarListaDeClientesActionPerformed
 
     private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed

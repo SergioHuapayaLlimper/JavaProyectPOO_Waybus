@@ -175,7 +175,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     }
                 }
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error al leer el archivo de usuarios.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
             if (accesoConcedido) {

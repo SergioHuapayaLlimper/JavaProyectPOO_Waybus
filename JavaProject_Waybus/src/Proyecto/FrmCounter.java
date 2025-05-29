@@ -44,6 +44,7 @@ public class FrmCounter extends javax.swing.JFrame {
     public FrmCounter() {
         initComponents();
         personalizarBoton(btnRegistrarClientes);
+        personalizarBoton(btnMostrarClientes1);
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
     }
 
@@ -53,6 +54,7 @@ public class FrmCounter extends javax.swing.JFrame {
 
         lblTitulo = new javax.swing.JLabel();
         btnRegistrarClientes = new javax.swing.JButton();
+        btnMostrarClientes1 = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -68,6 +70,13 @@ public class FrmCounter extends javax.swing.JFrame {
         btnRegistrarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarClientesActionPerformed(evt);
+            }
+        });
+
+        btnMostrarClientes1.setText("Mostrar Clientes");
+        btnMostrarClientes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarClientes1ActionPerformed(evt);
             }
         });
 
@@ -93,8 +102,11 @@ public class FrmCounter extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitulo)
-                    .addComponent(btnRegistrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(260, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMostrarClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +114,9 @@ public class FrmCounter extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(lblTitulo)
                 .addGap(30, 30, 30)
-                .addComponent(btnRegistrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(286, Short.MAX_VALUE))
         );
 
@@ -121,6 +135,12 @@ public class FrmCounter extends javax.swing.JFrame {
         formadim.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrarClientesActionPerformed
+
+    private void btnMostrarClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarClientes1ActionPerformed
+        FrmListaClientes formlista = new FrmListaClientes(this);
+        formlista.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMostrarClientes1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +178,7 @@ public class FrmCounter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMostrarClientes1;
     private javax.swing.JButton btnRegistrarClientes;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblTitulo;

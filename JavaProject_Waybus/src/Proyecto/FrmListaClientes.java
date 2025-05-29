@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 // Ventana para mostrar y eliminar clientes
@@ -15,6 +16,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
     DefaultTableModel modelo;
     MantenimientoClientes manCliente;
     RegistroClientes clientes;
+    private JFrame parentForm;
     
     private void personalizarBotonLista(JButton boton) {
         Color fondo = new Color(0, 120, 215);
@@ -52,6 +54,11 @@ public class FrmListaClientes extends javax.swing.JFrame {
         modelo = new DefaultTableModel(nomColumnas, 0);
         tblClientes.setModel(modelo);
     }
+    
+     public FrmListaClientes(JFrame parent) {
+         this();
+         this.parentForm = parent;
+     }
 
     
     @SuppressWarnings("unchecked")
@@ -211,9 +218,12 @@ public class FrmListaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
-        FrmAdminGeneral formCounter = new FrmAdminGeneral();
-        formCounter.setVisible(true);
-        this.dispose();
+        if(parentForm != null){
+            parentForm.setVisible(true);
+            this.dispose();
+        } else {
+            this.dispose();
+        }
     }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
 
     public static void main(String args[]) {

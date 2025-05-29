@@ -53,9 +53,13 @@
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarClientes" min="-2" pref="178" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnRegistrarClientes" min="-2" pref="178" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnMostrarClientes1" min="-2" pref="178" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="260" max="32767" attributes="0"/>
+              <EmptySpace pref="199" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,7 +69,10 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnRegistrarClientes" min="-2" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnRegistrarClientes" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btnMostrarClientes1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="286" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -86,6 +93,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarClientesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMostrarClientes1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar Clientes"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarClientes1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
