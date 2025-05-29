@@ -32,10 +32,11 @@ import javax.swing.text.*;
         boton.setOpaque(true);
 
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boton.setBackground(hover);
             }
-
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 boton.setBackground(fondo);
             }
@@ -101,28 +102,20 @@ import javax.swing.text.*;
 
     public FrmRegistroEmpleados() {
         initComponents();
-        
-        personalizarBotonRegistrar(btnRegistroDeEmpleados);
-        
+        personalizarBotonRegistrar(btnRegistroDeEmpleados);        
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
-
         // Establece "U-" como texto por defecto
         txtCodigo.setText("U-");
-
         // Aplica el filtro para bloquear edición de "U-" y permitir solo 5 dígitos numéricos
-        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoEmpleadoFilter());
-        
+        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoEmpleadoFilter());        
         // DNI: máximo 8 dígitos
         ((AbstractDocument) txtDNI.getDocument()).setDocumentFilter(new NumericLimitFilter(8));
-
         // Teléfono: máximo 9 dígitos
         ((AbstractDocument) txtTelefono.getDocument()).setDocumentFilter(new NumericLimitFilter(9));
-
         // Edad: máximo 2 dígitos
         ((AbstractDocument) txtEdad.getDocument()).setDocumentFilter(new NumericLimitFilter(2));
 
         mantenimiento = new MantenimientoEmpleados();
-
         // Acción con Enter para pasar de un campo a otro
         txtCodigo.addActionListener(e -> txtNombres.requestFocus());
         txtNombres.addActionListener(e -> txtApellidos.requestFocus());
@@ -130,19 +123,16 @@ import javax.swing.text.*;
         txtDNI.addActionListener(e -> txtCorreo.requestFocus());
         txtCorreo.addActionListener(e -> txtTelefono.requestFocus());
         txtTelefono.addActionListener(e -> cmbOficina.requestFocus());
-
         cmbOficina.addActionListener(e -> {
             if (cmbOficina.getSelectedIndex() > 0) {
                 cmbCargo.requestFocus();
             }
         });
-
         cmbCargo.addActionListener(e -> {
             if (cmbCargo.getSelectedIndex() > 0) {
                 txtEdad.requestFocus();
             }
         });
-
         txtEdad.addActionListener(e -> cmbSexo.requestFocus());
 
         cmbSexo.addActionListener(e -> {
@@ -150,7 +140,6 @@ import javax.swing.text.*;
                 btnRegistroDeEmpleados.requestFocus();
             }
         });
-
         // Al presionar Enter en el botón, ejecuta su acción
         getRootPane().setDefaultButton(btnRegistroDeEmpleados);
     }
@@ -379,37 +368,31 @@ import javax.swing.text.*;
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.");
             return;
         }
-
         // Validar formato del código: "U-XXXXX"
         if (!codigo.matches("^U-\\d{5}$")) {
             JOptionPane.showMessageDialog(this, "El código debe tener el formato U-XXXXX (exactamente 5 dígitos).");
             return;
         }
-
         // Validar que ningún campo contenga espacios intermedios
         if (codigo.contains(" ") || dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") || edadTexto.contains(" ")) {
             JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios en blanco.");
             return;
         }
-
         // Validar DNI: exactamente 8 dígitos
         if (!dni.matches("\\d{8}")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido de 8 dígitos.");
             return;
         }
-
         // Validar correo
         if (!correo.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|outlook\\.com)$")) {
             JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @outlook.com.");
             return;
         }
-
         // Validar teléfono: empieza con 9 y tiene 9 dígitos
         if (!telefono.matches("9\\d{8}")) {
             JOptionPane.showMessageDialog(this, "El teléfono debe comenzar con 9 y tener 9 dígitos.");
             return;
         }
-
         // Validar edad
         if (!edadTexto.matches("\\d+")) {
             JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
@@ -431,7 +414,6 @@ import javax.swing.text.*;
                 return;
             }
         }
-
         // Validar duplicados en DNI, correo, teléfono
         ArrayList<String> camposDuplicados = new ArrayList<>();
         String nombreEmpleadoExistente = "";

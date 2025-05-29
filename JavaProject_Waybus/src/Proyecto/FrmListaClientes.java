@@ -48,7 +48,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
         personalizarBotonLista(btnMostrar);
         personalizarBotonLista(btnEliminar);
-        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Sexo", "Edad"};//columnas en la tabla
+        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Edad", "Sexo"};//columnas en la tabla
         modelo = new DefaultTableModel(nomColumnas, 0);
         tblClientes.setModel(modelo);
         manCliente = new MantenimientoClientes();
@@ -152,68 +152,62 @@ public class FrmListaClientes extends javax.swing.JFrame {
    
     
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        
         modelo.setRowCount(0); // Limpia la tabla
-
-    try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("clientes.txt"))) {
-        String linea;
-        while ((linea = reader.readLine()) != null) {
-            String[] partes = linea.split(",");
-            if (partes.length == 8) {
-                Object[] datofila = {
-                    partes[0], // Código
-                    partes[1], // Nombres
-                    partes[2], // Apellidos
-                    partes[3], // DNI
-                    partes[4], // Correo
-                    partes[5], // Teléfono
-                    partes[6], // Sexo
-                    partes[7]  // Edad
-                };
-                modelo.addRow(datofila);
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("clientes.txt"))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 8) {
+                    Object[] datofila = {
+                        partes[0], // Código
+                        partes[1], // Nombres
+                        partes[2], // Apellidos
+                        partes[3], // DNI
+                        partes[4], // Correo
+                        partes[5], // Teléfono
+                        partes[6], // Sexo
+                        partes[7]  // Edad
+                    };
+                    modelo.addRow(datofila);
+                }
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al leer archivo de clientes.\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al leer archivo de clientes.\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-        
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
         int filaSeleccionada = tblClientes.getSelectedRow();
-
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor seleccione una fila para eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    int confirmacion = JOptionPane.showConfirmDialog(this,
-            "¿Está seguro de eliminar este cliente?",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION);
-
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        // Eliminar de la tabla visual
-        modelo.removeRow(filaSeleccionada);
-
-        // Reescribir el archivo clientes.txt con los datos actualizados
-        try (java.io.FileWriter writer = new java.io.FileWriter("clientes.txt")) {
-            for (int i = 0; i < modelo.getRowCount(); i++) {
-                StringBuilder linea = new StringBuilder();
-                for (int j = 0; j < modelo.getColumnCount(); j++) {
-                    linea.append(modelo.getValueAt(i, j).toString());
-                    if (j < modelo.getColumnCount() - 1) {
-                        linea.append(",");
-                    }
-                }
-                writer.write(linea.toString() + "\n");
-            }
-            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar el archivo: " + e.getMessage());
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fila para eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-    }
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Está seguro de eliminar este cliente?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            // Eliminar de la tabla visual
+            modelo.removeRow(filaSeleccionada);
+
+            // Reescribir el archivo clientes.txt con los datos actualizados
+            try (java.io.FileWriter writer = new java.io.FileWriter("clientes.txt")) {
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    StringBuilder linea = new StringBuilder();
+                    for (int j = 0; j < modelo.getColumnCount(); j++) {
+                        linea.append(modelo.getValueAt(i, j).toString());
+                        if (j < modelo.getColumnCount() - 1) {
+                            linea.append(",");
+                        }
+                    }
+                    writer.write(linea.toString() + "\n");
+                }
+                JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al actualizar el archivo: " + e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed

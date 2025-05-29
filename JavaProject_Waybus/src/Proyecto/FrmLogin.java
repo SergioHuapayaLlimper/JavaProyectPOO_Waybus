@@ -42,17 +42,13 @@ public class FrmLogin extends javax.swing.JFrame {
     }
     
     public FrmLogin() {
-        initComponents();
-        
-        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
-        
-        personalizarBotonLogin(btnIniciarSesion);
-        
+        initComponents();        
+        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue        
+        personalizarBotonLogin(btnIniciarSesion);        
         // Navegación con Enter
         txtUsuario.addActionListener((java.awt.event.ActionEvent evt) -> {
             pfContraseña.requestFocus();
         });
-
         pfContraseña.addActionListener((java.awt.event.ActionEvent evt) -> {
             btnIniciarSesion.doClick();
         });

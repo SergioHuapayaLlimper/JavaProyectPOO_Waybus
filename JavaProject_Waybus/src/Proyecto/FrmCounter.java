@@ -14,7 +14,6 @@ public class FrmCounter extends javax.swing.JFrame {
         Color fondo = new Color(0, 120, 215); // Azul moderno
         Color fondoHover = new Color(0, 150, 255);
         Color texto = Color.WHITE;
-
         boton.setBackground(fondo);
         boton.setForeground(texto);
         boton.setFocusPainted(false);
@@ -25,7 +24,6 @@ public class FrmCounter extends javax.swing.JFrame {
         // Quitar efectos de Look&Feel predeterminados
         boton.setContentAreaFilled(true);
         boton.setOpaque(true);
-
         // Efecto hover
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override

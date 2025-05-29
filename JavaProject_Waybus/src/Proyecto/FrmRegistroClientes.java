@@ -100,24 +100,17 @@ import javax.swing.text.*;
     }
     
     public FrmRegistroClientes() {
-        initComponents();
-        
-        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
-        
-        personalizarBotonRegistrar(btnRegistroDeClientes);
-        
-        mantenimientoClientes = new MantenimientoClientes();
-        
+        initComponents();        
+        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue        
+        personalizarBotonRegistrar(btnRegistroDeClientes);        
+        mantenimientoClientes = new MantenimientoClientes();        
         // Código con prefijo C-
         txtCodigo.setText("C-");
         ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoClienteFilter());
-
         // DNI: máximo 8 dígitos
         ((AbstractDocument) txtDNI.getDocument()).setDocumentFilter(new NumericLimitFilter(8));
-
         // Teléfono: máximo 9 dígitos
-        ((AbstractDocument) txtTelefono.getDocument()).setDocumentFilter(new NumericLimitFilter(9));
-        
+        ((AbstractDocument) txtTelefono.getDocument()).setDocumentFilter(new NumericLimitFilter(9));        
         // Acción con Enter para pasar de un campo a otro en Registro de Clientes
         txtCodigo.addActionListener(e -> txtNombre.requestFocus());
         txtNombre.addActionListener(e -> txtApellido.requestFocus());
@@ -126,13 +119,11 @@ import javax.swing.text.*;
         txtCorreo.addActionListener(e -> txtTelefono.requestFocus());
         txtTelefono.addActionListener(e -> txtEdad.requestFocus());
         txtEdad.addActionListener(e -> cmbSexo.requestFocus());
-
         cmbSexo.addActionListener(e -> {
             if (cmbSexo.getSelectedIndex() > 0) {
                 btnRegistroDeClientes.requestFocus();
             }
         });
-
         // Al presionar Enter en el botón, ejecuta su acción
         getRootPane().setDefaultButton(btnRegistroDeClientes);
     }

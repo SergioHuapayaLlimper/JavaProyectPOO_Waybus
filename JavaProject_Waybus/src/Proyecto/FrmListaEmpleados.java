@@ -463,22 +463,22 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void cargarEmpleadosDesdeArchivo() {
-    //Asegurar que la tabla vuelva a usar el modelo original
-    tblListaEmpleados.setModel(modelo);
-    modelo.setRowCount(0); 
+        //Asegurar que la tabla vuelva a usar el modelo original
+        tblListaEmpleados.setModel(modelo);
+        modelo.setRowCount(0); 
 
-    try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File("usuarios.txt"))) {
-        while (scanner.hasNextLine()) {
-            String linea = scanner.nextLine();
-            String[] datos = linea.split(",");
-            if (datos.length == 10) {
-                modelo.addRow(datos);
+        try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File("usuarios.txt"))) {
+            while (scanner.hasNextLine()) {
+                String linea = scanner.nextLine();
+                String[] datos = linea.split(",");
+                if (datos.length == 10) {
+                    modelo.addRow(datos);
+                }
             }
+        } catch (java.io.FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "No se encontró el archivo de empleados.");
         }
-    } catch (java.io.FileNotFoundException e) {
-        JOptionPane.showMessageDialog(this, "No se encontró el archivo de empleados.");
     }
-}
     //Filtra la tabla por columna
     private void filtrarPorTexto(int columna, String texto) {
         DefaultTableModel modeloFiltrado = new DefaultTableModel();
@@ -546,37 +546,37 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
     // Eliminar un empleado del archivo
     private void eliminarEmpleadoSeleccionado() {
-    int fila = tblListaEmpleados.getSelectedRow();
+        int fila = tblListaEmpleados.getSelectedRow();
 
-    if (fila == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.");
-        return;
-    }
-    String codigoAEliminar = tblListaEmpleados.getValueAt(fila, 0).toString(); //Código del empleado
-    int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres eliminar al empleado con código " + codigoAEliminar + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-    if (confirm != JOptionPane.YES_OPTION) return;
-
-    java.io.File archivoOriginal = new java.io.File("usuarios.txt");
-    java.io.File archivoTemporal = new java.io.File("usuarios_temp.txt");
-    try (
-        java.util.Scanner lector = new java.util.Scanner(archivoOriginal);
-        java.io.PrintWriter escritor = new java.io.PrintWriter(archivoTemporal)
-    ) {
-        while (lector.hasNextLine()) {
-            String linea = lector.nextLine();
-            if (!linea.startsWith(codigoAEliminar + ",")) {
-                escritor.println(linea);
-            }
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.");
+            return;
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al eliminar del archivo: " + e.getMessage());
-        return;
+        String codigoAEliminar = tblListaEmpleados.getValueAt(fila, 0).toString(); //Código del empleado
+        int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres eliminar al empleado con código " + codigoAEliminar + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        java.io.File archivoOriginal = new java.io.File("usuarios.txt");
+        java.io.File archivoTemporal = new java.io.File("usuarios_temp.txt");
+        try (
+            java.util.Scanner lector = new java.util.Scanner(archivoOriginal);
+            java.io.PrintWriter escritor = new java.io.PrintWriter(archivoTemporal)
+        ) {
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                if (!linea.startsWith(codigoAEliminar + ",")) {
+                    escritor.println(linea);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar del archivo: " + e.getMessage());
+            return;
+        }
+        archivoOriginal.delete();
+        archivoTemporal.renameTo(archivoOriginal);
+        JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
+        cargarEmpleadosDesdeArchivo(); 
     }
-    archivoOriginal.delete();
-    archivoTemporal.renameTo(archivoOriginal);
-    JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
-    cargarEmpleadosDesdeArchivo(); 
-}
   
     /**
      * @param args the command line arguments
