@@ -1,1 +1,3 @@
 C-12349,Juan,Chito,12345678,j@gmail.com,989654123,58,Masculino
+C-00006,juan,guarnizo,65416416,elcamas@gmail.com,965413134,20,Masculino
+C-00007,spreen,carrera,98465135,acasapete@gmail.com,984243435,23,Masculino,Viaje,Alto Siguas - Ica

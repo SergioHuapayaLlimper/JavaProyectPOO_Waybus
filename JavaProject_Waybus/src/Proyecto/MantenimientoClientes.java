@@ -35,7 +35,7 @@ public class MantenimientoClientes {
             String linea = scanner.nextLine().trim();
             String[] datos = linea.split(",");
 
-            if (datos.length == 8) {
+            if (datos.length == 10) {
                 String codigo = datos[0];
                 String nombres = datos[1];
                 String apellidos = datos[2];
@@ -44,10 +44,12 @@ public class MantenimientoClientes {
                 String telefono = datos[5];
                 int edad = Integer.parseInt(datos[6]);
                 String sexo = datos[7];
+                String servicio = datos[8];
+                String ruta = datos[9];
 
                 RegistroClientes clientes = new RegistroClientes(
                     codigo, nombres, apellidos, dni, correo,
-                    telefono, edad, sexo
+                    telefono, edad, sexo, servicio, ruta
                 );
 
                 lista.add(clientes);
@@ -84,16 +86,19 @@ public class MantenimientoClientes {
     private void guardarClientes(ArrayList<RegistroClientes> clientes) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (RegistroClientes cli : clientes) {
-                String linea = String.join(",",
-                    cli.getCodigo_c(),
-                    cli.getNombres(),
-                    cli.getApellidos(),
-                    cli.getDni(),
-                    cli.getCorreo(),
-                    cli.getTelefono(),
-                    String.valueOf(cli.getEdad()),
-                    cli.getSexo()
-                );
+                String linea =   String.join(",",
+                cli.getCodigo_c(),
+                cli.getNombres(),
+                cli.getApellidos(),
+                cli.getDni(),
+                cli.getCorreo(),
+                cli.getTelefono(),
+                String.valueOf(cli.getEdad()),
+                cli.getSexo(),
+                cli.getServicio(),   
+                cli.getRuta()        
+                
+            );
                 bw.write(linea);
                 bw.newLine();
             }

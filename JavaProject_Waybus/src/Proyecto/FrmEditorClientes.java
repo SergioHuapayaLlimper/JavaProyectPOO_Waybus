@@ -4,6 +4,9 @@ package Proyecto;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -42,8 +45,31 @@ public class FrmEditorClientes extends javax.swing.JFrame {
 
     private String[] datosOriginales = new String[7];//para detectar cambios
     
+    private void cargarRutasEnComboBox(String archivo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            cmbRuta.removeAllItems(); // Limpia el ComboBox
+            cmbRuta.addItem("-------SELECCIONE-------"); // Agrega opción por defecto
+
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(","); // Se asume que están separados por comas
+                if (partes.length >= 3) {
+                    String salida = partes[3].trim();
+                    String llegada = partes[4].trim();
+                    String ruta = salida + " - " + llegada;
+                    cmbRuta.addItem(ruta);
+                }
+            }
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar rutas: " + e.getMessage());
+        }
+    }
+    
+    
     public FrmEditorClientes() {
         initComponents();
+        cargarRutasEnComboBox("rutas.txt");
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
         personalizarBotonGuardar(btnGuardarCambios);
         cargarCodigos();
@@ -67,8 +93,10 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         txtCorreo.setText("");
         txtTelefono.setText("");
         txtEdad.setText("");
-
         cmbSexo.setSelectedIndex(0);
+        cmbServicio.setSelectedIndex(0);
+        cmbRuta.setSelectedIndex(0);
+        
 
         // Solo cambia el índice si el combo tiene elementos
         if (cmbCodigo.getItemCount() > 0) {
@@ -102,6 +130,10 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         lblSexo = new javax.swing.JLabel();
         lblDNI = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+        lblRuta = new javax.swing.JLabel();
+        cmbRuta = new javax.swing.JComboBox<>();
+        lblServicio = new javax.swing.JLabel();
+        cmbServicio = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuEditorClientes = new javax.swing.JMenu();
         menuItemListaClientes = new javax.swing.JMenuItem();
@@ -146,6 +178,24 @@ public class FrmEditorClientes extends javax.swing.JFrame {
 
         lblDNI.setText("DNI:");
 
+        lblRuta.setText("Ruta:");
+
+        cmbRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------" }));
+        cmbRuta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbRutaMouseClicked(evt);
+            }
+        });
+        cmbRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRutaActionPerformed(evt);
+            }
+        });
+
+        lblServicio.setText("Servicio:");
+
+        cmbServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Viaje", "Encomienda" }));
+
         MenuEditorClientes.setText("Opciones");
 
         menuItemListaClientes.setText("Ir a lista clientes");
@@ -175,6 +225,13 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbServicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,12 +310,20 @@ public class FrmEditorClientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addGap(41, 41, 41)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblServicio)
+                    .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRuta)
+                    .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
-        setSize(new java.awt.Dimension(497, 535));
+        setSize(new java.awt.Dimension(497, 670));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -273,7 +338,10 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         datosOriginales[3].equals(txtCorreo.getText()) &&
         datosOriginales[4].equals(txtTelefono.getText()) &&
         datosOriginales[5].equals(txtEdad.getText()) &&
-        datosOriginales[6].equals(cmbSexo.getSelectedItem().toString());
+        datosOriginales[6].equals(cmbSexo.getSelectedItem().toString())&&
+        datosOriginales[7].equals(cmbServicio.getSelectedItem().toString()) &&
+        datosOriginales[8].equals(cmbRuta.getSelectedItem().toString());
+        
 
         if (sinCambios) {
             JOptionPane.showMessageDialog(this, "No se ha realizado ningún cambio.");
@@ -323,6 +391,8 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             String telefono = txtTelefono.getText().isEmpty() ? original.getTelefono() : txtTelefono.getText();
             String sexo = cmbSexo.getSelectedIndex() <= 0 ? original.getSexo() : cmbSexo.getSelectedItem().toString();
             int edad = txtEdad.getText().isEmpty() ? original.getEdad() : Integer.parseInt(txtEdad.getText());
+            String servicio = cmbServicio.getSelectedIndex() <= 0 ? original.getServicio() : cmbServicio.getSelectedItem().toString();         
+            String ruta = cmbRuta.getSelectedIndex() <=0 ? original.getRuta() : cmbRuta.getSelectedItem().toString();
 
             // Validaciones de formato
             if (!dni.matches("\\d{8}")) {
@@ -381,7 +451,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             }
 
             // Crear objeto actualizado
-            RegistroClientes actualizado = new RegistroClientes(codigo, nombres, apellidos, dni, correo, telefono, edad, sexo);
+            RegistroClientes actualizado = new RegistroClientes(codigo, nombres, apellidos, dni, correo, telefono, edad, sexo, servicio, ruta);
 
             boolean exito = archivo.actualizarCliente(actualizado);
 
@@ -418,6 +488,8 @@ public class FrmEditorClientes extends javax.swing.JFrame {
                 txtTelefono.setText(cli.getTelefono());
                 txtEdad.setText(String.valueOf(cli.getEdad()));
                 cmbSexo.setSelectedItem(cli.getSexo());
+                cmbServicio.setSelectedItem(cli.getServicio());
+                cmbRuta.setSelectedItem(cli.getServicio());
 
                 // Guardar los datos originales para detección de cambios
                 datosOriginales[0] = cli.getNombres();
@@ -427,6 +499,8 @@ public class FrmEditorClientes extends javax.swing.JFrame {
                 datosOriginales[4] = cli.getTelefono();
                 datosOriginales[5] = String.valueOf(cli.getEdad());
                 datosOriginales[6] = cli.getSexo();
+                datosOriginales[7] = cli.getServicio();
+                datosOriginales[8] = cli.getRuta();
 
                 break;
             }
@@ -443,7 +517,9 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             !datosOriginales[3].equals(txtCorreo.getText()) ||
             !datosOriginales[4].equals(txtTelefono.getText()) ||
             !datosOriginales[5].equals(txtEdad.getText()) ||
-            !datosOriginales[6].equals(cmbSexo.getSelectedItem().toString());
+            !datosOriginales[6].equals(cmbSexo.getSelectedItem().toString()) ||
+            !datosOriginales[7].equals(cmbServicio.getSelectedItem().toString()) ||
+            !datosOriginales[8].equals(cmbRuta.getSelectedItem().toString());
 
             if (hayCambios) {
                 int respuesta = JOptionPane.showConfirmDialog(this,
@@ -468,6 +544,14 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         formadim.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemListaClientesActionPerformed
+
+    private void cmbRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRutaMouseClicked
+
+    }//GEN-LAST:event_cmbRutaMouseClicked
+
+    private void cmbRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutaActionPerformed
+
+    }//GEN-LAST:event_cmbRutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -508,6 +592,8 @@ public class FrmEditorClientes extends javax.swing.JFrame {
     private javax.swing.JMenu MenuEditorClientes;
     private javax.swing.JButton btnGuardarCambios;
     private javax.swing.JComboBox<String> cmbCodigo;
+    private javax.swing.JComboBox<String> cmbRuta;
+    private javax.swing.JComboBox<String> cmbServicio;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblApellidos;
@@ -516,6 +602,8 @@ public class FrmEditorClientes extends javax.swing.JFrame {
     private javax.swing.JLabel lblDNI;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombres;
+    private javax.swing.JLabel lblRuta;
+    private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTituloActualizarClientes;
