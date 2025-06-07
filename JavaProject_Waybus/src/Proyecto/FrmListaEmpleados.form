@@ -451,15 +451,14 @@
                 <Component class="javax.swing.JComboBox" name="cbFiltroOficina">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="8">
-                        <StringItem index="0" value="Lima"/>
-                        <StringItem index="1" value="Ca&#xf1;ete"/>
-                        <StringItem index="2" value="Cerro Azul"/>
+                      <StringArray count="7">
+                        <StringItem index="0" value="-------SELECCIONE-------"/>
+                        <StringItem index="1" value="Lima"/>
+                        <StringItem index="2" value="Atocongo"/>
                         <StringItem index="3" value="Ica"/>
-                        <StringItem index="4" value="At&#xed;co"/>
-                        <StringItem index="5" value="Camana"/>
-                        <StringItem index="6" value="Alto Siguas"/>
-                        <StringItem index="7" value="Arequipa"/>
+                        <StringItem index="4" value="Camana"/>
+                        <StringItem index="5" value="Alto Siguas"/>
+                        <StringItem index="6" value="Arequipa"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -553,14 +552,15 @@
                 <Component class="javax.swing.JComboBox" name="cbFiltroCargo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
-                        <StringItem index="0" value="Operario de Rutas"/>
-                        <StringItem index="1" value="Conductor"/>
-                        <StringItem index="2" value="Counter"/>
-                        <StringItem index="3" value="Gerente de Finanzas"/>
-                        <StringItem index="4" value="Analista de Viajes"/>
-                        <StringItem index="5" value="Director de Log&#xed;stica"/>
-                        <StringItem index="6" value="Responsable de Recursos Humanos"/>
+                      <StringArray count="8">
+                        <StringItem index="0" value="-------SELECCIONE-------"/>
+                        <StringItem index="1" value="Operario de Rutas"/>
+                        <StringItem index="2" value="Conductor"/>
+                        <StringItem index="3" value="Counter"/>
+                        <StringItem index="4" value="Gerente de Finanzas"/>
+                        <StringItem index="5" value="Analista de Viajes"/>
+                        <StringItem index="6" value="Director de Log&#xed;stica"/>
+                        <StringItem index="7" value="Responsable de Recursos Humanos"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

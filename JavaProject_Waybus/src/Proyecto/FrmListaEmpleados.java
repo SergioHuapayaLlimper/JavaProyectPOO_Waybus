@@ -285,7 +285,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             }
         });
 
-        cbFiltroOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lima", "Cañete", "Cerro Azul", "Ica", "Atíco", "Camana", "Alto Siguas", "Arequipa" }));
+        cbFiltroOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima", "Atocongo", "Ica", "Camana", "Alto Siguas", "Arequipa" }));
         cbFiltroOficina.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese la Oficina:"));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -341,7 +341,7 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
             }
         });
 
-        cbFiltroCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operario de Rutas", "Conductor", "Counter", "Gerente de Finanzas", "Analista de Viajes", "Director de Logística", "Responsable de Recursos Humanos" }));
+        cbFiltroCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Operario de Rutas", "Conductor", "Counter", "Gerente de Finanzas", "Analista de Viajes", "Director de Logística", "Responsable de Recursos Humanos" }));
         cbFiltroCargo.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el Cargo:"));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);

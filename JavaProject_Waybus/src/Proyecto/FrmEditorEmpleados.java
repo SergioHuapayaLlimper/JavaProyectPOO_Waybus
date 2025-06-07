@@ -133,7 +133,7 @@ public class FrmEditorEmpleados extends javax.swing.JFrame {
 
         lblNombres.setText("Nombres:");
 
-        cmbOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima", "Cañete", "Cerro Azul", "Ica", "Atíco", "Camana", "Alto Siguas", "Arequipa" }));
+        cmbOficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima", "Atocongo", "Ica", "Camana", "Alto Siguas", "Arequipa" }));
 
         lblDNI.setText("DNI:");
 
