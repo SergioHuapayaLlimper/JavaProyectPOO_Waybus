@@ -4,6 +4,7 @@ package Proyecto;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.BorderFactory;
@@ -127,7 +128,7 @@ import javax.swing.text.*;
         // Al presionar Enter en el botón, ejecuta su acción
         getRootPane().setDefaultButton(btnRegistroDeClientes);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -150,6 +151,12 @@ import javax.swing.text.*;
         lblNombres = new javax.swing.JLabel();
         lblDNI = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
+        lblServicio = new javax.swing.JLabel();
+        cmbServicio = new javax.swing.JComboBox<>();
+        lblRuta = new javax.swing.JLabel();
+        cmbRuta = new javax.swing.JComboBox<>();
+        cmbLlegada = new javax.swing.JComboBox<>();
+        cmbSalida = new javax.swing.JComboBox<>();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuRegistroClientes = new javax.swing.JMenu();
         menuItemActualizarCliente = new javax.swing.JMenuItem();
@@ -187,6 +194,24 @@ import javax.swing.text.*;
 
         lblCorreo.setText("Correo:");
 
+        lblServicio.setText("Servicio:");
+
+        cmbServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Viaje", "Encomienda" }));
+
+        lblRuta.setText("Ruta:");
+
+        cmbRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima-Arequipa", "Arequipa-Lima" }));
+        cmbRuta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbRutaItemStateChanged(evt);
+            }
+        });
+        cmbRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRutaActionPerformed(evt);
+            }
+        });
+
         menuRegistroClientes.setText("Opciones");
 
         menuItemActualizarCliente.setText("Actualizar Cliente");
@@ -215,47 +240,55 @@ import javax.swing.text.*;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(txtDNI))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtApellido))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTelefono)
-                            .addComponent(lblCorreo))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtTelefono)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEdad)
-                            .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEdad)
-                            .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(lblTituloMenuClientes)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(45, 45, 45)
+                            .addComponent(txtDNI))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(txtApellido))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCodigo)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblTelefono)
+                                .addComponent(lblCorreo))
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCorreo)
+                                .addComponent(txtTelefono)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(8, 8, 8)
+                            .addComponent(lblTituloMenuClientes))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblEdad)
+                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(30, 30, 30)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEdad)
+                                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cmbSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,12 +327,24 @@ import javax.swing.text.*;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblServicio)
+                    .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblRuta)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
 
-        setSize(new java.awt.Dimension(493, 532));
+        setSize(new java.awt.Dimension(493, 670));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,6 +358,10 @@ import javax.swing.text.*;
         String telefono = txtTelefono.getText().trim();
         String edadStr = txtEdad.getText().trim();
         String sexo = cmbSexo.getSelectedItem().toString().trim();
+        String servicio = cmbServicio.getSelectedItem().toString();
+        String salida = cmbSalida.getSelectedItem().toString();
+        String llegada = cmbLlegada.getSelectedItem().toString();
+        String ruta = salida + " - " + llegada;
 
         // Validar formato del código: "C-XXXXX"
         if (!codigo.matches("C-\\d{5}")) {
@@ -344,7 +393,7 @@ import javax.swing.text.*;
 
         // Crear cliente y guardar
         RegistroClientes cliente = new RegistroClientes(
-            codigo, nombre, apellido, dni, correo, telefono, edad, sexo
+            codigo, nombre, apellido, dni, correo, telefono, edad, sexo, servicio, ruta
         );
 
         mantenimientoClientes.AgregarCliente(cliente);
@@ -352,7 +401,8 @@ import javax.swing.text.*;
         // Guardar en archivo
         try (FileWriter writer = new FileWriter("clientes.txt", true)) {
             writer.write(codigo + "," + nombre + "," + apellido + "," + dni + "," +
-                         correo + "," + telefono + "," + edad + "," + sexo + "\n");
+                         correo + "," + telefono + "," + edad + "," + sexo + ","+
+             servicio + "," + ruta + "\n");
 
             JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
         } catch (IOException e) {
@@ -370,8 +420,46 @@ import javax.swing.text.*;
         txtTelefono.setText("");
         txtEdad.setText("");
         cmbSexo.setSelectedIndex(0);
+        cmbServicio.setSelectedIndex(0);
+        cmbRuta.setSelectedIndex(0);
+        cmbSalida.setSelectedIndex(-1);
+        cmbLlegada.setSelectedIndex(-1);
     }//GEN-LAST:event_btnRegistroDeClientesActionPerformed
 
+    
+    public String[] datos(String tipo) {
+    String[] informacion = new String[3];
+
+    if (tipo.equalsIgnoreCase("Arequipa-Lima")) {
+        informacion[0] = "Arequipa";
+        informacion[1] = "Alto Siguas";
+        informacion[2] = "Camaná";
+    } else if (tipo.equalsIgnoreCase("Lima-Arequipa")) {
+        informacion[0] = "Lima";
+        informacion[1] = "Atocongo";
+        informacion[2] = "Ica";
+    }
+
+    return informacion;
+}
+
+public String[] destinos(String tipo) {
+    String[] informacion = new String[3];
+
+    if (tipo.equalsIgnoreCase("Arequipa-Lima")) {
+        informacion[0] = "Ica";
+        informacion[1] = "Atocongo";
+        informacion[2] = "Lima";
+    } else if (tipo.equalsIgnoreCase("Lima-Arequipa")) {
+        informacion[0] = "Camaná";
+        informacion[1] = "Alto Siguas";
+        informacion[2] = "Arequipa";
+    }
+
+    return informacion;
+}
+    
+    
     private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
         FrmCounter formCounter = new FrmCounter();
         formCounter.setVisible(true);
@@ -383,6 +471,24 @@ import javax.swing.text.*;
         formCounter.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemActualizarClienteActionPerformed
+
+    private void cmbRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutaActionPerformed
+        
+        
+    }//GEN-LAST:event_cmbRutaActionPerformed
+
+    private void cmbRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRutaItemStateChanged
+        
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+        if (cmbRuta.getSelectedIndex() > 0) {
+            String seleccion = cmbRuta.getSelectedItem().toString();
+
+            cmbSalida.setModel(new javax.swing.DefaultComboBoxModel<>(this.datos(seleccion)));
+            cmbLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(this.destinos(seleccion)));
+        }
+    }
+        
+    }//GEN-LAST:event_cmbRutaItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -418,6 +524,10 @@ import javax.swing.text.*;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistroDeClientes;
+    private javax.swing.JComboBox<String> cmbLlegada;
+    private javax.swing.JComboBox<String> cmbRuta;
+    private javax.swing.JComboBox<String> cmbSalida;
+    private javax.swing.JComboBox<String> cmbServicio;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCodigo;
@@ -425,6 +535,8 @@ import javax.swing.text.*;
     private javax.swing.JLabel lblDNI;
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombres;
+    private javax.swing.JLabel lblRuta;
+    private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTituloMenuClientes;

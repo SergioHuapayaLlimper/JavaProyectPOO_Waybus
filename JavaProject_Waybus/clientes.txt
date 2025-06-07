@@ -1,1 +1,4 @@
-C-12349,Juan,Chito,12345678,j@gmail.com,989654123,58,Masculino
+C-16541,DFSDF,FSDFG,84653438,fddsdfs@gmail.com,985416341,20,Femenino,Encomienda,Atocongo - Alto Siguas
+C-00020,walle,turron,35485438,abduscan@gmail.com,915455454,20,Masculino,Viaje,Lima - Arequipa
+C-12345,vegetta,willy,77777777,wigetta@gmail.com,969696969,40,Masculino,Encomienda,Atocongo - Arequipa
+C-32165,rubius,auron,32165498,pikachu@gmail.com,943413243,20,Masculino,Viaje,Ica - Camaná

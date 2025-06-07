@@ -48,7 +48,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
         personalizarBotonLista(btnMostrar);
         personalizarBotonLista(btnEliminar);
-        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Edad", "Sexo"};//columnas en la tabla
+        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Edad", "Sexo", "Servicio", "Ruta"};//columnas en la tabla
         modelo = new DefaultTableModel(nomColumnas, 0);
         tblClientes.setModel(modelo);
         manCliente = new MantenimientoClientes();
@@ -122,15 +122,15 @@ public class FrmListaClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 663, Short.MAX_VALUE)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(142, 142, 142))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1063, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +144,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        setSize(new java.awt.Dimension(647, 611));
+        setSize(new java.awt.Dimension(1136, 611));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,7 +157,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 String[] partes = linea.split(",");
-                if (partes.length == 8) {
+                if (partes.length == 10) {
                     Object[] datofila = {
                         partes[0], // Código
                         partes[1], // Nombres
@@ -166,7 +166,9 @@ public class FrmListaClientes extends javax.swing.JFrame {
                         partes[4], // Correo
                         partes[5], // Teléfono
                         partes[6], // Sexo
-                        partes[7]  // Edad
+                        partes[7],  // Edad
+                        partes[8], // Servicio
+                        partes[9], //Ruta
                     };
                     modelo.addRow(datofila);
                 }
