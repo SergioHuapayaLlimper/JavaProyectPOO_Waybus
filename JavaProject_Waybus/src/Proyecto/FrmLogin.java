@@ -145,7 +145,11 @@ public class FrmLogin extends javax.swing.JFrame {
         String contraseñaIngresada = new String(pfContraseña.getPassword());
         
         // Acceso para el admin principal
-        if (usuarioIngresado.equals("admin") && contraseñaIngresada.equals("1234")) {
+        if (usuarioIngresado.isBlank() || contraseñaIngresada.isBlank()){
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (usuarioIngresado.equals("admin") && contraseñaIngresada.equals("1234")) {
+            JOptionPane.showMessageDialog(this, "Sesión iniciada correctamente");
             FrmAdminGeneral ventanaAdmin = new FrmAdminGeneral();
             ventanaAdmin.setVisible(true);
             this.dispose();
@@ -166,6 +170,7 @@ public class FrmLogin extends javax.swing.JFrame {
                         if (usuarioIngresado.equals(codigoEmpleado) && contraseñaIngresada.equals(clave)) {
                             accesoConcedido = true;
                             cargo = cargoactivo;
+                            JOptionPane.showMessageDialog(this, "Sesión iniciada correctamente");
                             break;
                         }
                     }
