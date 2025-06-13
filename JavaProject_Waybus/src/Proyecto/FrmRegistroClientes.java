@@ -375,7 +375,11 @@ import javax.swing.text.*;
             JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios.");
             return;
         }
-
+        // Validar DNI: exactamente 8 dígitos
+        if (!dni.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido de 8 dígitos.");
+            return;
+        }
         // Validar correo: solo @gmail.com o @outlook.com
         if (!correo.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|outlook\\.com)$")) {
             JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @outlook.com.");

@@ -1,4 +1,3 @@
-
 package Proyecto;
 
 import java.awt.Color;
@@ -49,6 +48,9 @@ public class FrmBuses extends javax.swing.JFrame {
         cbFiltroPorEstado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuRegistroClientes = new javax.swing.JMenu();
+        menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de Buses");
@@ -169,6 +171,20 @@ public class FrmBuses extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        menuRegistroClientes.setText("Opciones");
+
+        menuItemRegresarMenu.setText("Regresar al Menú");
+        menuItemRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegresarMenuActionPerformed(evt);
+            }
+        });
+        menuRegistroClientes.add(menuItemRegresarMenu);
+
+        menuBarPrincipal.add(menuRegistroClientes);
+
+        setJMenuBar(menuBarPrincipal);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,7 +244,7 @@ public class FrmBuses extends javax.swing.JFrame {
                 .addComponent(tpFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(815, 704));
@@ -254,6 +270,12 @@ public class FrmBuses extends javax.swing.JFrame {
     private void btnMostrarBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarBusesActionPerformed
         mostrarTabla(listaBuses);
     }//GEN-LAST:event_btnMostrarBusesActionPerformed
+
+    private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
+        FrmDirectorLogistica formLogistica = new FrmDirectorLogistica();
+        formLogistica.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
      
     
     private void registrarBus() {
@@ -367,6 +389,8 @@ public class FrmBuses extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -390,6 +414,9 @@ public class FrmBuses extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBuses;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemRegresarMenu;
+    private javax.swing.JMenu menuRegistroClientes;
     private javax.swing.JTabbedPane tpFiltros;
     private javax.swing.JTextField txtIngresePlaca;
     private javax.swing.JTextField txtModelo;

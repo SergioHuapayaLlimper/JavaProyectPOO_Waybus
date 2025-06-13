@@ -176,6 +176,9 @@ public class FrmRutas extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         cmbLugarPartida = new javax.swing.JComboBox<>();
         cmbLugarLlegada = new javax.swing.JComboBox<>();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuRegistroClientes = new javax.swing.JMenu();
+        menuItemRegresarMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Registro de Rutas");
@@ -213,6 +216,20 @@ public class FrmRutas extends javax.swing.JFrame {
         cmbLugarPartida.setBorder(javax.swing.BorderFactory.createTitledBorder(" Lugar de Partida"));
 
         cmbLugarLlegada.setBorder(javax.swing.BorderFactory.createTitledBorder("Lugar de Llegada"));
+
+        menuRegistroClientes.setText("Opciones");
+
+        menuItemRegresarMenu.setText("Regresar al Menú");
+        menuItemRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegresarMenuActionPerformed(evt);
+            }
+        });
+        menuRegistroClientes.add(menuItemRegresarMenu);
+
+        menuBarPrincipal.add(menuRegistroClientes);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,7 +301,7 @@ public class FrmRutas extends javax.swing.JFrame {
                 .addComponent(cmbBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(736, 570));
@@ -294,6 +311,12 @@ public class FrmRutas extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         guardarRutaEnArchivo("rutas.txt");
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
+        FrmOperarioRutas formOperario = new FrmOperarioRutas();
+        formOperario.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,6 +364,9 @@ public class FrmRutas extends javax.swing.JFrame {
     private javax.swing.JLabel lblDestinoCosto;
     private javax.swing.JLabel lblFechaHorario;
     private javax.swing.JLabel lblRegistroRutas;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemRegresarMenu;
+    private javax.swing.JMenu menuRegistroClientes;
     private javax.swing.JTextField txtFechaEmbarque;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

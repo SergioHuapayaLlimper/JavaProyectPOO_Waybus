@@ -2,21 +2,57 @@
 package Proyecto;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 //Clase de Interfaz de Director de Logista
 public class FrmDirectorLogistica extends javax.swing.JFrame {
     
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215); // Azul moderno
+        Color fondoHover = new Color(0, 150, 255);
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Padding
+        boton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        // Quitar efectos de Look&Feel predeterminados
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Efecto hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
+    
     public FrmDirectorLogistica() {
         initComponents();
-        
-        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
+        panelPrincipal.setBackground(new Color(240, 248, 255)); // Azul claro suave
+        personalizarBoton(btnAñadirBus);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelPrincipal = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
+        btnAñadirBus = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -27,6 +63,34 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTitulo.setText("Bienvenid@, a la interfaz de Director de Logística");
+
+        btnAñadirBus.setText("Añadir Bus");
+        btnAñadirBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirBusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAñadirBus, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitulo))
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lblTitulo)
+                .addGap(36, 36, 36)
+                .addComponent(btnAñadirBus, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(278, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("Opciones");
 
@@ -46,20 +110,14 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblTitulo)
-                .addContainerGap(167, Short.MAX_VALUE))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(lblTitulo)
-                .addContainerGap(360, Short.MAX_VALUE))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(655, 453));
+        setSize(new java.awt.Dimension(655, 450));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -68,6 +126,12 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         formlogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
+    private void btnAñadirBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirBusActionPerformed
+        FrmBuses añadirbus = new FrmBuses();
+        añadirbus.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAñadirBusActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -102,9 +166,11 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAñadirBus;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuItemCerrarSesion;
+    private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
