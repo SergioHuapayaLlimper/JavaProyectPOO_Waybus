@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 // Ventana para mostrar y eliminar clientes
 public class FrmListaClientes extends javax.swing.JFrame {
 
@@ -43,15 +44,44 @@ public class FrmListaClientes extends javax.swing.JFrame {
         });
     }
     
+    private void cargarClientesDesdeArchivo() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Nombres");
+        modelo.addColumn("Apellidos");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Teléfono");
+        modelo.addColumn("Edad");
+        modelo.addColumn("Sexo");
+        modelo.addColumn("Servicio");
+        modelo.addColumn("Ruta");
+
+        ArrayList<RegistroClientes> lista = new MantenimientoClientes().obtenerClientes();
+
+        for (RegistroClientes c : lista) {
+            modelo.addRow(new Object[]{
+                c.getCodigo_c(),
+                c.getNombres(),
+                c.getApellidos(),
+                c.getDni(),
+                c.getCorreo(),
+                c.getTelefono(),
+                c.getEdad(),
+                c.getSexo(),
+                c.getServicio(),
+                c.getRuta()
+            });
+        }
+
+        tblClientes.setModel(modelo);  // ⬅ Asegúrate que tu JTable se llame así
+    }
+    
     public FrmListaClientes() {
         initComponents();
+        cargarClientesDesdeArchivo();
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
-        personalizarBotonLista(btnMostrar);
         personalizarBotonLista(btnEliminar);
-        String[] nomColumnas={"Código", "Nombres", "Apellidos", "DNI", "Correo","Teléfono","Edad", "Sexo", "Servicio", "Ruta"};//columnas en la tabla
-        modelo = new DefaultTableModel(nomColumnas, 0);
-        tblClientes.setModel(modelo);
-        manCliente = new MantenimientoClientes();
     }
     
      public FrmListaClientes(JFrame parent) {
@@ -66,7 +96,6 @@ public class FrmListaClientes extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
-        btnMostrar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuListaClientes = new javax.swing.JMenu();
@@ -88,13 +117,6 @@ public class FrmListaClientes extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblClientes);
-
-        btnMostrar.setText("Mostrar");
-        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarActionPerformed(evt);
-            }
-        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,9 +144,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 663, Short.MAX_VALUE)
+                .addGap(120, 879, Short.MAX_VALUE)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(142, 142, 142))
             .addGroup(layout.createSequentialGroup()
@@ -138,9 +158,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
 
@@ -151,33 +169,6 @@ public class FrmListaClientes extends javax.swing.JFrame {
     
    
     
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        modelo.setRowCount(0); // Limpia la tabla
-        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("clientes.txt"))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                if (partes.length == 10) {
-                    Object[] datofila = {
-                        partes[0], // Código
-                        partes[1], // Nombres
-                        partes[2], // Apellidos
-                        partes[3], // DNI
-                        partes[4], // Correo
-                        partes[5], // Teléfono
-                        partes[6], // Sexo
-                        partes[7],  // Edad
-                        partes[8], // Servicio
-                        partes[9], //Ruta
-                    };
-                    modelo.addRow(datofila);
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al leer archivo de clientes.\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnMostrarActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int filaSeleccionada = tblClientes.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -255,7 +246,6 @@ public class FrmListaClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnMostrar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuItemRegresarMenu;

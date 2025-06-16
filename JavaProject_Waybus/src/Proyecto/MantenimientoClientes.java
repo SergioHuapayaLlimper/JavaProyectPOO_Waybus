@@ -1,8 +1,10 @@
 //Elaborado por el Grupo 04
 package Proyecto;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,6 +107,28 @@ public class MantenimientoClientes {
         } catch (IOException e) {
             System.out.println("Error al guardar clientes: " + e.getMessage());
         }
+    }
+    
+    public static ArrayList<String> obtenerResumenRutas() {
+        ArrayList<String> lista = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("rutas.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                if (datos.length >= 5) {
+                    String salida = datos[3].trim();
+                    String llegada = datos[4].trim();
+                    String resumen = salida + " - " + llegada;
+
+                    if (!lista.contains(resumen)) {
+                        lista.add(resumen); // Evita duplicados
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer rutas.txt: " + e.getMessage());
+        }
+        return lista;
     }
 
 }

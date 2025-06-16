@@ -50,9 +50,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-              <Component id="btnMostrar" min="-2" pref="96" max="-2" attributes="0"/>
-              <EmptySpace pref="663" max="32767" attributes="0"/>
+              <EmptySpace min="120" pref="879" max="32767" attributes="0"/>
               <Component id="btnEliminar" min="-2" pref="99" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
           </Group>
@@ -69,10 +67,7 @@
               <EmptySpace pref="47" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnEliminar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="btnMostrar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btnEliminar" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -100,14 +95,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnMostrar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Mostrar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnEliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>

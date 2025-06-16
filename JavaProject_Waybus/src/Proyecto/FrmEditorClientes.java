@@ -40,11 +40,22 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         }
     });
 }
+    
+    private void cargarRutasEnCombo() {
+        cmbRuta.removeAllItems();
+        cmbRuta.addItem("-------SELECCIONE-------");
+
+        ArrayList<String> rutas = MantenimientoClientes.obtenerResumenRutas();
+        for (String ruta : rutas) {
+            cmbRuta.addItem(ruta);
+        }
+    }
 
     private String[] datosOriginales = new String[9];//para detectar cambios
     
     public FrmEditorClientes() {
         initComponents();
+        cargarRutasEnCombo();
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
         personalizarBotonGuardar(btnGuardarCambios);
         cargarCodigos();
@@ -71,9 +82,9 @@ public class FrmEditorClientes extends javax.swing.JFrame {
 
         cmbSexo.setSelectedIndex(0);
         cmbServicio1.setSelectedIndex(0);
-        cmbRuta.setSelectedIndex(0);
-        cmbSalida1.setSelectedIndex(-1);
-        cmbLlegada.setSelectedIndex(-1);
+        if (cmbRuta.getItemCount() > 0) {
+            cmbRuta.setSelectedIndex(0);
+        }
         
 
         // Solo cambia el índice si el combo tiene elementos
@@ -112,8 +123,6 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         lblRuta = new javax.swing.JLabel();
         cmbRuta = new javax.swing.JComboBox<>();
         cmbServicio1 = new javax.swing.JComboBox<>();
-        cmbLlegada = new javax.swing.JComboBox<>();
-        cmbSalida1 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuEditorClientes = new javax.swing.JMenu();
         menuItemListaClientes = new javax.swing.JMenuItem();
@@ -162,7 +171,6 @@ public class FrmEditorClientes extends javax.swing.JFrame {
 
         lblRuta.setText("Ruta:");
 
-        cmbRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima-Arequipa", "Arequipa-Lima" }));
         cmbRuta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbRutaItemStateChanged(evt);
@@ -200,7 +208,6 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,20 +227,18 @@ public class FrmEditorClientes extends javax.swing.JFrame {
                                 .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblEdad)
-                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEdad)
+                                    .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(30, 30, 30)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtEdad)
                                 .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cmbServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(cmbSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(lblDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,19 +295,15 @@ public class FrmEditorClientes extends javax.swing.JFrame {
                     .addComponent(lblServicio)
                     .addComponent(cmbServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblRuta)
-                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRuta))
+                .addGap(27, 27, 27)
                 .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(497, 676));
+        setSize(new java.awt.Dimension(497, 611));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -319,7 +320,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         datosOriginales[5].equals(txtEdad.getText()) &&
         datosOriginales[6].equals(cmbSexo.getSelectedItem().toString()) &&
         datosOriginales[7].equals(cmbServicio1.getSelectedItem().toString()) &&
-        datosOriginales[8].equals(cmbSalida1.getSelectedItem().toString() + " - " + cmbLlegada.getSelectedItem().toString());
+        datosOriginales[8].equals(cmbRuta.getSelectedItem().toString());
         
         
 
@@ -372,9 +373,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             String sexo = cmbSexo.getSelectedIndex() <= 0 ? original.getSexo() : cmbSexo.getSelectedItem().toString();
             int edad = txtEdad.getText().isEmpty() ? original.getEdad() : Integer.parseInt(txtEdad.getText());
             String servicio = cmbServicio1.getSelectedIndex() <= 0 ? original.getServicio() : cmbServicio1.getSelectedItem().toString();
-            String salida = cmbSalida1.getSelectedIndex() <= 0 ? null : cmbSalida1.getSelectedItem().toString();
-            String llegada = cmbLlegada.getSelectedIndex() <= 0 ? null : cmbLlegada.getSelectedItem().toString();
-            String ruta = (salida != null && llegada != null) ? salida + " - " + llegada : original.getRuta();
+            String ruta = cmbRuta.getSelectedIndex() <= 0 ? original.getRuta() : cmbRuta.getSelectedItem().toString();
 
             // Validaciones de formato
             if (!dni.matches("\\d{8}")) {
@@ -476,53 +475,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
             // Servicio
             cmbServicio1.setSelectedItem(cli.getServicio());
 
-            // Ruta: dividirla y reconstruir ruta general
-            String[] partesRuta = cli.getRuta().split(" - ");
-            if (partesRuta.length == 2) {
-                String origen = partesRuta[0];
-                String destino = partesRuta[1];
-
-                // Detectar dirección general
-                if ((origen.equals("Arequipa") || origen.equals("Camaná") || origen.equals("Alto Siguas")) &&
-                    (destino.equals("Lima") || destino.equals("Atocongo") || destino.equals("Ica"))) {
-                    cmbRuta.setSelectedItem("Arequipa-Lima");
-                } else if (
-                    (origen.equals("Lima") || origen.equals("Atocongo") || origen.equals("Ica")) &&
-                    (destino.equals("Arequipa") || destino.equals("Camaná") || destino.equals("Alto Siguas"))) {
-                    cmbRuta.setSelectedItem("Lima-Arequipa");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ruta no recnonocida: " + origen + "-" + destino);
-                }
-
-                // Cargar puntos en salida y llegada según ruta
-                cmbSalida1.removeAllItems();
-                cmbLlegada.removeAllItems();
-
-                if (cmbRuta.getSelectedItem().toString().equals("Arequipa-Lima")) {
-                    cmbSalida1.addItem("Arequipa");
-                    cmbSalida1.addItem("Alto Siguas");
-                    cmbSalida1.addItem("Camaná");
-
-                    cmbLlegada.addItem("Ica");
-                    cmbLlegada.addItem("Atocongo");
-                    cmbLlegada.addItem("Lima");
-                } else {
-                    cmbSalida1.addItem("Lima");
-                    cmbSalida1.addItem("Atocongo");
-                    cmbSalida1.addItem("Ica");
-
-                    cmbLlegada.addItem("Camaná");
-                    cmbLlegada.addItem("Alto Siguas");
-                    cmbLlegada.addItem("Arequipa");
-                }
-
-                if(((javax.swing.DefaultComboBoxModel) cmbSalida1.getModel()).getIndexOf(origen) !=-1) {
-                    cmbSalida1.setSelectedItem(origen);
-                }
-                if(((javax.swing.DefaultComboBoxModel) cmbLlegada.getModel()).getIndexOf(destino) !=-1) {
-                    cmbLlegada.setSelectedItem(destino);
-                }
-            }
+            cmbRuta.setSelectedItem(cli.getRuta());
 
             // Guardar datos originales
             datosOriginales[0] = cli.getNombres();
@@ -539,40 +492,7 @@ public class FrmEditorClientes extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_cmbCodigoActionPerformed
-
-     public String[] datos(String tipo) {
-    String[] informacion = new String[3];
-
-    if (tipo.equalsIgnoreCase("Arequipa-Lima")) {
-        informacion[0] = "Arequipa";
-        informacion[1] = "Alto Siguas";
-        informacion[2] = "Camaná";
-    } else if (tipo.equalsIgnoreCase("Lima-Arequipa")) {
-        informacion[0] = "Lima";
-        informacion[1] = "Atocongo";
-        informacion[2] = "Ica";
-    }
-
-    return informacion;
-}
-
-public String[] destinos(String tipo) {
-    String[] informacion = new String[3];
-
-    if (tipo.equalsIgnoreCase("Arequipa-Lima")) {
-        informacion[0] = "Ica";
-        informacion[1] = "Atocongo";
-        informacion[2] = "Lima";
-    } else if (tipo.equalsIgnoreCase("Lima-Arequipa")) {
-        informacion[0] = "Camaná";
-        informacion[1] = "Alto Siguas";
-        informacion[2] = "Arequipa";
-    }
-
-    return informacion;
-}
-    
-    
+   
     private void menuItemRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRetrocederActionPerformed
         // Validar si hubo cambios
         if (datosOriginales[0] != null) {
@@ -611,17 +531,7 @@ public String[] destinos(String tipo) {
     }//GEN-LAST:event_menuItemListaClientesActionPerformed
 
     private void cmbRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRutaItemStateChanged
-        
-         if (evt.getStateChange() == ItemEvent.SELECTED) {
-        if (cmbRuta.getSelectedIndex() > 0) {
-            String seleccion = cmbRuta.getSelectedItem().toString();
-
-            cmbSalida1.setModel(new javax.swing.DefaultComboBoxModel<>(this.datos(seleccion)));
-            cmbLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(this.destinos(seleccion)));
-        }
-    }
-       
-        
+     
     }//GEN-LAST:event_cmbRutaItemStateChanged
 
     /**
@@ -663,9 +573,7 @@ public String[] destinos(String tipo) {
     private javax.swing.JMenu MenuEditorClientes;
     private javax.swing.JButton btnGuardarCambios;
     private javax.swing.JComboBox<String> cmbCodigo;
-    private javax.swing.JComboBox<String> cmbLlegada;
     private javax.swing.JComboBox<String> cmbRuta;
-    private javax.swing.JComboBox<String> cmbSalida1;
     private javax.swing.JComboBox<String> cmbServicio1;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JMenuBar jMenuBar1;

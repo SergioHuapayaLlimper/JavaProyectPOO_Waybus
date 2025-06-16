@@ -132,8 +132,8 @@ public class FrmRutas extends javax.swing.JFrame {
         cargarConductoresDesdeArchivo("usuarios.txt"); // usa ruta relativa o absoluta si es necesario
         
         // Cargar solo los lugares permitidos para cada combo
-        String[] lugaresSalida = {"Arequipa", "Alto Siguas", "Camaná"};
-        String[] lugaresLlegada = {"Ica", "Atocongo", "Lima"};
+        String[] lugaresSalida = {"Arequipa", "Alto Siguas", "Camaná", "Ica", "Atocongo", "Lima"};
+        String[] lugaresLlegada = {"Ica", "Atocongo", "Lima", "Arequipa", "Alto Siguas", "Camaná"};
         
         //Horarios de embarque
         cmbHorarioEmbarque.addItem("SELECCIONE");
@@ -176,6 +176,10 @@ public class FrmRutas extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         cmbLugarPartida = new javax.swing.JComboBox<>();
         cmbLugarLlegada = new javax.swing.JComboBox<>();
+        menuBarPrincipal = new javax.swing.JMenuBar();
+        menuRutas = new javax.swing.JMenu();
+        menuItemListaRutas = new javax.swing.JMenuItem();
+        menuItemRetroceder = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Registro de Rutas");
@@ -214,6 +218,28 @@ public class FrmRutas extends javax.swing.JFrame {
 
         cmbLugarLlegada.setBorder(javax.swing.BorderFactory.createTitledBorder("Lugar de Llegada"));
 
+        menuRutas.setText("Opciones");
+
+        menuItemListaRutas.setText("Lista de Rutas");
+        menuItemListaRutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemListaRutasActionPerformed(evt);
+            }
+        });
+        menuRutas.add(menuItemListaRutas);
+
+        menuItemRetroceder.setText("Retroceder");
+        menuItemRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRetrocederActionPerformed(evt);
+            }
+        });
+        menuRutas.add(menuItemRetroceder);
+
+        menuBarPrincipal.add(menuRutas);
+
+        setJMenuBar(menuBarPrincipal);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,7 +254,7 @@ public class FrmRutas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(lblConductorTransporte)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -245,20 +271,21 @@ public class FrmRutas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cmbLugarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cmbLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lblDestinoCosto)
-                                .addGap(133, 133, 133))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cmbLugarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cmbLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(34, 34, 34))))
+                                .addGap(160, 160, 160))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(22, 22, 22)
                 .addComponent(lblRegistroRutas)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -284,7 +311,7 @@ public class FrmRutas extends javax.swing.JFrame {
                 .addComponent(cmbBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(736, 570));
@@ -294,6 +321,20 @@ public class FrmRutas extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         guardarRutaEnArchivo("rutas.txt");
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void menuItemListaRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListaRutasActionPerformed
+        FrmListaRutas formlistarutas = new FrmListaRutas();
+        formlistarutas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemListaRutasActionPerformed
+
+    private void menuItemRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRetrocederActionPerformed
+        
+        FrmOperarioRutas formoperariorutas = new FrmOperarioRutas();
+        formoperariorutas.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_menuItemRetrocederActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,6 +382,10 @@ public class FrmRutas extends javax.swing.JFrame {
     private javax.swing.JLabel lblDestinoCosto;
     private javax.swing.JLabel lblFechaHorario;
     private javax.swing.JLabel lblRegistroRutas;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenuItem menuItemListaRutas;
+    private javax.swing.JMenuItem menuItemRetroceder;
+    private javax.swing.JMenu menuRutas;
     private javax.swing.JTextField txtFechaEmbarque;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

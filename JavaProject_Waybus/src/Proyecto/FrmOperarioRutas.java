@@ -16,6 +16,7 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        btnRegistroDeRutas = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -26,6 +27,13 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTitulo.setText("Bienvenid@, a la interfaz de Operario de Rutas");
+
+        btnRegistroDeRutas.setText("Registro de Rutas");
+        btnRegistroDeRutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroDeRutasActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Opciones");
 
@@ -46,8 +54,13 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblTitulo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(btnRegistroDeRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -55,7 +68,9 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblTitulo)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(btnRegistroDeRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(652, 457));
@@ -67,6 +82,14 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
         formlogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
+    private void btnRegistroDeRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroDeRutasActionPerformed
+        
+        FrmRutas formularioregistro = new FrmRutas();
+        formularioregistro.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnRegistroDeRutasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -101,6 +124,7 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistroDeRutas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;

@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -100,8 +101,16 @@ import javax.swing.text.*;
         }
     }
     
+    private void cargarRutasEnCombo() {
+        ArrayList<String> rutas = MantenimientoClientes.obtenerResumenRutas();
+        for (String ruta : rutas) {
+            cmbRuta.addItem(ruta);
+        }
+    }
+    
     public FrmRegistroClientes() {
-        initComponents();        
+        initComponents();
+        cargarRutasEnCombo();
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue        
         personalizarBotonRegistrar(btnRegistroDeClientes);        
         mantenimientoClientes = new MantenimientoClientes();        
@@ -155,8 +164,6 @@ import javax.swing.text.*;
         cmbServicio = new javax.swing.JComboBox<>();
         lblRuta = new javax.swing.JLabel();
         cmbRuta = new javax.swing.JComboBox<>();
-        cmbLlegada = new javax.swing.JComboBox<>();
-        cmbSalida = new javax.swing.JComboBox<>();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuRegistroClientes = new javax.swing.JMenu();
         menuItemActualizarCliente = new javax.swing.JMenuItem();
@@ -200,15 +207,9 @@ import javax.swing.text.*;
 
         lblRuta.setText("Ruta:");
 
-        cmbRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------", "Lima-Arequipa", "Arequipa-Lima" }));
         cmbRuta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbRutaItemStateChanged(evt);
-            }
-        });
-        cmbRuta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRutaActionPerformed(evt);
             }
         });
 
@@ -241,7 +242,6 @@ import javax.swing.text.*;
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -274,7 +274,8 @@ import javax.swing.text.*;
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblEdad)
-                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(30, 30, 30)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,12 +283,7 @@ import javax.swing.text.*;
                                     .addComponent(txtEdad)
                                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cmbSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmbLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -331,20 +327,16 @@ import javax.swing.text.*;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblServicio)
                     .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblRuta)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                    .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRuta))
+                .addGap(26, 26, 26)
                 .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(493, 670));
+        setSize(new java.awt.Dimension(493, 594));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -358,10 +350,8 @@ import javax.swing.text.*;
         String telefono = txtTelefono.getText().trim();
         String edadStr = txtEdad.getText().trim();
         String sexo = cmbSexo.getSelectedItem().toString().trim();
-        String servicio = cmbServicio.getSelectedItem().toString();
-        String salida = cmbSalida.getSelectedItem().toString();
-        String llegada = cmbLlegada.getSelectedItem().toString();
-        String ruta = salida + " - " + llegada;
+        String servicio = cmbServicio.getSelectedItem().toString().trim();
+        String ruta = (cmbRuta.getSelectedItem() != null) ? cmbRuta.getSelectedItem().toString().trim() : "";
 
         // Validar formato del código: "C-XXXXX"
         if (!codigo.matches("C-\\d{5}")) {
@@ -382,7 +372,7 @@ import javax.swing.text.*;
             return;
         }
 
-        // Validar que la edad sea numérica
+        // Validar edad numérica
         int edad;
         try {
             edad = Integer.parseInt(edadStr);
@@ -391,18 +381,23 @@ import javax.swing.text.*;
             return;
         }
 
+        // Validar ruta seleccionada
+        if (ruta.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
+            return;
+        }
+
         // Crear cliente y guardar
         RegistroClientes cliente = new RegistroClientes(
             codigo, nombre, apellido, dni, correo, telefono, edad, sexo, servicio, ruta
         );
-
         mantenimientoClientes.AgregarCliente(cliente);
 
         // Guardar en archivo
         try (FileWriter writer = new FileWriter("clientes.txt", true)) {
             writer.write(codigo + "," + nombre + "," + apellido + "," + dni + "," +
-                         correo + "," + telefono + "," + edad + "," + sexo + ","+
-             servicio + "," + ruta + "\n");
+                         correo + "," + telefono + "," + edad + "," + sexo + "," +
+                         servicio + "," + ruta + "\n");
 
             JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
         } catch (IOException e) {
@@ -410,9 +405,10 @@ import javax.swing.text.*;
         }
 
         // Limpiar campos
-        txtCodigo.setDocument(new javax.swing.text.PlainDocument());// Reiniciar campo de código correctamente
-        txtCodigo.setText("C-"); // para que se reinicie con el prefijo
+        txtCodigo.setDocument(new javax.swing.text.PlainDocument());
+        txtCodigo.setText("C-");
         ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoClienteFilter());
+
         txtNombre.setText("");
         txtApellido.setText("");
         txtDNI.setText("");
@@ -422,8 +418,6 @@ import javax.swing.text.*;
         cmbSexo.setSelectedIndex(0);
         cmbServicio.setSelectedIndex(0);
         cmbRuta.setSelectedIndex(0);
-        cmbSalida.setSelectedIndex(-1);
-        cmbLlegada.setSelectedIndex(-1);
     }//GEN-LAST:event_btnRegistroDeClientesActionPerformed
 
     
@@ -472,21 +466,8 @@ public String[] destinos(String tipo) {
         this.dispose();
     }//GEN-LAST:event_menuItemActualizarClienteActionPerformed
 
-    private void cmbRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutaActionPerformed
-        
-        
-    }//GEN-LAST:event_cmbRutaActionPerformed
-
     private void cmbRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRutaItemStateChanged
         
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-        if (cmbRuta.getSelectedIndex() > 0) {
-            String seleccion = cmbRuta.getSelectedItem().toString();
-
-            cmbSalida.setModel(new javax.swing.DefaultComboBoxModel<>(this.datos(seleccion)));
-            cmbLlegada.setModel(new javax.swing.DefaultComboBoxModel<>(this.destinos(seleccion)));
-        }
-    }
         
     }//GEN-LAST:event_cmbRutaItemStateChanged
 
@@ -524,9 +505,7 @@ public String[] destinos(String tipo) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistroDeClientes;
-    private javax.swing.JComboBox<String> cmbLlegada;
     private javax.swing.JComboBox<String> cmbRuta;
-    private javax.swing.JComboBox<String> cmbSalida;
     private javax.swing.JComboBox<String> cmbServicio;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JLabel lblApellidos;
