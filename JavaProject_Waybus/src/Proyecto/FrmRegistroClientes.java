@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -110,6 +112,9 @@ import javax.swing.text.*;
     
     public FrmRegistroClientes() {
         initComponents();
+        txfSalida.setEditable(false);
+        txfSalida.setFocusable(false);
+        cmbRuta.addActionListener(e -> actualizarHoraSalidaPorRutaSeleccionada());
         cargarRutasEnCombo();
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue        
         personalizarBotonRegistrar(btnRegistroDeClientes);        
@@ -138,6 +143,39 @@ import javax.swing.text.*;
         getRootPane().setDefaultButton(btnRegistroDeClientes);
     }
     
+    private void actualizarHoraSalidaPorRutaSeleccionada() {
+    String rutaSeleccionada = cmbRuta.getSelectedItem().toString();
+    if (rutaSeleccionada.equals("-------SELECCIONE-------")) {
+        txfSalida.setText(""); // No mostrar hora si no hay ruta válida
+        return;
+    }
+
+    try (BufferedReader br = new BufferedReader(new FileReader("rutas.txt"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] partes = linea.split(",");
+            if (partes.length >= 6) {
+                String origen = partes[3].trim();
+                String destino = partes[4].trim();
+                String resumenRuta = origen + " - " + destino;
+
+                if (resumenRuta.equals(rutaSeleccionada)) {
+                    // Obtener la parte de hora de salida: ej. "Tarde - 12:00 PM"
+                    String horarioCompleto = partes[2].trim();
+                    String[] horarioSplit = horarioCompleto.split("-");
+                    if (horarioSplit.length == 2) {
+                        txfSalida.setText(horarioSplit[1].trim());
+                    } else {
+                        txfSalida.setText("No definido");
+                    }
+                    return;
+                }
+            }
+        }
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error al leer hora de salida: " + e.getMessage());
+    }
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,6 +202,8 @@ import javax.swing.text.*;
         cmbServicio = new javax.swing.JComboBox<>();
         lblRuta = new javax.swing.JLabel();
         cmbRuta = new javax.swing.JComboBox<>();
+        lblSalida = new javax.swing.JLabel();
+        txfSalida = new javax.swing.JTextField();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuRegistroClientes = new javax.swing.JMenu();
         menuItemActualizarCliente = new javax.swing.JMenuItem();
@@ -207,9 +247,23 @@ import javax.swing.text.*;
 
         lblRuta.setText("Ruta:");
 
+        cmbRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------SELECCIONE-------" }));
         cmbRuta.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbRutaItemStateChanged(evt);
+            }
+        });
+        cmbRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRutaActionPerformed(evt);
+            }
+        });
+
+        lblSalida.setText("Salida:");
+
+        txfSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfSalidaActionPerformed(evt);
             }
         });
 
@@ -242,6 +296,7 @@ import javax.swing.text.*;
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSalida)
                     .addComponent(lblServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -277,13 +332,13 @@ import javax.swing.text.*;
                                 .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(30, 30, 30)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEdad)
-                                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(cmbServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtEdad)
+                                .addComponent(cmbSexo, 0, 258, Short.MAX_VALUE)
+                                .addComponent(cmbServicio, 0, 258, Short.MAX_VALUE)
+                                .addComponent(cmbRuta, 0, 258, Short.MAX_VALUE)
+                                .addComponent(txfSalida)))))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -331,9 +386,13 @@ import javax.swing.text.*;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRuta))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSalida)
+                    .addComponent(txfSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(btnRegistroDeClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         setSize(new java.awt.Dimension(493, 594));
@@ -382,10 +441,10 @@ import javax.swing.text.*;
         }
 
         // Validar ruta seleccionada
-        if (ruta.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
-            return;
-        }
+        if (ruta.equals("-------SELECCIONE-------")) {
+        JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
+        return;
+         }
 
         // Crear cliente y guardar
         RegistroClientes cliente = new RegistroClientes(
@@ -418,41 +477,9 @@ import javax.swing.text.*;
         cmbSexo.setSelectedIndex(0);
         cmbServicio.setSelectedIndex(0);
         cmbRuta.setSelectedIndex(0);
+        txfSalida.setText("");
     }//GEN-LAST:event_btnRegistroDeClientesActionPerformed
 
-    
-    public String[] datos(String tipo) {
-    String[] informacion = new String[3];
-
-    if (tipo.equalsIgnoreCase("Arequipa-Lima")) {
-        informacion[0] = "Arequipa";
-        informacion[1] = "Alto Siguas";
-        informacion[2] = "Camaná";
-    } else if (tipo.equalsIgnoreCase("Lima-Arequipa")) {
-        informacion[0] = "Lima";
-        informacion[1] = "Atocongo";
-        informacion[2] = "Ica";
-    }
-
-    return informacion;
-}
-
-public String[] destinos(String tipo) {
-    String[] informacion = new String[3];
-
-    if (tipo.equalsIgnoreCase("Arequipa-Lima")) {
-        informacion[0] = "Ica";
-        informacion[1] = "Atocongo";
-        informacion[2] = "Lima";
-    } else if (tipo.equalsIgnoreCase("Lima-Arequipa")) {
-        informacion[0] = "Camaná";
-        informacion[1] = "Alto Siguas";
-        informacion[2] = "Arequipa";
-    }
-
-    return informacion;
-}
-    
     
     private void menuItemRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarMenuActionPerformed
         FrmCounter formCounter = new FrmCounter();
@@ -470,6 +497,14 @@ public String[] destinos(String tipo) {
         
         
     }//GEN-LAST:event_cmbRutaItemStateChanged
+
+    private void cmbRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRutaActionPerformed
+
+    private void txfSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfSalidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfSalidaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -515,6 +550,7 @@ public String[] destinos(String tipo) {
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombres;
     private javax.swing.JLabel lblRuta;
+    private javax.swing.JLabel lblSalida;
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefono;
@@ -523,6 +559,7 @@ public String[] destinos(String tipo) {
     private javax.swing.JMenuItem menuItemActualizarCliente;
     private javax.swing.JMenuItem menuItemRegresarMenu;
     private javax.swing.JMenu menuRegistroClientes;
+    private javax.swing.JTextField txfSalida;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;

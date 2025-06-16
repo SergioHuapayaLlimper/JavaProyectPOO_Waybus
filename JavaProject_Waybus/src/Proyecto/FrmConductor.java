@@ -17,6 +17,7 @@ public class FrmConductor extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        btnMostrarLista = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -27,6 +28,13 @@ public class FrmConductor extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTitulo.setText("Bienvenid@, a la interfaz de Conductor");
+
+        btnMostrarLista.setText("Mostrar Lista");
+        btnMostrarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarListaActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Opciones");
 
@@ -48,7 +56,9 @@ public class FrmConductor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(lblTitulo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(btnMostrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(243, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -56,7 +66,9 @@ public class FrmConductor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblTitulo)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(btnMostrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(643, 455));
@@ -68,6 +80,14 @@ public class FrmConductor extends javax.swing.JFrame {
         formlogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
+    private void btnMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarListaActionPerformed
+       
+        FrmBuses bus=new FrmBuses();
+        bus.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnMostrarListaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -102,6 +122,7 @@ public class FrmConductor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMostrarLista;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;

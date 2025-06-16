@@ -60,6 +60,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblSalida" min="-2" max="-2" attributes="0"/>
                   <Component id="lblServicio" min="-2" pref="55" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -105,14 +106,13 @@
                               <Component id="lblRuta" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnRegistroDeClientes" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtEdad" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cmbSexo" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="cmbServicio" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                              <Component id="cmbRuta" min="-2" pref="258" max="-2" attributes="0"/>
+                              <Component id="txtEdad" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cmbSexo" alignment="0" pref="258" max="32767" attributes="0"/>
+                              <Component id="cmbServicio" alignment="0" pref="258" max="32767" attributes="0"/>
+                              <Component id="cmbRuta" pref="258" max="32767" attributes="0"/>
+                              <Component id="txfSalida" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -176,9 +176,14 @@
                   <Component id="cmbRuta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblRuta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblSalida" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txfSalida" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Component id="btnRegistroDeClientes" min="-2" pref="49" max="-2" attributes="0"/>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -295,15 +300,28 @@
     <Component class="javax.swing.JComboBox" name="cmbRuta">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="-------SELECCIONE-------"/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbRutaItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRutaActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSalida">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salida:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txfSalida">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfSalidaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

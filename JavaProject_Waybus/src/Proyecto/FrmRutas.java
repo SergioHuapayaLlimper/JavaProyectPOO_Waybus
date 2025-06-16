@@ -191,8 +191,18 @@ public class FrmRutas extends javax.swing.JFrame {
         txtFechaEmbarque.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Embarque"));
 
         cmbHorarioEmbarque.setBorder(javax.swing.BorderFactory.createTitledBorder("Horario de Embarque"));
+        cmbHorarioEmbarque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbHorarioEmbarqueActionPerformed(evt);
+            }
+        });
 
         txtPrecio.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio"));
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
 
         lblFechaHorario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblFechaHorario.setText("Fecha & Horario");
@@ -335,6 +345,14 @@ public class FrmRutas extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_menuItemRetrocederActionPerformed
+
+    private void cmbHorarioEmbarqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHorarioEmbarqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbHorarioEmbarqueActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
     /**
      * @param args the command line arguments

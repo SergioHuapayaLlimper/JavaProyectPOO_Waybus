@@ -132,6 +132,11 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         });
 
         txtFiltroCódigo.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese el Código:"));
+        txtFiltroCódigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroCódigoActionPerformed(evt);
+            }
+        });
 
         btnFiltrarCódigo.setText("Filtrar");
         btnFiltrarCódigo.addActionListener(new java.awt.event.ActionListener() {
@@ -435,9 +440,9 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnModificarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                    .addComponent(btnBorrarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnMostrarLista1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnMostrarLista1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(btnModificarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnBorrarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
@@ -544,6 +549,10 @@ public class FrmListaEmpleados extends javax.swing.JFrame {
         formadmi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemRegresarMenuActionPerformed
+
+    private void txtFiltroCódigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroCódigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroCódigoActionPerformed
     // Eliminar un empleado del archivo
     private void eliminarEmpleadoSeleccionado() {
         int fila = tblListaEmpleados.getSelectedRow();

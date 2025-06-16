@@ -51,7 +51,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMostrarLista" min="-2" pref="144" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="243" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -61,7 +64,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="362" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <Component id="btnMostrarLista" min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace pref="252" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,6 +79,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Bienvenid@, a la interfaz de Conductor"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMostrarLista">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar Lista"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarListaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

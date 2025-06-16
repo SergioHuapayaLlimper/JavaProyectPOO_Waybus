@@ -1,1 +1,2 @@
 C-34234,Juan,Torres,43534654,juan.torres@gmail.com,943254356,35,Masculino,Viaje,Lima - Camaná
+C-00001,Jorge,Chavez,16854186,asabi@gmail.com,984413541,20,Masculino,Encomienda,Camaná - Ica
