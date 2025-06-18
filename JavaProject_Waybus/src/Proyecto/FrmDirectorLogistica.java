@@ -17,8 +17,12 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        btnInventarioObjetos = new javax.swing.JButton();
+        btnRegistroBuses = new javax.swing.JButton();
+        btnAdministradorObjetos = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuDirectorLogistica = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -28,7 +32,35 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTitulo.setText("Bienvenid@, a la interfaz de Director de Logística");
 
-        jMenu1.setText("Opciones");
+        btnInventarioObjetos.setText("Inventario de Objetos");
+        btnInventarioObjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioObjetosActionPerformed(evt);
+            }
+        });
+
+        btnRegistroBuses.setText("Registro de Buses");
+        btnRegistroBuses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroBusesActionPerformed(evt);
+            }
+        });
+
+        btnAdministradorObjetos.setText("Administrador de Objetos");
+        btnAdministradorObjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministradorObjetosActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Envíos Logísticos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        menuDirectorLogistica.setText("Opciones");
 
         menuItemCerrarSesion.setText("Cerrar Sesión ");
         menuItemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -36,9 +68,9 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
                 menuItemCerrarSesionActionPerformed(evt);
             }
         });
-        jMenu1.add(menuItemCerrarSesion);
+        menuDirectorLogistica.add(menuItemCerrarSesion);
 
-        menuBarPrincipal.add(jMenu1);
+        menuBarPrincipal.add(menuDirectorLogistica);
 
         setJMenuBar(menuBarPrincipal);
 
@@ -47,19 +79,38 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblTitulo)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRegistroBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAdministradorObjetos)))))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblTitulo)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistroBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdministradorObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(259, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(655, 453));
+        setSize(new java.awt.Dimension(655, 484));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -68,6 +119,30 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         formlogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
+    private void btnInventarioObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioObjetosActionPerformed
+        FrmInventarioObjetos formlogin = new FrmInventarioObjetos();
+        formlogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnInventarioObjetosActionPerformed
+
+    private void btnRegistroBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroBusesActionPerformed
+        FrmBuses formlogin = new FrmBuses();
+        formlogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistroBusesActionPerformed
+
+    private void btnAdministradorObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorObjetosActionPerformed
+        FrmAdministradorObjetos formlogin = new FrmAdministradorObjetos();
+        formlogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAdministradorObjetosActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        FrmEnvioObjetos formlogin = new FrmEnvioObjetos();
+        formlogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -102,9 +177,13 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JButton btnAdministradorObjetos;
+    private javax.swing.JButton btnInventarioObjetos;
+    private javax.swing.JButton btnRegistroBuses;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenu menuDirectorLogistica;
     private javax.swing.JMenuItem menuItemCerrarSesion;
     // End of variables declaration//GEN-END:variables
 }

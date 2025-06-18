@@ -1,0 +1,5 @@
+123,2025-06-18 01:43:54,escobas,5,lima
+123,2025-06-18 01:56:12,escobas,5,lima
+123,2025-06-18 02:27:10,escobas,5,Operarios
+123,2025-06-18 02:27:17,escobas,5,Operarios
+123,2025-06-18 02:27:21,escobas,5,Operarios
