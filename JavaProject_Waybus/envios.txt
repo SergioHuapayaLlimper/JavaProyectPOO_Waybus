@@ -4,3 +4,6 @@
 123,2025-06-18 02:27:17,escobas,5,Operarios
 123,2025-06-18 02:27:21,escobas,5,Operarios
 12344,2025-06-18 18:42:24,Desinfectante,4,Lima
+1255,2025-06-19 01:57:50,Forro Asiento,13,Atico
+23451,2025-06-19 02:00:38,Bujias,20,Alto Siguas
+12233,2025-06-19 02:02:30,Escobas,1,Lima
