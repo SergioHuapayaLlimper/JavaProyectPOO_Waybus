@@ -81,6 +81,11 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
         menuRegistroObjetos.setText("Opciones");
 
         menuItemInventarioObjetos.setText("Inventario de objetos");
+        menuItemInventarioObjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemInventarioObjetosActionPerformed(evt);
+            }
+        });
         menuRegistroObjetos.add(menuItemInventarioObjetos);
 
         menuItemRetroceder.setText("Regresar al Menú");
@@ -164,16 +169,14 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
         int cantidad;
         try {
             cantidad = Integer.parseInt(cantidadStr);
-            if (cantidad < 0) {
-                JOptionPane.showMessageDialog(this, "La cantidad no puede ser negativa.");
+            if (cantidad <= 0) {
+                JOptionPane.showMessageDialog(this, "La cantidad ingresada es incorrecta.");
                 return;
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "La cantidad debe ser un número válido.");
             return;
         }
-
-        // ❌ Validar si el objeto ya existe con otro código distinto
         if (MantenimientoLogistica.objetoExisteConOtroCodigo(codigo, objeto)) {
             JOptionPane.showMessageDialog(this, "El objeto \"" + objeto + "\" ya está registrado con otro código. Usa el mismo código para actualizarlo.");
             return;
@@ -190,6 +193,12 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
         formdirectorlogistica.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemRetrocederActionPerformed
+
+    private void menuItemInventarioObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInventarioObjetosActionPerformed
+        FrmInventarioObjetos forminveobje = new FrmInventarioObjetos();
+        forminveobje.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemInventarioObjetosActionPerformed
 
     /**
      * @param args the command line arguments

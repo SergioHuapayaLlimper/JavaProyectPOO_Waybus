@@ -20,7 +20,8 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         btnInventarioObjetos = new javax.swing.JButton();
         btnRegistroBuses = new javax.swing.JButton();
         btnAdministradorObjetos = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnEnvioLogis = new javax.swing.JButton();
+        btnRegistroObjetos = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuDirectorLogistica = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -53,10 +54,17 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Envíos Logísticos");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnEnvioLogis.setText("Envíos Logísticos");
+        btnEnvioLogis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnEnvioLogisActionPerformed(evt);
+            }
+        });
+
+        btnRegistroObjetos.setText("Registro de Objetos");
+        btnRegistroObjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroObjetosActionPerformed(evt);
             }
         });
 
@@ -85,14 +93,16 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
                         .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEnvioLogis, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistroObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAdministradorObjetos)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnRegistroBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAdministradorObjetos)))))
+                                .addComponent(btnRegistroBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,11 +112,13 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdministradorObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistroBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdministradorObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegistroObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEnvioLogis, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(259, Short.MAX_VALUE))
         );
 
@@ -121,28 +133,34 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
     private void btnInventarioObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioObjetosActionPerformed
-        FrmInventarioObjetos formlogin = new FrmInventarioObjetos();
-        formlogin.setVisible(true);
+        FrmInventarioObjetos forminven = new FrmInventarioObjetos();
+        forminven.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInventarioObjetosActionPerformed
 
     private void btnRegistroBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroBusesActionPerformed
-        FrmBuses formlogin = new FrmBuses();
-        formlogin.setVisible(true);
+        FrmBuses formbus = new FrmBuses();
+        formbus.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistroBusesActionPerformed
 
     private void btnAdministradorObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorObjetosActionPerformed
-        FrmAdministradorObjetos formlogin = new FrmAdministradorObjetos();
-        formlogin.setVisible(true);
+        FrmAdministradorObjetos formadminobje = new FrmAdministradorObjetos();
+        formadminobje.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAdministradorObjetosActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FrmEnvioObjetos formlogin = new FrmEnvioObjetos();
-        formlogin.setVisible(true);
+    private void btnEnvioLogisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvioLogisActionPerformed
+        FrmEnvioObjetos formobje = new FrmEnvioObjetos();
+        formobje.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnEnvioLogisActionPerformed
+
+    private void btnRegistroObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroObjetosActionPerformed
+        FrmRegistroObjetos formregis = new FrmRegistroObjetos();
+        formregis.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistroObjetosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -178,9 +196,10 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministradorObjetos;
+    private javax.swing.JButton btnEnvioLogis;
     private javax.swing.JButton btnInventarioObjetos;
     private javax.swing.JButton btnRegistroBuses;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnRegistroObjetos;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenu menuDirectorLogistica;
