@@ -12,8 +12,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.text.*;
 
-    //Formulario de registro de empleados.
-    public class FrmRegistroEmpleados extends javax.swing.JFrame {
+//Formulario de registro de empleados.
+public class FrmRegistroEmpleados extends javax.swing.JFrame {
 
     MantenimientoEmpleados mantenimiento;
     

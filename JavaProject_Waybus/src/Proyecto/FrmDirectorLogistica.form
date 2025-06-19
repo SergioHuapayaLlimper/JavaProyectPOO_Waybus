@@ -62,13 +62,14 @@
                           <Component id="btnRegistroObjetos" min="-2" pref="159" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnAdministradorObjetos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnRegistroBuses" min="-2" pref="159" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="btnInventarioObjetos" min="-2" pref="159" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnAdministradorObjetos" max="32767" attributes="0"/>
+                          <Component id="btnInventarioObjetos" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnRegistroBuses" pref="159" max="32767" attributes="0"/>
+                          <Component id="btnMostrarBuses" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -91,6 +92,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnEnvioLogis" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="btnInventarioObjetos" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="btnMostrarBuses" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="259" max="32767" attributes="0"/>
           </Group>
@@ -144,6 +146,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistroObjetosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMostrarBuses">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar Buses"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarBusesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

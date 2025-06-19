@@ -44,7 +44,8 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         personalizarBoton(btnEnvioLogis);   
         personalizarBoton(btnInventarioObjetos);   
         personalizarBoton(btnRegistroBuses);   
-        personalizarBoton(btnRegistroObjetos);   
+        personalizarBoton(btnRegistroObjetos);  
+        personalizarBoton(btnMostrarBuses);
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
     }
 
@@ -58,6 +59,7 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         btnAdministradorObjetos = new javax.swing.JButton();
         btnEnvioLogis = new javax.swing.JButton();
         btnRegistroObjetos = new javax.swing.JButton();
+        btnMostrarBuses = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuDirectorLogistica = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -104,6 +106,13 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
             }
         });
 
+        btnMostrarBuses.setText("Mostrar Buses");
+        btnMostrarBuses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarBusesActionPerformed(evt);
+            }
+        });
+
         menuDirectorLogistica.setText("Opciones");
 
         menuItemCerrarSesion.setText("Cerrar Sesión ");
@@ -133,12 +142,13 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
                             .addComponent(btnEnvioLogis, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRegistroObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAdministradorObjetos)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegistroBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAdministradorObjetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegistroBuses, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(btnMostrarBuses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,7 +164,8 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEnvioLogis, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInventarioObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrarBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(259, Short.MAX_VALUE))
         );
 
@@ -198,6 +209,12 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegistroObjetosActionPerformed
 
+    private void btnMostrarBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarBusesActionPerformed
+        FrmListaBuses formlisbus = new FrmListaBuses();
+        formlisbus.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMostrarBusesActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -234,6 +251,7 @@ public class FrmDirectorLogistica extends javax.swing.JFrame {
     private javax.swing.JButton btnAdministradorObjetos;
     private javax.swing.JButton btnEnvioLogis;
     private javax.swing.JButton btnInventarioObjetos;
+    private javax.swing.JButton btnMostrarBuses;
     private javax.swing.JButton btnRegistroBuses;
     private javax.swing.JButton btnRegistroObjetos;
     private javax.swing.JLabel lblTitulo;

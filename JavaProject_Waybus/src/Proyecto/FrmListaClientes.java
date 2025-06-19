@@ -98,7 +98,7 @@ public class FrmListaClientes extends javax.swing.JFrame {
 
         // Cargar datos desde el archivo
         cargarClientesDesdeArchivo();
-        }
+    }
     
     private void filtrarPorTexto(int columna, String texto) {
     DefaultTableModel modeloFiltrado = new DefaultTableModel();

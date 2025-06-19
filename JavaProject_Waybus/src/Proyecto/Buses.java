@@ -54,17 +54,5 @@ public class Buses {
     public void setUsos(int usos) {
         this.usos = usos;
     }
-
-    // Convierte el objeto a una línea para guardar en el archivo .txt
-    @Override
-    public String toString() {
-        return placa + ";" + modelo + ";" + marca + ";" + estado + ";" + usos;
-    }
-
-    // Crea un objeto Bus a partir de una línea del archivo .txt
-    public static Buses fromString(String linea) {
-        String[] p = linea.split(";");
-        return new Buses(p[0], p[1], p[2], p[3], Integer.parseInt(p[4]));
-    }
 }
 

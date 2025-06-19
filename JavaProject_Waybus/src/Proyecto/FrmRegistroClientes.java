@@ -4,7 +4,6 @@ package Proyecto;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ItemEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;

@@ -7,11 +7,46 @@ package Proyecto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 public class FrmEditorRutas extends javax.swing.JFrame {
     
     private int filaSeleccionada = -1;
     private FrmListaRutas frmPadre;
+    
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215); // Azul moderno
+        Color fondoHover = new Color(0, 150, 255);
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Padding
+        boton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        // Quitar efectos de Look&Feel predeterminados
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Efecto hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
     
     public FrmEditorRutas() {
         initComponents();
@@ -21,6 +56,7 @@ public class FrmEditorRutas extends javax.swing.JFrame {
         cargarCombos();
         cargarConductores();
         cargarBuses();
+        personalizarBoton(btnGuardar);
     }
     
     private void cargarCombos() {
