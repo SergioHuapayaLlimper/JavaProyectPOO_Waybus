@@ -1,3 +1,5 @@
 U-12345,Jorge Ricardo,Huaman Manrique,15975325,jrhm@gmail.com,989456123,Lima,Counter,23,Masculino
 U-54345,Juan,Torres,53465465,juan@gmail.com,954235346,Lima,Conductor,43,Masculino
 U-98765,Pedro,Bolaños,78974565,pedrito@gmail.com,987656789,Alto Siguas,Conductor,50,Masculino
+U-14752,Sergio,Huapaya,71469055,sergio@gmail.com,988745665,Lima,Director de Logística,40,Masculino
+U-17895,Alexis,Huaracha,78965412,alexis@gmail.com,987745588,Atocongo,Director de Logística,40,Masculino

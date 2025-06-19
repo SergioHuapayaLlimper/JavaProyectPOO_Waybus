@@ -1,2 +1,5 @@
 C-34234,Juan,Torres,43534654,juan.torres@gmail.com,943254356,35,Masculino,Viaje,Lima - Camaná
 C-00001,Jorge,Chavez,16854186,asabi@gmail.com,984413541,20,Masculino,Encomienda,Camaná - Ica
+C-98746,Pedro,Calderon,78267268,pedrocal@gmail.com,983647364,40,Masculino,Encomienda,Atocongo - Ica
+C-12354,Angel,Huarcaya,56855224,angel@gmail.com,955686566,30,Masculino,Viaje,Alto Siguas - Arequipa
+C-12358,Sebastian,Herandez,57684555,sebas@gmail.com,965588988,20,Masculino,Encomienda,Alto Siguas - Arequipa
