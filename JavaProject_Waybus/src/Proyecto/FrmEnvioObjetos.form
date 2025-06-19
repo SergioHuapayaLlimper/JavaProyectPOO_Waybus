@@ -57,7 +57,7 @@
                               <Component id="cbmCodigo" max="32767" attributes="0"/>
                               <Component id="txtCantidad" pref="198" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="btnEditar" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="btnEnviar" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -93,7 +93,7 @@
                   <Component id="txtOficina" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnEditar" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="btnEnviar" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace pref="87" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -118,12 +118,12 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEditar">
+    <Component class="javax.swing.JButton" name="btnEnviar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

@@ -8,29 +8,59 @@ import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 public class FrmRegistroObjetos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmRegistroObjetos
-     */
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215);         // Azul principal
+        Color fondoHover = new Color(0, 150, 255);    // Hover más claro
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
+    
     public FrmRegistroObjetos() {
         initComponents();
-    
-    // Hacer que el campo de fecha no sea editable
-    txtFecha.setEditable(false);
-    // Evitar que el campo sea enfocado (y por lo tanto no se puede tabular)
-    txtFecha.setFocusable(false);
-    
-    // Crear el temporizador que actualiza la fecha en el textfield cada segundo
-    Timer timer = new Timer(1000, e -> {
-        // Llamar al método de MantenimientoLogistica para obtener la fecha y hora actuales
-        String fecha = MantenimientoLogistica.obtenerFechaYHora();
-        
-        // Setear la fecha en el campo txtFecha
-        txtFecha.setText(fecha);
-    });
-    timer.start(); // Inicia el temporizador
+        // Hacer que el campo de fecha no sea editable
+        txtFecha.setEditable(false);
+        // Evitar que el campo sea enfocado (y por lo tanto no se puede tabular)
+        txtFecha.setFocusable(false);
+
+        // Crear el temporizador que actualiza la fecha en el textfield cada segundo
+        Timer timer = new Timer(1000, e -> {
+            // Llamar al método de MantenimientoLogistica para obtener la fecha y hora actuales
+            String fecha = MantenimientoLogistica.obtenerFechaYHora();
+
+            // Setear la fecha en el campo txtFecha
+            txtFecha.setText(fecha);
+        });
+        timer.start(); // Inicia el temporizador
+        personalizarBoton(btnRegistrar);
     }
 
     /**

@@ -3,31 +3,59 @@ package Proyecto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 
 public class FrmListaRutas extends javax.swing.JFrame {
 
-    private void cargarRutasDesdeArchivo() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Horario");
-        modelo.addColumn("Salida");
-        modelo.addColumn("Llegada");
-        modelo.addColumn("Conductor");
-        modelo.addColumn("Bus");
+    DefaultTableModel modelo;
+    MantenimientoRutas mantenimiento;
+    
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215);         // Azul principal
+        Color fondoHover = new Color(0, 150, 255);    // Hover más claro
+        Color texto = Color.WHITE;
 
-        ArrayList<String[]> rutas = MantenimientoRutas.obtenerRutasDesdeArchivo();
-        for (String[] ruta : rutas) {
-            modelo.addRow(ruta);
-        }
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
 
-        tableListaRutas.setModel(modelo);
+        // Hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
     }
     
     public FrmListaRutas() {
         initComponents();
-        cargarRutasDesdeArchivo();
+        personalizarBoton(btnEditarRuta);
+        personalizarBoton(btnEliminarRuta);
+        String[] nombreColumna = {"Fecha","Precio","Horario","Salida","Llegada","Conductor","Bus"};
+        modelo= new DefaultTableModel(nombreColumna,0);
+        tblListaRutas.setModel(modelo);
+        tblListaRutas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblListaRutas.setShowGrid(false);
+        tblListaRutas.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        mantenimiento = new MantenimientoRutas();
+        cargarRutaDesdeArchivo();
     }
 
     /**
@@ -41,9 +69,9 @@ public class FrmListaRutas extends javax.swing.JFrame {
 
         lblListadoRutasRegistradas = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableListaRutas = new javax.swing.JTable();
-        btnEditarRuta = new javax.swing.JToggleButton();
-        btnEliminar = new javax.swing.JToggleButton();
+        tblListaRutas = new javax.swing.JTable();
+        btnEditarRuta = new javax.swing.JButton();
+        btnEliminarRuta = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuListaRutas = new javax.swing.JMenu();
         menuItemRetroceder = new javax.swing.JMenuItem();
@@ -55,7 +83,7 @@ public class FrmListaRutas extends javax.swing.JFrame {
         lblListadoRutasRegistradas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblListadoRutasRegistradas.setText("Listado de todas las rutas registradas");
 
-        tableListaRutas.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaRutas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,16 +94,21 @@ public class FrmListaRutas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableListaRutas);
+        jScrollPane1.setViewportView(tblListaRutas);
 
-        btnEditarRuta.setText("Editar ");
+        btnEditarRuta.setText("Editar");
         btnEditarRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarRutaActionPerformed(evt);
             }
         });
 
-        btnEliminar.setText("Eliminar");
+        btnEliminarRuta.setText("Eliminar");
+        btnEliminarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarRutaActionPerformed(evt);
+            }
+        });
 
         menuListaRutas.setText("Opciones");
 
@@ -105,9 +138,9 @@ public class FrmListaRutas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEditarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEditarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnEliminarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,7 +153,7 @@ public class FrmListaRutas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -135,11 +168,11 @@ public class FrmListaRutas extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemRetrocederActionPerformed
 
     private void btnEditarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarRutaActionPerformed
-        int fila = tableListaRutas.getSelectedRow();
+        int fila = tblListaRutas.getSelectedRow();
         if (fila != -1) {
             String[] datos = new String[7];
             for (int i = 0; i < 7; i++) {
-                datos[i] = tableListaRutas.getValueAt(fila, i).toString();
+                datos[i] = tblListaRutas.getValueAt(fila, i).toString();
             }
 
             // Abrir el editor y pasarle la ventana actual
@@ -149,6 +182,62 @@ public class FrmListaRutas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarRutaActionPerformed
 
+    private void btnEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRutaActionPerformed
+        eliminarRutaSeleccionada();
+        cargarRutaDesdeArchivo();
+    }//GEN-LAST:event_btnEliminarRutaActionPerformed
+
+    private void cargarRutaDesdeArchivo() {
+        //Asegurar que la tabla vuelva a usar el modelo original
+        tblListaRutas.setModel(modelo);
+        modelo.setRowCount(0); 
+
+        try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File("rutas.txt"))) {
+            while (scanner.hasNextLine()) {
+                String linea = scanner.nextLine();
+                String[] datos = linea.split(",");
+                if (datos.length == 7) {
+                    modelo.addRow(datos);
+                }
+            }
+        } catch (java.io.FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "No se encontró el archivo de ruta.");
+        }
+    }
+    
+    private void eliminarRutaSeleccionada() {
+        int fila = tblListaRutas.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.");
+            return;
+        }
+        String codigoAEliminar = tblListaRutas.getValueAt(fila, 0).toString(); //Código del empleado
+        int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres eliminar la ruta seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        java.io.File archivoOriginal = new java.io.File("rutas.txt");
+        java.io.File archivoTemporal = new java.io.File("rutas_temp.txt");
+        try (
+            java.util.Scanner lector = new java.util.Scanner(archivoOriginal);
+            java.io.PrintWriter escritor = new java.io.PrintWriter(archivoTemporal)
+        ) {
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                if (!linea.startsWith(codigoAEliminar + ",")) {
+                    escritor.println(linea);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar del archivo: " + e.getMessage());
+            return;
+        }
+        archivoOriginal.delete();
+        archivoTemporal.renameTo(archivoOriginal);
+        JOptionPane.showMessageDialog(this, "Ruta eliminada correctamente.");
+        cargarRutaDesdeArchivo(); 
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -185,13 +274,13 @@ public class FrmListaRutas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnEditarRuta;
-    private javax.swing.JToggleButton btnEliminar;
+    private javax.swing.JButton btnEditarRuta;
+    private javax.swing.JButton btnEliminarRuta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblListadoRutasRegistradas;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuItemRetroceder;
     private javax.swing.JMenu menuListaRutas;
-    private javax.swing.JTable tableListaRutas;
+    private javax.swing.JTable tblListaRutas;
     // End of variables declaration//GEN-END:variables
 }

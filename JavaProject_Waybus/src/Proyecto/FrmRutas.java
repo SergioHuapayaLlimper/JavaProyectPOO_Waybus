@@ -4,7 +4,6 @@
  */
 package Proyecto;
 
-import java.awt.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,11 +11,44 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 
 
 public class FrmRutas extends javax.swing.JFrame {
 
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215);         // Azul principal
+        Color fondoHover = new Color(0, 150, 255);    // Hover más claro
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
+    
     private void actualizarPrecio() {
         Object objSalida = cmbLugarPartida.getSelectedItem();
         Object objLlegada = cmbLugarLlegada.getSelectedItem();
@@ -153,6 +185,7 @@ public class FrmRutas extends javax.swing.JFrame {
         for (String lugar : lugaresLlegada) {
             cmbLugarLlegada.addItem(lugar);
         }
+        personalizarBoton(btnRegistrar);
     }
 
     /**

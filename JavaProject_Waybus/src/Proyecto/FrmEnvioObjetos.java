@@ -6,9 +6,42 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 public class FrmEnvioObjetos extends javax.swing.JFrame {
 
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215);         // Azul principal
+        Color fondoHover = new Color(0, 150, 255);    // Hover más claro
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
+    
     private void iniciarRelojEnFecha() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -19,7 +52,6 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
                 txtFecha.setText(ahora.format(formatter));
             }
         });
-
         timer.start();
     }
     
@@ -47,10 +79,9 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
         // Desactivar edición y tabulación de los campos que no deben modificarse
         txtFecha.setEditable(false);
         txtFecha.setFocusable(false);
-
         txtObjeto.setEditable(false);
         txtObjeto.setFocusable(false);
-
+        personalizarBoton(btnEnviar);
     }
 
     /**
@@ -64,7 +95,7 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
 
         txtObjeto = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
-        btnEditar = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         cbmCodigo = new javax.swing.JComboBox<>();
@@ -80,10 +111,10 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
 
         txtCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad: "));
 
-        btnEditar.setText("Enviar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnEnviarActionPerformed(evt);
             }
         });
 
@@ -127,7 +158,7 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cbmCodigo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
@@ -154,7 +185,7 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOficina, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
@@ -166,7 +197,7 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
          mostrarDatosObjetoSeleccionado();
     }//GEN-LAST:event_cbmCodigoActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         String codigo = (String) cbmCodigo.getSelectedItem();
         String fecha = txtFecha.getText().trim();
         String objeto = txtObjeto.getText().trim();
@@ -203,7 +234,7 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
         MantenimientoLogistica.registrarEnvio(envio);
 
         JOptionPane.showMessageDialog(this, "Envío registrado y stock actualizado correctamente.");
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void menuItemRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRetrocederActionPerformed
         FrmDirectorLogistica formdirectorlogistica = new FrmDirectorLogistica();
@@ -247,7 +278,7 @@ public class FrmEnvioObjetos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JComboBox<String> cbmCodigo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBarPrincipal;

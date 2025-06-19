@@ -9,6 +9,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+
 
 /**
  *
@@ -16,12 +22,36 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmInventarioObjetos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmInventarioObjetos
-     */
+    private void personalizarBoton(JButton boton) {
+        Color fondo = new Color(0, 120, 215);         // Azul principal
+        Color fondoHover = new Color(0, 150, 255);    // Hover más claro
+        Color texto = Color.WHITE;
+
+        boton.setBackground(fondo);
+        boton.setForeground(texto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        // Hover
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondoHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(fondo);
+            }
+        });
+    }
+    
     public FrmInventarioObjetos() {
         initComponents();
-
         // Configurar el modelo de la tabla con las columnas necesarias
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Código");
@@ -32,9 +62,17 @@ public class FrmInventarioObjetos extends javax.swing.JFrame {
 
         // Establecer el modelo en el JTable
         TableObjetosInfo.setModel(modelo);
-
         // Llamar a cargarDatos() para cargar los datos del archivo en el JTable
         MantenimientoLogistica.cargarDatos(modelo);
+        personalizarBoton(btnEliminar);
+        personalizarBoton(btnIniciarArea);
+        personalizarBoton(btnIniciarCodigo);
+        personalizarBoton(btnIniciarFecha);
+        personalizarBoton(btnIniciarObjeto);
+        personalizarBoton(btnReiniciar);
+        personalizarBoton(btnReiniciar1);
+        personalizarBoton(btnReiniciar2);
+        personalizarBoton(btnReiniciar3);
     }
 
     /**

@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author usuario
- */
 public class FrmEditorRutas extends javax.swing.JFrame {
     
     private int filaSeleccionada = -1;
