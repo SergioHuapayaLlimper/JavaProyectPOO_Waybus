@@ -83,6 +83,7 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
         menuRegistroObjetos = new javax.swing.JMenu();
         menuItemInventarioObjetos = new javax.swing.JMenuItem();
         menuItemRetroceder = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Registro de Objetos Logísticos");
@@ -125,6 +126,14 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
             }
         });
         menuRegistroObjetos.add(menuItemRetroceder);
+
+        jMenuItem1.setText("Actualizar objeto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuRegistroObjetos.add(jMenuItem1);
 
         menuBarPrincipal.add(menuRegistroObjetos);
 
@@ -215,7 +224,12 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
         Logistica nuevoObjeto = new Logistica(codigo, fecha, objeto, cantidad, area);
         MantenimientoLogistica.guardarOActualizarObjeto(nuevoObjeto);
 
-        JOptionPane.showMessageDialog(this, "Objeto registrado o actualizado correctamente.");
+        JOptionPane.showMessageDialog(this, "Objeto registrado correctamente.");
+        
+        txtCodigo.setText("");
+        txtCantidad.setText("");
+        txtObjeto.setText("");
+        txtArea.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void menuItemRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRetrocederActionPerformed
@@ -229,6 +243,12 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
         forminveobje.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemInventarioObjetosActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrmAdministradorObjetos formadminobje = new FrmAdministradorObjetos();
+        formadminobje.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +287,7 @@ public class FrmRegistroObjetos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuItemInventarioObjetos;

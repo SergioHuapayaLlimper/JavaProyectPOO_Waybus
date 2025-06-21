@@ -93,12 +93,13 @@ public class FrmListaClientes extends javax.swing.JFrame {
         // Establecer color de fondo
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
 
-        // Personalizar botón
+        personalizarBotonLista(btnModificar);
+        personalizarBotonLista(btnMostrar);
         personalizarBotonLista(btnEliminar);
 
         // Cargar datos desde el archivo
         cargarClientesDesdeArchivo();
-        }
+    }
     
     private void filtrarPorTexto(int columna, String texto) {
     DefaultTableModel modeloFiltrado = new DefaultTableModel();
