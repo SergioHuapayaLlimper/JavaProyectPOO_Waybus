@@ -200,7 +200,7 @@ public class FrmBuses extends javax.swing.JFrame {
         String placa = txtPlaca.getText().trim();
         String modelo = txtModelo.getText().trim();
         String marca = cbMarcaBus.getSelectedItem().toString();
-        String estado = "Listo";
+        String estado = cbEstado.getSelectedItem().toString();
         int usos = 0;
 
         if (modelo.length() != 7) {
@@ -228,10 +228,10 @@ public class FrmBuses extends javax.swing.JFrame {
 
         try (FileWriter writer = new FileWriter("buses.txt", true)) {
             writer.write(
-                objetobus.getPlaca()+ "," +
-                objetobus.getModelo() + "," +
-                objetobus.getMarca() + "," +
-                objetobus.getEstado() + "," +
+                objetobus.getPlaca()+ ";" +
+                objetobus.getModelo() + ";" +
+                objetobus.getMarca() + ";" +
+                objetobus.getEstado() + ";" +
                 objetobus.getUsos() + "\n"
             );
 

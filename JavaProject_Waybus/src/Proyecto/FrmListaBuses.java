@@ -243,7 +243,13 @@ public class FrmListaBuses extends javax.swing.JFrame {
     }//GEN-LAST:event_btnfiltarPorPlacaActionPerformed
 
     private void btnFiltrarPorEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarPorEstadoActionPerformed
-        filtrarPorTexto(1, cbFiltroPorEstado.getSelectedItem().toString());
+        String estadoSeleccionado = cbFiltroPorEstado.getSelectedItem().toString().trim();
+        if (estadoSeleccionado.equals("------------Seleccione-----------")) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un estado.");
+            return;
+        }
+
+        filtrarPorTexto(3, estadoSeleccionado); // 3 es el índice de la columna de "Estado"
     }//GEN-LAST:event_btnFiltrarPorEstadoActionPerformed
 
     private void btnMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarListaActionPerformed
@@ -275,13 +281,14 @@ public class FrmListaBuses extends javax.swing.JFrame {
     
     private void filtrarPorTexto(int columna, String texto) {
         DefaultTableModel modeloFiltrado = new DefaultTableModel();
-        //Copiar estructura por columna
+        // Copiar estructura por columna
         for (int i = 0; i < modelo.getColumnCount(); i++) {
             modeloFiltrado.addColumn(modelo.getColumnName(i));
         }
         boolean encontrado = false;
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            String celda = modelo.getValueAt(i, columna).toString().toLowerCase();
+            String celda = modelo.getValueAt(i, columna).toString().trim().toLowerCase();
+            System.out.println("Comparando: " + celda + " con " + texto.toLowerCase());  // Para depuración
             if (celda.contains(texto.toLowerCase())) {
                 Object[] fila = new Object[modelo.getColumnCount()];
                 for (int j = 0; j < modelo.getColumnCount(); j++) {

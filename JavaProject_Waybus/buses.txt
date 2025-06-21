@@ -1,3 +1,4 @@
-535345;3534534;Mercedes;Listo;0
-man 123;1234567;Marcopolo;Listo;0
-AVG123,1234567,Mercedes,Listo,0
+534564;4234324;Mercedes;Listo;0
+423423;3534534;Mercedes;Listo;0
+42344543;2342345;Mercedes;Listo;0
+65464576;4234345;Marcopolo;En mantenimiento;0

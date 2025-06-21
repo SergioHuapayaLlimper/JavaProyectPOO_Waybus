@@ -1,4 +1,3 @@
-
 package Proyecto;
 
 import java.io.BufferedWriter;
@@ -33,7 +32,7 @@ public class MantenimientoBuses {
         try (Scanner scanner = new Scanner(new File(rutaArchivo))) {
             while (scanner.hasNextLine()) {
                 String linea = scanner.nextLine().trim();
-                String[] datos = linea.split(",");
+                String[] datos = linea.split(";");
 
                 if (datos.length == 5) {
                     String placa = datos[0];
@@ -55,7 +54,7 @@ public class MantenimientoBuses {
         return lista;
     }
     
-        // Método para actualizar un empleado por su código
+    // Método para actualizar un empleado por su código
     public boolean actualizarBuses(Buses nuevobus) {
         ArrayList<Buses> bus = obtenerBuses();
         boolean actualizado = false;
@@ -79,7 +78,7 @@ public class MantenimientoBuses {
     private void guardarBuses(ArrayList<Buses> bus) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (Buses b : bus) {
-                String linea = String.join(",",
+                String linea = String.join(";",
                     b.getPlaca(),
                     b.getModelo(),
                     b.getMarca(),
