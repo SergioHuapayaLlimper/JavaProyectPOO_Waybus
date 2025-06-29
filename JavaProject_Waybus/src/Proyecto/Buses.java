@@ -6,13 +6,19 @@ public class Buses {
     private String marca;
     private String estado;
     private int usos;
+    private int cantidadAsientos;
 
-    public Buses(String placa, String modelo, String marca, String estado, int usos) {
+    public Buses(String placa, String modelo, String marca, String estado, int usos, int cantidadAsientos) {
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
         this.estado = estado;
         this.usos = usos;
+        this.cantidadAsientos = cantidadAsientos;
+    }
+    
+    public Buses(){
+        
     }
 
     public String getPlaca() {
@@ -53,6 +59,25 @@ public class Buses {
 
     public void setUsos(int usos) {
         this.usos = usos;
+        actualizarEstado();
+    }
+
+    public int getCantidadAsientos() {
+        return cantidadAsientos;
+    }
+
+    public void setCantidadAsientos(int cantidadAsientos) {
+        this.cantidadAsientos = cantidadAsientos;
+    }
+
+    private void actualizarEstado() {
+        if (usos > 10) {
+            estado = "Fuera de servicio";
+        } else if (usos > 4) {
+            estado = "En revisión";
+        } else {
+            estado = "Operativo";
+        }
     }
 }
 

@@ -1,3 +1,6 @@
-12/06/2025,S/ 20.0,Mañana - 07:00 AM,Alto Siguas,Arequipa,U-54345,535345
-12/07/2025,S/ 35.0,Tarde - 12:00 PM,Atocongo,Ica,U-54345,535345
-24/07/2025,S/ 110.0,Noche - 06:00 PM,Lima,Arequipa,U-98765,535345
+12/07/2025,S/ 110.0,Mañana - 07:00 AM,Arequipa,Lima,U-54345,ABC
+13/07/2025,S/ 95.0,Tarde - 12:00 PM,Lima,Alto Siguas,U-98765,DEF
+20/08/2025,S/ 15.0,Noche - 06:00 PM,Camaná,Alto Siguas,U-98765,ABC
+22/09/2025,S/ 70.0,Tarde - 12:00 PM,Camaná,Ica,U-98765,ABC
+30/08/2025,S/ 25.0,Tarde - 12:00 PM,Camaná,Arequipa,U-54345,ABC
+31/09/2025,S/ 75.0,Mañana - 07:00 AM,Atocongo,Camaná,U-54345,ABC

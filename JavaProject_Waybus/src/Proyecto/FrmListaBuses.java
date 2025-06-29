@@ -53,7 +53,7 @@ public class FrmListaBuses extends javax.swing.JFrame {
     
     public FrmListaBuses() {
         initComponents();
-        String[] nombreColumna = {"Placa","Model","Marca","Estado","Usos"};
+        String[] nombreColumna = {"Placa","Model","Marca","Estado","Usos","Asientos"};
         modelo= new DefaultTableModel(nombreColumna,0);
         tblListaBuses.setModel(modelo);
         tblListaBuses.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -263,8 +263,8 @@ public class FrmListaBuses extends javax.swing.JFrame {
         try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File("buses.txt"))) {
             while (scanner.hasNextLine()) {
                 String linea = scanner.nextLine();
-                String[] datos = linea.split(";");
-                if (datos.length == 5) {
+                String[] datos = linea.split(",");
+                if (datos.length == 6) {
                     modelo.addRow(datos);
                 }
             }

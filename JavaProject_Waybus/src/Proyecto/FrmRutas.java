@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
@@ -106,13 +107,13 @@ public class FrmRutas extends javax.swing.JFrame {
                 String linea = sc.nextLine().trim();
                 if (linea.isEmpty()) continue;
 
-                // Formato esperado: placa;modelo;marca;estado;usos
-                String[] partes = linea.split(";");
-                if (partes.length >= 4) {
+                // Formato esperado: placa;modelo;marca;estado;usos;asientos
+                String[] partes = linea.split(",");
+                if (partes.length >= 6) {
                     String placa = partes[0].trim();
                     String estado = partes[3].trim();
 
-                    if (estado.equalsIgnoreCase("Listo")) {
+                    if (estado.equalsIgnoreCase("Operativo")) {
                         cmbBus.addItem(placa);
                     }
                 }
@@ -124,31 +125,39 @@ public class FrmRutas extends javax.swing.JFrame {
     
     private void guardarRutaEnArchivo(String archivo) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(archivo, true))) {
+        String fecha = txtFechaEmbarque.getText().trim();
+        String precio = txtPrecio.getText().trim();
+        String horario = cmbHorarioEmbarque.getSelectedItem().toString();
+        String salida = cmbLugarPartida.getSelectedItem().toString();
+        String llegada = cmbLugarLlegada.getSelectedItem().toString();
+        String conductor = cmbConductor.getSelectedItem().toString();
+        String bus = cmbBus.getSelectedItem().toString();
 
-            String fecha = txtFechaEmbarque.getText().trim();
-            String precio = txtPrecio.getText().trim();
-            String horario = cmbHorarioEmbarque.getSelectedItem().toString();
-            String salida = cmbLugarPartida.getSelectedItem().toString();
-            String llegada = cmbLugarLlegada.getSelectedItem().toString();
-            String conductor = cmbConductor.getSelectedItem().toString();
-            String bus = cmbBus.getSelectedItem().toString();
-
-            // Validación básica
-            if (fecha.isEmpty() || precio.isEmpty() || horario.equals("SELECCIONE") || salida.equals("SELECCIONE") ||
-                llegada.equals("SELECCIONE") || conductor.equals("SELECCIONE") || bus.equals("SELECCIONE")) {
-                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
-                return;
-            }
-
-            // Construcción de línea
-            String linea = String.join(",", fecha, precio, horario, salida, llegada, conductor, bus);
-            pw.println(linea);
-
-            JOptionPane.showMessageDialog(this, "Ruta registrada correctamente.");
-
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar la ruta: " + e.getMessage());
+        // Validación básica
+        if (fecha.isEmpty() || precio.isEmpty() || horario.equals("SELECCIONE") || salida.equals("SELECCIONE") ||
+            llegada.equals("SELECCIONE") || conductor.equals("SELECCIONE") || bus.equals("SELECCIONE")) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            return;
         }
+
+        // Construcción de línea
+        String linea = String.join(",", fecha, precio, horario, salida, llegada, conductor, bus);
+        pw.println(linea);
+
+        // Aumentar el contador de usos del bus asignado
+        List<Buses> listaBuses = ControladorAsignaciones.cargarBusesDesdeArchivo("buses.txt");
+        for (Buses b : listaBuses) {
+            if (b.getPlaca().equalsIgnoreCase(bus)) {
+                b.setUsos(b.getUsos() + 1);  // Incrementar solo aquí
+                break;
+            }
+        }
+        ControladorAsignaciones.guardarBusesEnArchivo("buses.txt", listaBuses);
+
+        JOptionPane.showMessageDialog(this, "Ruta registrada correctamente.");
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error al guardar la ruta: " + e.getMessage());
+    }
     }
     
     public FrmRutas() {

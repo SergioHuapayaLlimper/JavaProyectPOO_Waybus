@@ -1,3 +1,2 @@
-535345;3534534;Mercedes;Listo;0
-man 123;1234567;Marcopolo;Listo;0
-AVG123,1234567,Mercedes,Listo,0
+ABC,1234567,Mercedes,En revisión,5,44
+DEF,7654321,Marcopolo,Operativo,0,30

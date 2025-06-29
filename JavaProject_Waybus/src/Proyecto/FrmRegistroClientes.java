@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -441,9 +442,56 @@ import javax.swing.text.*;
 
         // Validar ruta seleccionada
         if (ruta.equals("-------SELECCIONE-------")) {
-        JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
-        return;
-         }
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
+            return;
+        }
+        
+        String nombreArchivo = "rutas.txt";
+        String horaRuta = txfSalida.getText().trim();
+        String[] partesRuta = ruta.split(" - ");
+        if (partesRuta.length != 2) {
+            JOptionPane.showMessageDialog(this, "Ruta inválida.");
+            return;
+        }
+        String origen = partesRuta[0];
+        String destino = partesRuta[1];
+        String fecha = ""; // puedes colocar una fecha predeterminada o adaptarlo a la selección del usuario
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                if (datos.length >= 6) {
+                    String origenArchivo = datos[3].trim();
+                    String destinoArchivo = datos[4].trim();
+                    String horaArchivo = datos[2].trim().split("-")[1].trim();
+                    if (origenArchivo.equalsIgnoreCase(origen) && destinoArchivo.equalsIgnoreCase(destino)
+                            && horaArchivo.equalsIgnoreCase(horaRuta)) {
+                        fecha = datos[0].trim();
+                        break;
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al leer rutas.txt: " + ex.getMessage());
+            return;
+        }
+
+        // Ahora sí puedes crear el objeto Rutas
+        Rutas rutaSeleccionada = new Rutas(fecha, horaRuta, origen, destino);
+
+        // Cargar buses y asignaciones
+        List<Buses> listaBuses = ControladorAsignaciones.cargarBusesDesdeArchivo("buses.txt");
+        List<AsignacionesRutas> asignaciones = ControladorAsignaciones.cargarAsignacionesDesdeArchivo("rutas.txt", listaBuses);
+
+        Buses busAsignado = ControladorAsignaciones.asignarBusParaRuta(rutaSeleccionada, asignaciones, listaBuses, "buses.txt");
+
+        if (busAsignado != null) {
+            JOptionPane.showMessageDialog(this, "Bus asignado: " + busAsignado.getPlaca());
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay buses disponibles para esta ruta.");
+            return;
+        }
 
         // Crear cliente y guardar
         RegistroClientes cliente = new RegistroClientes(

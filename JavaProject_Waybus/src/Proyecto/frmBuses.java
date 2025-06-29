@@ -1,4 +1,3 @@
-
 package Proyecto;
 
 import java.io.*;
@@ -64,6 +63,7 @@ public class FrmBuses extends javax.swing.JFrame {
         cbMarcaBus = new javax.swing.JComboBox<>();
         cbEstado = new javax.swing.JComboBox<>();
         btnRegistrarBus = new javax.swing.JButton();
+        spCantAsie = new javax.swing.JSpinner();
         menuBarPrincipal1 = new javax.swing.JMenuBar();
         menuRegistroEmpleados1 = new javax.swing.JMenu();
         menuItemRegresarMenu1 = new javax.swing.JMenuItem();
@@ -103,7 +103,7 @@ public class FrmBuses extends javax.swing.JFrame {
         cbMarcaBus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------------Seleccione--------------", "Mercedes", "Marcopolo" }));
         cbMarcaBus.setBorder(javax.swing.BorderFactory.createTitledBorder("Marca de bus"));
 
-        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------Seleccione-----------", "Listo", "En mantenimiento", "Malogrado" }));
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------Seleccione-----------", "Operativo", "En revisión", "Fuera de Servicio" }));
         cbEstado.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado"));
 
         btnRegistrarBus.setText("Registrar");
@@ -112,6 +112,8 @@ public class FrmBuses extends javax.swing.JFrame {
                 btnRegistrarBusActionPerformed(evt);
             }
         });
+
+        spCantAsie.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad de asientos"));
 
         menuRegistroEmpleados1.setText("Opciones");
         menuRegistroEmpleados1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -134,18 +136,18 @@ public class FrmBuses extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(72, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(lblBuses))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtModelo)
-                        .addComponent(txtPlaca)
-                        .addComponent(cbEstado, 0, 0, Short.MAX_VALUE)
-                        .addComponent(cbMarcaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(btnRegistrarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRegistrarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtModelo)
+                    .addComponent(txtPlaca)
+                    .addComponent(cbEstado, 0, 0, Short.MAX_VALUE)
+                    .addComponent(cbMarcaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spCantAsie, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
@@ -164,12 +166,14 @@ public class FrmBuses extends javax.swing.JFrame {
                         .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spCantAsie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnRegistrarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
-        setSize(new java.awt.Dimension(351, 422));
+        setSize(new java.awt.Dimension(351, 477));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -200,7 +204,8 @@ public class FrmBuses extends javax.swing.JFrame {
         String placa = txtPlaca.getText().trim();
         String modelo = txtModelo.getText().trim();
         String marca = cbMarcaBus.getSelectedItem().toString();
-        String estado = "Listo";
+        String estado = "Operativo";
+        int cant = (int) spCantAsie.getValue();
         int usos = 0;
 
         if (modelo.length() != 7) {
@@ -220,7 +225,7 @@ public class FrmBuses extends javax.swing.JFrame {
         
         // Crear el objeto empleado
         Buses objetobus = new Buses(
-                placa, modelo, marca, estado, usos
+                placa, modelo, marca, estado, usos, cant
         );
 
         // Agregar a la lista y guardar
@@ -231,8 +236,9 @@ public class FrmBuses extends javax.swing.JFrame {
                 objetobus.getPlaca()+ "," +
                 objetobus.getModelo() + "," +
                 objetobus.getMarca() + "," +
-                objetobus.getEstado() + "," +
-                objetobus.getUsos() + "\n"
+                objetobus.getEstado() + "," + 
+                objetobus.getUsos() + "," +
+                objetobus.getCantidadAsientos() + "\n"
             );
 
             JOptionPane.showMessageDialog(this, "Datos ingresados correctamente.");
@@ -245,6 +251,7 @@ public class FrmBuses extends javax.swing.JFrame {
         txtModelo.setText("");
         cbMarcaBus.setSelectedIndex(0);
         cbEstado.setSelectedIndex(0);
+        spCantAsie.setValue(0);
         
     }
 
@@ -295,6 +302,7 @@ public class FrmBuses extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemRegresarMenu1;
     private javax.swing.JMenu menuRegistroEmpleados;
     private javax.swing.JMenu menuRegistroEmpleados1;
+    private javax.swing.JSpinner spCantAsie;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables

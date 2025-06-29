@@ -35,15 +35,16 @@ public class MantenimientoBuses {
                 String linea = scanner.nextLine().trim();
                 String[] datos = linea.split(",");
 
-                if (datos.length == 5) {
+                if (datos.length == 6) {
                     String placa = datos[0];
                     String modelo = datos[1];
                     String marca = datos[2];
                     String estado = datos[3];
                     int usos = Integer.parseInt(datos[4]);
+                    int cant = Integer.parseInt(datos[5]);
 
                     Buses bus = new Buses(
-                        placa, modelo, marca, estado, usos
+                        placa, modelo, marca, estado, usos, cant
                     );
                     lista.add(bus);
                 }
@@ -84,7 +85,8 @@ public class MantenimientoBuses {
                     b.getModelo(),
                     b.getMarca(),
                     b.getEstado(),
-                    String.valueOf(b.getUsos())
+                    String.valueOf(b.getUsos()),
+                    String.valueOf(b.getCantidadAsientos())
                 );
                 bw.write(linea);
                 bw.newLine();
@@ -93,4 +95,5 @@ public class MantenimientoBuses {
             System.out.println("Error al guardar buses: " + e.getMessage());
         }
     }
+    
 }
