@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Proyecto;
 
 import java.util.ArrayList;
@@ -168,6 +165,11 @@ public class FrmEditorRutas extends javax.swing.JFrame {
         cmbConductor.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor: "));
 
         cmbBus.setBorder(javax.swing.BorderFactory.createTitledBorder("Bus: "));
+        cmbBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -259,6 +261,10 @@ public class FrmEditorRutas extends javax.swing.JFrame {
 
         new FrmListaRutas().setVisible(true); // Abre uno nuevo con datos actualizados
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cmbBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbBusActionPerformed
 
     /**
      * @param args the command line arguments

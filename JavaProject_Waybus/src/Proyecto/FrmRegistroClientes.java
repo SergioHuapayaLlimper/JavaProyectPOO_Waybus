@@ -400,131 +400,162 @@ import javax.swing.text.*;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistroDeClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroDeClientesActionPerformed
-        // Obtener los textos ingresados y eliminar espacios innecesarios
-        String codigo = txtCodigo.getText().trim();
-        String nombre = txtNombre.getText().trim();
-        String apellido = txtApellido.getText().trim();
-        String dni = txtDNI.getText().trim();
-        String correo = txtCorreo.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-        String edadStr = txtEdad.getText().trim();
-        String sexo = cmbSexo.getSelectedItem().toString().trim();
-        String servicio = cmbServicio.getSelectedItem().toString().trim();
-        String ruta = (cmbRuta.getSelectedItem() != null) ? cmbRuta.getSelectedItem().toString().trim() : "";
+   // Obtener los textos ingresados y eliminar espacios innecesarios
+    String codigo = txtCodigo.getText().trim();
+    String nombre = txtNombre.getText().trim();
+    String apellido = txtApellido.getText().trim();
+    String dni = txtDNI.getText().trim();
+    String correo = txtCorreo.getText().trim();
+    String telefono = txtTelefono.getText().trim();
+    String edadStr = txtEdad.getText().trim();
+    String sexo = cmbSexo.getSelectedItem().toString().trim();
+    String servicio = cmbServicio.getSelectedItem().toString().trim();
+    String ruta = (cmbRuta.getSelectedItem() != null) ? cmbRuta.getSelectedItem().toString().trim() : "";
 
-        // Validar formato del código: "C-XXXXX"
-        if (!codigo.matches("C-\\d{5}")) {
-            JOptionPane.showMessageDialog(this, "El código debe tener el formato C-XXXXX (5 dígitos).");
-            return;
-        }
+    // Validar formato del código: "C-XXXXX"
+    if (!codigo.matches("C-\\d{5}")) {
+        JOptionPane.showMessageDialog(this, "El código debe tener el formato C-XXXXX (5 dígitos).");
+        return;
+    }
 
-        // Validar que ningún campo tenga espacios en medio
-        if (codigo.contains(" ") || dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") ||
-            edadStr.contains(" ") || sexo.contains(" ")) {
-            JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios.");
-            return;
-        }
+    // Validar que ningún campo tenga espacios en medio
+    if (codigo.contains(" ") || dni.contains(" ") || correo.contains(" ") || telefono.contains(" ") ||
+        edadStr.contains(" ") || sexo.contains(" ")) {
+        JOptionPane.showMessageDialog(this, "Ningún campo debe contener espacios.");
+        return;
+    }
 
-        // Validar correo: solo @gmail.com o @outlook.com
-        if (!correo.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|outlook\\.com)$")) {
-            JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @outlook.com.");
-            return;
-        }
+    // Validar correo: solo @gmail.com o @outlook.com
+    if (!correo.matches("^[A-Za-z0-9._%+-]+@(gmail\\.com|outlook\\.com)$")) {
+        JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @outlook.com.");
+        return;
+    }
 
-        // Validar edad numérica
-        int edad;
-        try {
-            edad = Integer.parseInt(edadStr);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
-            return;
-        }
+    // Validar edad numérica
+    int edad;
+    try {
+        edad = Integer.parseInt(edadStr);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "La edad debe ser un número válido.");
+        return;
+    }
 
-        // Validar ruta seleccionada
-        if (ruta.equals("-------SELECCIONE-------")) {
-            JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
-            return;
-        }
-        
-        String nombreArchivo = "rutas.txt";
-        String horaRuta = txfSalida.getText().trim();
-        String[] partesRuta = ruta.split(" - ");
-        if (partesRuta.length != 2) {
-            JOptionPane.showMessageDialog(this, "Ruta inválida.");
-            return;
-        }
-        String origen = partesRuta[0];
-        String destino = partesRuta[1];
-        String fecha = ""; // puedes colocar una fecha predeterminada o adaptarlo a la selección del usuario
+    // Validar ruta seleccionada
+    if (ruta.equals("-------SELECCIONE-------")) {
+        JOptionPane.showMessageDialog(this, "Debes seleccionar una ruta válida.");
+        return;
+    }
+    
+    String nombreArchivo = "rutas.txt";
+    String horaRuta = txfSalida.getText().trim();
+    String[] partesRuta = ruta.split(" - ");
+    if (partesRuta.length != 2) {
+        JOptionPane.showMessageDialog(this, "Ruta inválida.");
+        return;
+    }
+    String origen = partesRuta[0];
+    String destino = partesRuta[1];
+    String fecha = ""; // puedes colocar una fecha predeterminada o adaptarlo a la selección del usuario
 
-        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length >= 6) {
-                    String origenArchivo = datos[3].trim();
-                    String destinoArchivo = datos[4].trim();
-                    String horaArchivo = datos[2].trim().split("-")[1].trim();
-                    if (origenArchivo.equalsIgnoreCase(origen) && destinoArchivo.equalsIgnoreCase(destino)
-                            && horaArchivo.equalsIgnoreCase(horaRuta)) {
-                        fecha = datos[0].trim();
-                        break;
-                    }
+    try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] datos = linea.split(",");
+            if (datos.length >= 6) {
+                String origenArchivo = datos[3].trim();
+                String destinoArchivo = datos[4].trim();
+                String horaArchivo = datos[2].trim().split("-")[1].trim();
+                if (origenArchivo.equalsIgnoreCase(origen) && destinoArchivo.equalsIgnoreCase(destino)
+                        && horaArchivo.equalsIgnoreCase(horaRuta)) {
+                    fecha = datos[0].trim();
+                    break;
                 }
             }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error al leer rutas.txt: " + ex.getMessage());
-            return;
         }
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "Error al leer rutas.txt: " + ex.getMessage());
+        return;
+    }
 
-        // Ahora sí puedes crear el objeto Rutas
-        Rutas rutaSeleccionada = new Rutas(fecha, horaRuta, origen, destino);
+    // Verificar duplicados en clientes.txt
+    try (BufferedReader br = new BufferedReader(new FileReader("clientes.txt"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] datos = linea.split(",");
+            if (datos.length >= 6) {
+                String dniExistente = datos[3].trim();
+                String telefonoExistente = datos[5].trim();
+                String codigoExistente = datos[0].trim();
 
-        // Cargar buses y asignaciones
-        List<Buses> listaBuses = ControladorAsignaciones.cargarBusesDesdeArchivo("buses.txt");
-        List<AsignacionesRutas> asignaciones = ControladorAsignaciones.cargarAsignacionesDesdeArchivo("rutas.txt", listaBuses);
+                
+                if (codigo.equals(codigoExistente)){
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con el mismo Código.");
+                    return;
+                }
+                if (dni.equals(dniExistente)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con el mismo DNI.");
+                    return;
+                }
 
-        Buses busAsignado = ControladorAsignaciones.asignarBusParaRuta(rutaSeleccionada, asignaciones, listaBuses, "buses.txt");
-
-        if (busAsignado != null) {
-            JOptionPane.showMessageDialog(this, "Bus asignado: " + busAsignado.getPlaca());
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay buses disponibles para esta ruta.");
-            return;
+                if (telefono.equals(telefonoExistente)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con el mismo número de teléfono.");
+                    return;
+                }
+            }
         }
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "Error al verificar duplicados: " + ex.getMessage());
+        return;
+    }
 
-        // Crear cliente y guardar
-        RegistroClientes cliente = new RegistroClientes(
-            codigo, nombre, apellido, dni, correo, telefono, edad, sexo, servicio, ruta
-        );
-        mantenimientoClientes.AgregarCliente(cliente);
+    // Crear objeto Rutas
+    Rutas rutaSeleccionada = new Rutas(fecha, horaRuta, origen, destino);
 
-        // Guardar en archivo
-        try (FileWriter writer = new FileWriter("clientes.txt", true)) {
-            writer.write(codigo + "," + nombre + "," + apellido + "," + dni + "," +
-                         correo + "," + telefono + "," + edad + "," + sexo + "," +
-                         servicio + "," + ruta + "\n");
+    // Cargar buses y asignaciones
+    List<Buses> listaBuses = ControladorAsignaciones.cargarBusesDesdeArchivo("buses.txt");
+    List<AsignacionesRutas> asignaciones = ControladorAsignaciones.cargarAsignacionesDesdeArchivo("rutas.txt", listaBuses);
 
-            JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al registrar cliente: " + e.getMessage());
-        }
+    Buses busAsignado = ControladorAsignaciones.asignarBusParaRuta(rutaSeleccionada, asignaciones, listaBuses, "buses.txt");
 
-        // Limpiar campos
-        txtCodigo.setDocument(new javax.swing.text.PlainDocument());
-        txtCodigo.setText("C-");
-        ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoClienteFilter());
+    if (busAsignado != null) {
+        JOptionPane.showMessageDialog(this, "Bus asignado: " + busAsignado.getPlaca());
+    } else {
+        JOptionPane.showMessageDialog(this, "No hay buses disponibles para esta ruta.");
+        return;
+    }
 
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtDNI.setText("");
-        txtCorreo.setText("");
-        txtTelefono.setText("");
-        txtEdad.setText("");
-        cmbSexo.setSelectedIndex(0);
-        cmbServicio.setSelectedIndex(0);
-        cmbRuta.setSelectedIndex(0);
-        txfSalida.setText("");
+    // Crear cliente y guardar
+    RegistroClientes cliente = new RegistroClientes(
+        codigo, nombre, apellido, dni, correo, telefono, edad, sexo, servicio, ruta
+    );
+    mantenimientoClientes.AgregarCliente(cliente);
+
+    // Guardar en archivo
+    try (FileWriter writer = new FileWriter("clientes.txt", true)) {
+        writer.write(codigo + "," + nombre + "," + apellido + "," + dni + "," +
+                     correo + "," + telefono + "," + edad + "," + sexo + "," +
+                     servicio + "," + ruta + "\n");
+
+        JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.");
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error al registrar cliente: " + e.getMessage());
+    }
+
+    // Limpiar campos
+    txtCodigo.setDocument(new javax.swing.text.PlainDocument());
+    txtCodigo.setText("C-");
+    ((AbstractDocument) txtCodigo.getDocument()).setDocumentFilter(new CodigoClienteFilter());
+
+    txtNombre.setText("");
+    txtApellido.setText("");
+    txtDNI.setText("");
+    txtCorreo.setText("");
+    txtTelefono.setText("");
+    txtEdad.setText("");
+    cmbSexo.setSelectedIndex(0);
+    cmbServicio.setSelectedIndex(0);
+    cmbRuta.setSelectedIndex(0);
+    txfSalida.setText("");
     }//GEN-LAST:event_btnRegistroDeClientesActionPerformed
 
     

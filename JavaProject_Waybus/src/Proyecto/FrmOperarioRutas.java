@@ -43,7 +43,7 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
     public FrmOperarioRutas() {
         initComponents();
         getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
-        personalizarBoton(btnMostrarRutas);
+        personalizarBoton(btnRutasProgramadas);
         personalizarBoton(btnRegistroDeRutas);
     }
 
@@ -53,7 +53,7 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
 
         lblTitulo = new javax.swing.JLabel();
         btnRegistroDeRutas = new javax.swing.JButton();
-        btnMostrarRutas = new javax.swing.JButton();
+        btnRutasProgramadas = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -72,12 +72,7 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
             }
         });
 
-        btnMostrarRutas.setText("Mostrar Rutas");
-        btnMostrarRutas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarRutasActionPerformed(evt);
-            }
-        });
+        btnRutasProgramadas.setText("Rutas Programadas");
 
         jMenu1.setText("Opciones");
 
@@ -98,16 +93,16 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(btnMostrarRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblTitulo)
+                        .addContainerGap(184, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegistroDeRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTitulo))))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addComponent(btnRegistroDeRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRutasProgramadas, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +112,7 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistroDeRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrarRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRutasProgramadas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(284, Short.MAX_VALUE))
         );
 
@@ -136,12 +131,6 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
         formularioregistro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistroDeRutasActionPerformed
-
-    private void btnMostrarRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarRutasActionPerformed
-        FrmListaRutas formulariolistarutas = new FrmListaRutas();
-        formulariolistarutas.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnMostrarRutasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -176,8 +165,8 @@ public class FrmOperarioRutas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMostrarRutas;
     private javax.swing.JButton btnRegistroDeRutas;
+    private javax.swing.JButton btnRutasProgramadas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;

@@ -1,2 +1,3 @@
 ABC,1234567,Mercedes,En revisión,5,44
-DEF,7654321,Marcopolo,Operativo,0,30
+DEF,7654321,Marcopolo,Operativo,4,27
+POF 2588,1234567,Mercedes,Operativo,0,60

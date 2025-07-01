@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class MantenimientoRutas {
 
@@ -69,6 +70,33 @@ public class MantenimientoRutas {
         horarios.add("Noche - 06:00 PM");
         return horarios;
     }
+    
+    public static void eliminarRutaDelArchivo(int filaAEliminar) {
+    File archivoOriginal = new File("rutas.txt");
+    File archivoTemporal = new File("temp_rutas.txt");
+
+    try (Scanner sc = new Scanner(archivoOriginal);
+         PrintWriter pw = new PrintWriter(archivoTemporal)) {
+
+        int filaActual = 0;
+        while (sc.hasNextLine()) {
+            String linea = sc.nextLine();
+
+            if (filaActual != filaAEliminar) {
+                pw.println(linea);
+            }
+            filaActual++;
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    // Reemplazar el archivo original por el temporal
+    if (archivoOriginal.delete()) {
+        archivoTemporal.renameTo(archivoOriginal);
+    }
+}
     
     public static List<String> obtenerLugares() {
         return Arrays.asList("Arequipa", "Alto Siguas", "Camaná", "Ica", "Atocongo", "Lima");

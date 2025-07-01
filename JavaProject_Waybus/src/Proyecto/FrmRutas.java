@@ -125,7 +125,7 @@ public class FrmRutas extends javax.swing.JFrame {
     
     private void guardarRutaEnArchivo(String archivo) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(archivo, true))) {
-        String fecha = txtFechaEmbarque.getText().trim();
+        String fecha = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dcFechaEmbarque.getDate());
         String precio = txtPrecio.getText().trim();
         String horario = cmbHorarioEmbarque.getSelectedItem().toString();
         String salida = cmbLugarPartida.getSelectedItem().toString();
@@ -207,7 +207,6 @@ public class FrmRutas extends javax.swing.JFrame {
     private void initComponents() {
 
         lblRegistroRutas = new javax.swing.JLabel();
-        txtFechaEmbarque = new javax.swing.JTextField();
         cmbHorarioEmbarque = new javax.swing.JComboBox<>();
         txtPrecio = new javax.swing.JTextField();
         lblFechaHorario = new javax.swing.JLabel();
@@ -218,6 +217,7 @@ public class FrmRutas extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         cmbLugarPartida = new javax.swing.JComboBox<>();
         cmbLugarLlegada = new javax.swing.JComboBox<>();
+        dcFechaEmbarque = new com.toedter.calendar.JDateChooser();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuRutas = new javax.swing.JMenu();
         menuItemListaRutas = new javax.swing.JMenuItem();
@@ -229,8 +229,6 @@ public class FrmRutas extends javax.swing.JFrame {
 
         lblRegistroRutas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblRegistroRutas.setText("Registro de Rutas");
-
-        txtFechaEmbarque.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Embarque"));
 
         cmbHorarioEmbarque.setBorder(javax.swing.BorderFactory.createTitledBorder("Horario de Embarque"));
 
@@ -259,6 +257,8 @@ public class FrmRutas extends javax.swing.JFrame {
         cmbLugarPartida.setBorder(javax.swing.BorderFactory.createTitledBorder(" Lugar de Partida"));
 
         cmbLugarLlegada.setBorder(javax.swing.BorderFactory.createTitledBorder("Lugar de Llegada"));
+
+        dcFechaEmbarque.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha de Embarque:"));
 
         menuRutas.setText("Opciones");
 
@@ -294,35 +294,31 @@ public class FrmRutas extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(lblConductorTransporte)
-                        .addContainerGap())
+                        .addGap(50, 50, 50)
+                        .addComponent(lblFechaHorario))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cmbConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbHorarioEmbarque, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbBus, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblConductorTransporte))
+                    .addComponent(dcFechaEmbarque, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(lblFechaHorario))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cmbConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFechaEmbarque, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbHorarioEmbarque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbBus, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cmbLugarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmbLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblDestinoCosto)
-                                .addGap(160, 160, 160))))))
+                                .addComponent(cmbLugarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblDestinoCosto)
+                        .addGap(160, 160, 160))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,11 +329,11 @@ public class FrmRutas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaHorario)
                     .addComponent(lblDestinoCosto))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtFechaEmbarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dcFechaEmbarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
                         .addComponent(cmbHorarioEmbarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -353,7 +349,7 @@ public class FrmRutas extends javax.swing.JFrame {
                 .addComponent(cmbBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(736, 570));
@@ -368,12 +364,12 @@ public class FrmRutas extends javax.swing.JFrame {
         cmbConductor.setSelectedIndex(0);
         cmbLugarLlegada.setSelectedIndex(0);
         cmbLugarPartida.setSelectedIndex(0);
-        txtFechaEmbarque.setText("");
+        dcFechaEmbarque.setDate(null);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void menuItemListaRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListaRutasActionPerformed
-        FrmListaRutas formlistarutas = new FrmListaRutas();
-        formlistarutas.setVisible(true);
+        FrmRutasProgramadas formrutaspro = new FrmRutasProgramadas();
+        formrutaspro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemListaRutasActionPerformed
 
@@ -427,6 +423,7 @@ public class FrmRutas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbHorarioEmbarque;
     private javax.swing.JComboBox<String> cmbLugarLlegada;
     private javax.swing.JComboBox<String> cmbLugarPartida;
+    private com.toedter.calendar.JDateChooser dcFechaEmbarque;
     private javax.swing.JLabel lblConductorTransporte;
     private javax.swing.JLabel lblDestinoCosto;
     private javax.swing.JLabel lblFechaHorario;
@@ -435,7 +432,6 @@ public class FrmRutas extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemListaRutas;
     private javax.swing.JMenuItem menuItemRetroceder;
     private javax.swing.JMenu menuRutas;
-    private javax.swing.JTextField txtFechaEmbarque;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

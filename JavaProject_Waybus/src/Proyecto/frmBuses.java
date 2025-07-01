@@ -48,6 +48,7 @@ public class FrmBuses extends javax.swing.JFrame {
         mantenimiento = new MantenimientoBuses();
         personalizarBoton(btnRegistrarBus);
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
