@@ -2,7 +2,7 @@ C-34234,Juan,Torres,43534654,juan.torres@gmail.com,943254356,35,Masculino,Viaje,
 C-00001,Jorge,Chavez,16854186,asabi@gmail.com,984413541,20,Masculino,Encomienda,Camaná - Ica
 C-98746,Pedro,Calderon,78267268,pedrocal@gmail.com,983647364,40,Masculino,Encomienda,Atocongo - Ica
 C-12354,Angel,Huarcaya,56855224,angel@gmail.com,955686566,30,Masculino,Viaje,Alto Siguas - Arequipa
-C-12358,Sebastian,Herandez,57684555,sebas@gmail.com,965588988,20,Masculino,Encomienda,Alto Siguas - ArequipaC-54543,Sergio,Huapaya,28348248,sh@gmail.com,987654456,34,Masculino,Encomienda,Camaná - Alto Siguas
+C-12358,Sebastian,Herandez,57684555,sebas@gmail.com,965588988,20,Masculino,Encomienda,Alto Siguas - Arequipa
 C-00001,Juan,Alvarez,43534654,juan@gmail.com,987654321,20,Femenino,Viaje,Camaná - Arequipa
 C-00002,Alvaro,Sarmiento,12345678,alvs@gmail.com,987654321,20,Masculino,Encomienda,Lima - Alto Siguas
 C-00004,Oscar,Milan,12345677,oscarm@gmail.com,987654322,20,Masculino,Viaje,Camaná - Ica

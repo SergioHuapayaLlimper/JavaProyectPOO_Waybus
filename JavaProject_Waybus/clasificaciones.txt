@@ -1,0 +1,6 @@
+atocongo - ica,Baja demanda
+camaná - ica,Alta demanda
+alto siguas - arequipa,Alta demanda
+camaná - arequipa,Baja demanda
+lima - camaná,Baja demanda
+lima - alto siguas,Baja demanda
