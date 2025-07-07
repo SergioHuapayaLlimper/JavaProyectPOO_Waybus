@@ -2,14 +2,22 @@
 package Proyecto;
 
 import java.awt.Color;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 //Interfaz para el responsalble de RRHH
 public class FrmResponsableRRHH extends javax.swing.JFrame {
+    
+    private MantenimientoCapacitaciones mantenimiento;
 
     public FrmResponsableRRHH() {
         initComponents();
-        
-        getContentPane().setBackground(new Color(240, 248, 255)); // AliceBlue
+        getContentPane().setBackground(new Color(240, 248, 255));
+        mantenimiento = new MantenimientoCapacitaciones();
+        cargarHistorial();
     }
 
     @SuppressWarnings("unchecked")
@@ -17,6 +25,10 @@ public class FrmResponsableRRHH extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        lblHistorialdeEmpleados = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbltablacapas = new javax.swing.JTable();
+        btnRegistrar = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
@@ -27,6 +39,29 @@ public class FrmResponsableRRHH extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTitulo.setText("Bienvenid@, a la interfaz de Responsable de RR.HH.");
+
+        lblHistorialdeEmpleados.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHistorialdeEmpleados.setText("HISTORIAL DE EMPLEADOS");
+
+        tbltablacapas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbltablacapas);
+
+        btnRegistrar.setText("Administrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Opciones");
 
@@ -47,19 +82,36 @@ public class FrmResponsableRRHH extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblTitulo)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(332, 332, 332)
+                        .addComponent(lblHistorialdeEmpleados)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addComponent(lblTitulo)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblHistorialdeEmpleados)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(660, 452));
+        setSize(new java.awt.Dimension(1007, 636));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -69,6 +121,62 @@ public class FrmResponsableRRHH extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        registrarCapacitacion();
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+    
+     private void cargarHistorial() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Capacitación");
+        modelo.addColumn("Comentario");
+
+        List<String[]> historial = mantenimiento.leerHistorialDesdeArchivo("usuarios.txt");
+        Map<String, String[]> capacitaciones = mantenimiento.cargarCapacitaciones();
+
+        for (String[] datos : historial) {
+            String codigo = datos[0]; // Código
+            String nombre = datos[1] + " " + datos[2]; // Nombre completo
+            String capacitacion = "";
+            String comentario = "";
+
+            if (capacitaciones.containsKey(codigo)) {
+                capacitacion = capacitaciones.get(codigo)[0];
+                comentario = capacitaciones.get(codigo)[1];
+            }
+
+            modelo.addRow(new Object[]{codigo, nombre, capacitacion, comentario});
+        }
+
+        tbltablacapas.setModel(modelo);
+    }
+
+    private void registrarCapacitacion() {
+        int fila = tbltablacapas.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un empleado de la tabla.");
+            return;
+        }
+
+        String codigo = tbltablacapas.getValueAt(fila, 0).toString();
+        String nombre = tbltablacapas.getValueAt(fila, 1).toString();
+
+        String capacitacion = JOptionPane.showInputDialog(this, "Ingrese la capacitación para " + nombre + ":");
+        if (capacitacion == null || capacitacion.trim().isEmpty()) return;
+
+        String comentario = JOptionPane.showInputDialog(this, "Ingrese un comentario para " + nombre + ":");
+        if (comentario == null || comentario.trim().isEmpty()) return;
+
+        mantenimiento.guardarCapacitacion(codigo, capacitacion, comentario);
+
+        tbltablacapas.setValueAt(capacitacion, fila, 2);
+        tbltablacapas.setValueAt(comentario, fila, 3);
+    }
+
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -102,9 +210,13 @@ public class FrmResponsableRRHH extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblHistorialdeEmpleados;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenuBar menuBarPrincipal;
     private javax.swing.JMenuItem menuItemCerrarSesion;
+    private javax.swing.JTable tbltablacapas;
     // End of variables declaration//GEN-END:variables
 }
